@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: inherit; }
+  ::selection { background: #96D428; color: #0E0E0E; }
+  @keyframes kom-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes kom-spin { to { transform: rotate(360deg); } }
+  @keyframes kom-bob { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-14px) rotate(var(--r,0deg)); } }
+  .kom-nav { position: relative; text-decoration: none; }
+
+  .kom-dd { position: relative; }
+  .kom-dd-menu { position: absolute; top: 100%; left: -18px; padding-top: 14px; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .25s ease, transform .25s cubic-bezier(.16,1,.3,1), visibility .25s; z-index: 80; }
+  .kom-dd:hover .kom-dd-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+  .kom-dd-item { display: block; padding: 11px 22px 11px 18px; font-size: 14.5px; font-weight: 600; letter-spacing: 0; text-transform: none; color: #0E0E0E; white-space: nowrap; border-radius: 10px; transition: background .2s ease, padding-left .25s ease; }
+  .kom-dd-item:hover { background: #F4F3EE; padding-left: 26px; }
+  .kom-dd-caret { display:inline-block; margin-left:6px; transition: transform .25s ease; }
+  .ho-chip:hover { border-color:#0E0E0E !important; }
+  .kom-dd:hover .kom-dd-caret { transform: rotate(180deg); }
+  .kom-nav::after { content:""; position:absolute; left:0; bottom:-5px; height:2px; width:0; background:#0E0E0E; transition:width .32s cubic-bezier(.16,1,.3,1); }
+  .kom-nav:hover::after { width:100%; }
+  .kom-mag { position: relative; overflow: hidden; transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease; }
+  .kom-mag:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -12px rgba(14,14,14,.35); }
+  .kom-mag:active { transform: translateY(0) scale(.98); }
+  .kom-mag::after { content:""; position:absolute; top:0; bottom:0; left:-70%; width:45%; background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent); transform:skewX(-20deg); transition:left .55s ease; pointer-events:none; }
+  .kom-mag:hover::after { left:125%; }
+  .kom-row { transition: color .35s ease, padding-left .45s cubic-bezier(.16,1,.3,1); }
+  .kom-row:hover { padding-left: 26px !important; }
+  .kom-row:hover .kom-rowarrow { transform: translateX(0) rotate(0deg); opacity:1; }
+  .kom-row:hover .kom-rownum { color:#96D428 !important; }
+  .kom-arch { transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s ease; }
+  .kom-arch:hover { transform: translateY(-8px) rotate(-1deg); box-shadow: 0 40px 80px -34px rgba(14,14,14,.4); }
+  .kom-arch:hover .kom-archz { transform: scale(1.08); }
+  .kom-cta { transition: transform .3s cubic-bezier(.16,1,.3,1), background .3s ease, color .3s ease; }
+  .kom-cta:hover { background:#0E0E0E !important; color:#fff !important; }
+  .kom-cta:hover .kom-ctadot { background:#96D428 !important; }
+  @keyframes kom-kb { 0% { transform: scale(1); } 100% { transform: scale(1.07); } }
+  @keyframes kom-sos { 0%,100% { box-shadow: 0 16px 38px -10px rgba(255,106,26,.65), 0 0 0 0 rgba(255,106,26,.45); } 50% { box-shadow: 0 16px 38px -10px rgba(255,106,26,.65), 0 0 0 12px rgba(255,106,26,0); } }
+  .kom-sos { animation: kom-sos 2.6s ease-in-out infinite; transition: transform .3s cubic-bezier(.16,1,.3,1); }
+  .kom-map-label { background:#fff; border:1px solid #E0DDD2; border-radius:99px; padding:2px 8px; font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; color:#0E0E0E; box-shadow:0 4px 10px -6px rgba(14,14,14,.3); white-space:nowrap; }
+  .kom-map-label::before { display:none; }
+  .kom-map-center { background:#0E0E0E; color:#fff; border:none; border-radius:99px; padding:5px 13px; font-family:'Bricolage Grotesque',sans-serif; font-size:12.5px; font-weight:800; box-shadow:0 8px 18px -8px rgba(14,14,14,.5); white-space:nowrap; z-index:1000 !important; position:relative; }
+  .kom-map-dot-wrap { z-index:1000 !important; }
+  .kom-map-center::before { display:none; }
+  @keyframes kom-mappulse { 0% { box-shadow:0 0 0 0 rgba(150,212,40,.55); } 100% { box-shadow:0 0 0 22px rgba(150,212,40,0); } }
+  .kom-map-dot { border-radius:99px; animation: kom-mappulse 2.4s ease-out infinite; }
+  .kom-sos:hover { transform: translateY(-3px); }
+  @keyframes kom-vup { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+  @keyframes kom-vdown { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+  .kom-vcol:hover .kom-vtrack { animation-play-state: paused; }
+  .kom-vcard { transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease; }
+  .kom-vcard:hover { border-color:#96D428 !important; box-shadow: 0 20px 44px -26px rgba(14,14,14,.3); transform: translateY(-3px); }
+</style>
+
+<style id="mobile-overrides">
+@media (max-width: 820px) {
+  body { overflow-x: hidden; }
+  /* grilles : tout passe en 1 colonne, sauf les stats en 2x2 */
+  [style*="grid-template-columns"]:not(.m-2col) { grid-template-columns: 1fr !important; }
+  .m-2col { grid-template-columns: 1fr 1fr !important; row-gap: 34px !important; }
+  [style*="font-size: 78px"] { font-size: 50px !important; }
+
+  /* header : nav remplacée par un burger, bandeau allégé */
+  header nav { display: none !important; }
+  .m-burger { display: inline-flex !important; }
+  .m-hide { display: none !important; }
+  header [style*="height: 14px"] { display: none !important; }
+  header [style*="height: 22px"] { display: none !important; }
+
+  /* espacements */
+  /* menu mobile */
+  header .kom-cta { display: none !important; }
+  .m-menu { display: none; }
+  #mnav:checked ~ .m-menu { display: flex !important; }
+  /* avis : une seule colonne */
+  .kom-vcol + .kom-vcol { display: none !important; }
+  /* carte zone : pleine largeur */
+  .m-mapwrap { margin-left: -20px !important; margin-right: -20px !important; padding: 0 !important; border: none !important; border-radius: 0 !important; background: transparent !important; }
+  .m-mapwrap > div:first-child { border-radius: 0 !important; height: 430px !important; }
+  .m-mapwrap > div:last-child { padding: 14px 20px 4px !important; }
+  section { padding-left: 20px !important; padding-right: 20px !important; }
+  section > div[style*="max-width"] { padding-left: 0 !important; padding-right: 0 !important; }
+  section:first-of-type { padding-top: 130px !important; }
+
+  /* hero */
+  .m-heropad { left: 18px !important; right: 18px !important; flex-wrap: wrap; gap: 8px; }
+  h1 { font-size: clamp(32px, 9.4vw, 46px) !important; }
+  [style*="height: 640px"] { height: 540px !important; }
+
+  /* galerie réalisations */
+  [style*="flex: 0 0 440px"] { flex: 0 0 66vw !important; }
+  [style*="height: 520px"] { height: 330px !important; }
+
+  /* footer */
+  footer [style*="white-space: nowrap"] { white-space: normal !important; font-size: clamp(34px, 10vw, 44px) !important; }
+  footer { padding-left: 4px; padding-right: 4px; }
+
+  /* cartes avis : hauteur réduite */
+  [style*="height: 600px"] { height: 520px !important; }
+}
+</style>
+</helmet>
+<div ref="{{ setRoot }}" style="background:#FFFFFF;color:#0E0E0E;font-family:'Space Grotesk',sans-serif;-webkit-font-smoothing:antialiased;position:relative;overflow:hidden;">
+
+  <!-- Bouton dépannage flottant -->
+  <a href="tel:0320876152" id="depannage" class="kom-sos" style="position:fixed;bottom:26px;right:26px;z-index:85;background:#FF6A1A;color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px;padding:15px 24px;border-radius:99px;box-shadow:0 16px 38px -10px rgba(255,106,26,.65);display:inline-flex;align-items:center;gap:10px;">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><path d="M14 6a3.5 3.5 0 00-4.7 4.6L4 16v4h4l5.4-5.3A3.5 3.5 0 0018 10l-2 2-2-2 2-2z"/></svg>
+    Dépannage 7j/7
+  </a>
+
+  <!-- Header -->
+  <input type="checkbox" id="mnav" style="display:none;">
+  <div class="m-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:99;flex-direction:column;padding:22px 24px;overflow:auto;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+            <img src="assets/logo-athome.png" alt="AT HOME" style="height:40px;width:auto;">
+            <label for="mnav" style="width:44px;height:44px;border:1.5px solid #E7E5DD;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E0E0E" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></label>
+          </div>
+          <a href="#societe" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0E0E0E;padding:15px 0;border-bottom:1px solid #F0EEE5;">Société</a>
+          <a href="#prestations" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0E0E0E;padding:15px 0;border-bottom:1px solid #F0EEE5;">Prestations</a>
+          <a href="#realisations" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0E0E0E;padding:15px 0;border-bottom:1px solid #F0EEE5;">Nos réalisations</a>
+          <a href="#qualification" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0E0E0E;padding:15px 0;border-bottom:1px solid #F0EEE5;">Qualification</a>
+          <a href="#configurateur" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0E0E0E;padding:15px 0;border-bottom:1px solid #F0EEE5;">Configurateur</a>
+          <a href="#espace-pro" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;color:#55554F;padding:16px 0;">Espace pro</a>
+          <a href="Devis.dc.html" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:10px;background:#96D428;color:#0E0E0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:17px;padding:17px;border-radius:99px;"><span style="width:9px;height:9px;border-radius:99px;background:#0E0E0E;display:inline-block;"></span>Devis gratuit</a>
+          <a href="tel:0320876152" style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:10px;background:#0E0E0E;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:17px;padding:17px;border-radius:99px;"><span style="color:#96D428;">☏</span> 03 20 87 61 52</a>
+        </div>
+  <header style="position:fixed;top:0;left:0;right:0;z-index:70;">
+
+    <!-- bandeau utilitaire -->
+    <div style="background:#0E0E0E;color:#C8C8C4;">
+      <div style="max-width:1360px;margin:0 auto;padding:7px clamp(18px,3vw,44px);display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:12.5px;">
+        <span class="m-hide" style="white-space:nowrap;">Lun – Sam · 8h – 19h · Bailleul (59)</span>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook" style="display:flex;align-items:center;color:#fff;opacity:.85;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.2-1.5 1.5-1.5h1.4V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8v3h2.5v7z"/></svg>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex;align-items:center;color:#fff;opacity:.85;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <span style="width:1px;height:14px;background:rgba(255,255,255,.2);"></span>
+          <a href="#configurateur" class="m-hide" style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:600;white-space:nowrap;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="#0E0E0E"/><circle cx="15" cy="12" r="2" fill="#0E0E0E"/><circle cx="7" cy="18" r="2" fill="#0E0E0E"/></svg>Configurateur
+          </a>
+          <span style="width:1px;height:14px;background:rgba(255,255,255,.2);"></span>
+          <a href="#espace-pro" class="m-hide" style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:600;white-space:nowrap;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Espace pro
+          </a>
+          <span style="width:1px;height:14px;background:rgba(255,255,255,.2);"></span>
+          <a href="tel:0320876152" style="display:inline-flex;align-items:center;gap:6px;color:#96D428;font-weight:700;white-space:nowrap;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 16.9v2.6a1.8 1.8 0 01-2 1.8 17.6 17.6 0 01-7.6-2.7 17.3 17.3 0 01-5.4-5.4A17.6 17.6 0 012.3 5.6 1.8 1.8 0 014 3.6h2.6a1.8 1.8 0 011.8 1.5c.1.8.3 1.6.5 2.4a1.8 1.8 0 01-.4 1.8L7.4 10.4a14.2 14.2 0 005.3 5.3l1-1.1a1.8 1.8 0 011.8-.4c.8.2 1.6.4 2.4.5a1.8 1.8 0 011.5 1.8z"/></svg>03 20 87 61 52
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- barre principale : logo + nav + CTA -->
+    <div style="background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid #EDEDE8;">
+      <div style="max-width:1360px;margin:0 auto;padding:11px clamp(10px,2.6vw,44px);display:flex;justify-content:space-between;align-items:center;gap:clamp(8px,1.6vw,30px);">
+        <img src="assets/logo-athome.png" alt="AT HOME Couvertures Fermetures" style="height:clamp(36px,4.6vw,46px);width:auto;display:block;flex:0 0 auto;">
+        <nav style="display:flex;align-items:center;gap:clamp(9px,1.9vw,32px);font-size:clamp(12px,1.35vw,13.5px);font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:#0E0E0E;white-space:nowrap;">
+        <a href="#societe" class="kom-nav" style="color:inherit;text-decoration:none;">Société</a>
+        <span class="kom-dd">
+          <a href="#prestations" class="kom-nav" style="color:inherit;text-decoration:none;">Prestations<span class="kom-dd-caret"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></a>
+          <div class="kom-dd-menu">
+            <div style="background:#fff;border:1px solid #EDEDE8;border-radius:16px;padding:10px;box-shadow:0 24px 54px -22px rgba(14,14,14,.3);">
+              <a href="Prestation-Fenetres.dc.html" class="kom-dd-item">Fenêtres et portes-fenêtres</a>
+              <a href="#prestations" class="kom-dd-item">Portes d'entrée</a>
+              <a href="#prestations" class="kom-dd-item">Volets</a>
+              <a href="#prestations" class="kom-dd-item">Portes de garage</a>
+              <a href="#prestations" class="kom-dd-item">Portails et carports</a>
+              <a href="#prestations" class="kom-dd-item">Velux</a>
+              <a href="#prestations" class="kom-dd-item">Motorisation de volets roulants</a>
+              <a href="#prestations" class="kom-dd-item">Isolation extérieure</a>
+              <a href="#prestations" class="kom-dd-item">Extension</a>
+            </div>
+          </div>
+        </span>
+        <a href="#realisations" class="kom-nav" style="color:inherit;text-decoration:none;">Nos réalisations</a>
+        <a href="#qualification" class="kom-nav" style="color:inherit;text-decoration:none;">Qualification</a>
+        <a href="#configurateur" class="kom-nav" style="color:inherit;text-decoration:none;">Configurateur</a>
+        </nav>
+        <label for="mnav" class="m-burger" style="display:none;width:44px;height:44px;border:1.5px solid #E7E5DD;border-radius:12px;background:#fff;color:#0E0E0E;align-items:center;justify-content:center;flex:0 0 auto;cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></label>
+        
+        <a href="Devis.dc.html" data-mag class="kom-mag kom-cta" style="display:inline-flex;align-items:center;gap:9px;background:#96D428;color:#0E0E0E;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(12.5px,1.4vw,14.5px);padding:12px clamp(14px,1.8vw,24px);border-radius:99px;white-space:nowrap;flex:0 0 auto;">
+          <span class="kom-ctadot" style="width:8px;height:8px;border-radius:99px;background:#0E0E0E;display:inline-block;"></span>Devis gratuit
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO — full-bleed cinématique -->
+  <section ref="{{ setHero }}" style="position:relative;max-width:1500px;margin:0 auto;padding:140px 22px 0;">
+    <div class="kom-arch" style="position:relative;height:640px;border-radius:22px;overflow:hidden;">
+      <img src="assets/hero.jpg" alt="Maison en briques rénovée dans le Nord — menuiseries et toiture AT HOME" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:kom-kb 9s ease-in-out infinite alternate;">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.15) 0%,transparent 32%,transparent 45%,rgba(14,14,14,.82) 100%);"></div>
+
+      <!-- top badges -->
+      <div class="m-heropad" style="position:absolute;top:26px;left:28px;right:28px;display:flex;justify-content:space-between;align-items:center;z-index:2;">
+        <span data-reveal style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:99px;padding:9px 16px;font-size:13px;font-weight:600;"><span style="width:8px;height:8px;border-radius:99px;background:#96D428;display:inline-block;"></span>Artisan RGE · Bailleul (59) · Depuis 2009</span>
+        <span data-reveal data-reveal-delay="90" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:99px;padding:9px 16px;font-size:13px;font-weight:600;"><span style="color:#FF6A1A;">★★★★★</span> 4,7/5 · 100+ avis Google</span>
+      </div>
+
+      <!-- bottom content -->
+      <div class="m-heropad" style="position:absolute;left:42px;right:42px;bottom:40px;color:#fff;z-index:2;">
+        <h1 data-reveal style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(46px,5.6vw,84px);line-height:.94;letter-spacing:-.03em;margin:0 0 22px;max-width:15ch;">On habille votre maison, du sol au toit.</h1>
+        <div data-reveal data-reveal-delay="130" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <a href="Devis.dc.html" data-mag class="kom-mag kom-cta" style="display:inline-flex;align-items:center;gap:11px;background:#96D428;color:#0E0E0E;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:17px;padding:17px 30px;border-radius:99px;">
+              <span class="kom-ctadot" style="width:9px;height:9px;border-radius:99px;background:#0E0E0E;display:inline-block;"></span>Devis gratuit sous 48h
+            </a>
+            <a href="#realisations" data-mag class="kom-mag" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.6);color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:17px;padding:17px 26px;border-radius:99px;">Nos réalisations →</a>
+          </div>
+          <span class="m-hide" style="font-size:14px;color:rgba(255,255,255,.85);font-weight:600;">Fenêtres · Volets · Portes · Portails · Isolation · Toiture</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDIBILITY BAR -->
+  <div id="qualification" style="border-top:1px solid #EDEDE8;border-bottom:1px solid #EDEDE8;background:#fff;">
+    <div style="max-width:1360px;margin:0 auto;padding:24px 44px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;">
+      <span style="font-size:13px;font-weight:600;letter-spacing:.02em;color:#9a978c;white-space:nowrap;">Nos partenaires & garanties</span>
+      <div style="display:flex;align-items:center;gap:34px;flex-wrap:wrap;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.01em;color:#B6B4AC;">
+        <span>K·LINE</span>
+        <span>VELUX</span>
+        <span>SOMFY</span>
+        <span>RGE QUALIBAT</span>
+        <span>GARANTIE DÉCENNALE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRÉSENTATION -->
+  <section id="societe" style="max-width:1360px;margin:0 auto;padding:100px 44px 0;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:start;">
+    <div data-reveal>
+      <div style="display:inline-block;background:#96D428;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:13px;padding:7px 15px;border-radius:99px;margin-bottom:20px;">LA SOCIÉTÉ</div>
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,3.8vw,52px);line-height:1;letter-spacing:-.03em;margin:0;">Besoin de travaux d'amélioration de votre habitat dans le Nord (59) ?</h2>
+    </div>
+    <div data-reveal data-reveal-delay="100">
+      <p style="font-size:17.5px;line-height:1.7;color:#4A4A46;margin:0 0 22px;">C'est avec expérience et savoir-faire que la société <strong style="color:#0E0E0E;">AT HOME Fermetures</strong>, située à Bailleul, entre Lille et Dunkerque dans le Nord (59), vous propose ses compétences pour vos projets d'amélioration de l'habitat.</p>
+      <p style="font-size:17.5px;line-height:1.7;color:#4A4A46;margin:0;">Entreprise du bâtiment, elle regroupe divers savoir-faire pour vous proposer des travaux sur votre <strong style="color:#0E0E0E;">toiture</strong> ainsi que des travaux de <strong style="color:#0E0E0E;">menuiseries</strong>.</p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="m-2col" style="max-width:1360px;margin:0 auto;padding:70px 44px 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+    <div data-reveal>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:78px;line-height:1;letter-spacing:-.03em;"><span data-count-to="15">0</span></div>
+      <div style="margin-top:6px;font-size:15px;color:#6a6a66;">ans d'expérience</div>
+    </div>
+    <div data-reveal data-reveal-delay="80">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:78px;line-height:1;letter-spacing:-.03em;"><span data-count-to="1200">0</span><span style="color:#96D428;">+</span></div>
+      <div style="margin-top:6px;font-size:15px;color:#6a6a66;">chantiers réalisés</div>
+    </div>
+    <div data-reveal data-reveal-delay="160">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:78px;line-height:1;letter-spacing:-.03em;"><span data-count-to="300">0</span><span style="color:#96D428;">m²</span></div>
+      <div style="margin-top:6px;font-size:15px;color:#6a6a66;">de showroom</div>
+    </div>
+    <div data-reveal data-reveal-delay="240">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:78px;line-height:1;letter-spacing:-.03em;"><span data-count-to="10">0</span><span style="color:#96D428;">ans</span></div>
+      <div style="margin-top:6px;font-size:15px;color:#6a6a66;">de garantie</div>
+    </div>
+  </section>
+
+  <!-- PRESTATIONS as interactive list -->
+  <section id="prestations" style="max-width:1360px;margin:0 auto;padding:80px 44px 100px;">
+    <div data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:20px;flex-wrap:wrap;">
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,5vw,72px);line-height:.95;letter-spacing:-.03em;margin:0;">Tout l'habitat,<br>un seul artisan.</h2>
+      <p style="font-size:16px;color:#6a6a66;max-width:320px;margin:0 0 10px;">Survolez une prestation pour la découvrir. De la fenêtre à la toiture, on maîtrise tout.</p>
+    </div>
+
+    <div style="border-top:1px solid #E7E5DD;">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="8">
+        <div class="kom-row" style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 0;border-bottom:1px solid #E7E5DD;cursor:pointer;">
+          <div style="display:flex;align-items:baseline;gap:26px;min-width:0;">
+            <span class="kom-rownum" style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#B6B4AC;width:34px;flex:0 0 auto;transition:color .35s ease;">{{ s.num }}</span>
+            <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(28px,3.4vw,46px);letter-spacing:-.02em;line-height:1;">{{ s.label }}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:22px;flex:0 0 auto;">
+            <span class="m-hide" style="font-size:15px;color:#6a6a66;">{{ s.desc }}</span>
+            <span class="kom-rowarrow" style="width:46px;height:46px;border-radius:99px;background:#96D428;display:flex;align-items:center;justify-content:center;font-size:20px;color:#0E0E0E;transform:translateX(-8px) rotate(-30deg);opacity:0;transition:transform .4s cubic-bezier(.16,1,.3,1), opacity .4s ease;">↗</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ZONE D'INTERVENTION + HORAIRES -->
+  <section id="zone" style="background:#F4F3EE;">
+    <div style="max-width:1360px;margin:0 auto;padding:100px 44px;display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center;">
+      <div data-reveal>
+        <div style="display:inline-block;background:#96D428;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:13px;padding:7px 15px;border-radius:99px;margin-bottom:20px;">ZONE D'INTERVENTION</div>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,3.8vw,52px);line-height:1;letter-spacing:-.03em;margin:0 0 18px;">Nous nous déplaçons à environ 50 km autour de Bailleul.</h2>
+        <p style="font-size:17px;color:#55554F;line-height:1.65;margin:0 0 26px;max-width:480px;">Basés à Bailleul, entre Lille et Dunkerque, nous nous déplaçons dans un rayon d'environ 50 km, dans tout le Nord (59) et le Pas-de-Calais voisin, pour vos travaux de menuiseries, fermetures, isolation et toiture : <strong style="color:#0E0E0E;">métropole lilloise (Lille, Roubaix, Tourcoing, Villeneuve-d'Ascq)</strong>, Flandre intérieure (Hazebrouck, Merville, Estaires, Nieppe, Steenwerck), littoral dunkerquois, Saint-Omer, Béthune, Lens et jusqu'à Ypres en Belgique.</p>
+        <div data-reveal data-reveal-delay="80" style="background:#fff;border:1px solid #ECEAE3;border-radius:18px;padding:22px 24px;max-width:440px;">
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F0EEE5;font-size:14.5px;"><span style="color:#55554F;">Lundi – Vendredi</span><strong>8h – 19h</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F0EEE5;font-size:14.5px;"><span style="color:#55554F;">Samedi</span><strong>9h – 18h</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14.5px;"><span style="color:#55554F;">Dimanche</span><span style="color:#9a9a92;">Fermé</span></div>
+          <div style="border-top:1px solid #F0EEE5;margin-top:6px;padding-top:14px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;">
+            <div>
+              <div style="font-size:12.5px;color:#8a8a7c;">Showroom 300 m²</div>
+              <div style="font-weight:700;font-size:14px;">2108 Route de Lille, 59270 Bailleul</div>
+            </div>
+            <a href="tel:0320876152" class="kom-mag" style="display:inline-flex;align-items:center;gap:8px;background:#0E0E0E;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:13.5px;padding:11px 18px;border-radius:99px;white-space:nowrap;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#96D428" stroke-width="1.9"><path d="M20 16.9v2.6a1.8 1.8 0 01-2 1.8 17.6 17.6 0 01-7.6-2.7 17.3 17.3 0 01-5.4-5.4A17.6 17.6 0 012.3 5.6 1.8 1.8 0 014 3.6h2.6a1.8 1.8 0 011.8 1.5c.1.8.3 1.6.5 2.4a1.8 1.8 0 01-.4 1.8L7.4 10.4a14.2 14.2 0 005.3 5.3l1-1.1a1.8 1.8 0 011.8-.4c.8.2 1.6.4 2.4.5a1.8 1.8 0 011.5 1.8z"/></svg>03 20 87 61 52
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte Leaflet rayon 50 km -->
+      <div data-reveal data-reveal-delay="120" class="m-mapwrap" style="position:relative;background:#fff;border:1px solid #ECEAE3;border-radius:24px;padding:16px;overflow:hidden;">
+        <div ref="{{ setMap }}" style="height:480px;border-radius:16px;overflow:hidden;position:relative;z-index:1;background:#EDF0EA;"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;border-top:1px solid #F0EEE5;margin-top:16px;padding:16px 10px 4px;">
+          <span style="font-size:13.5px;color:#8a8a7c;">Déplacement et étude <strong style="color:#0E0E0E;">gratuits</strong> à environ 50 km autour de Bailleul</span>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:#557f24;"><span style="width:9px;height:9px;border-radius:99px;background:#96D428;display:inline-block;"></span>Nord (59) · Pas-de-Calais · Flandre belge</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SHOWCASE horizontal scroll -->
+  <section id="realisations" style="padding:20px 0 40px;overflow:hidden;">
+    <div style="max-width:1360px;margin:0 auto;padding:0 44px 34px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;">
+      <h2 data-reveal style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,5vw,72px);line-height:.95;letter-spacing:-.03em;margin:0;">Nos dernières<br>réalisations.</h2>
+      <div data-reveal style="display:flex;align-items:center;gap:14px;">
+        <span style="font-size:15px;color:#6a6a66;">Glissez ou naviguez</span>
+        <div style="display:flex;gap:10px;">
+          <button onClick="{{ railPrev }}" aria-label="Réalisations précédentes" class="kom-mag" style="width:52px;height:52px;border-radius:99px;border:1.5px solid #0E0E0E;background:#fff;color:#0E0E0E;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </button>
+          <button onClick="{{ railNext }}" aria-label="Réalisations suivantes" class="kom-mag" style="width:52px;height:52px;border-radius:99px;border:none;background:#96D428;color:#0E0E0E;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div ref="{{ setRail }}" style="display:flex;gap:22px;padding:8px 44px 30px;overflow-x:auto;cursor:grab;scrollbar-width:none;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="5">
+        <div class="kom-arch" style="flex:0 0 440px;">
+          <div style="position:relative;height:520px;border-radius:26px;overflow:hidden;background:{{ p.bg }};">
+            <div class="kom-archz" style="position:absolute;inset:0;transition:transform .8s ease;background:repeating-linear-gradient(135deg,rgba(255,255,255,.1) 0 2px,transparent 2px 26px);"></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 46%,rgba(14,14,14,.72));"></div>
+            <span style="position:absolute;top:20px;left:20px;background:rgba(255,255,255,.92);border-radius:99px;padding:8px 16px;font-weight:700;font-size:13px;">{{ p.tag }}</span>
+            <div style="position:absolute;left:26px;right:26px;bottom:24px;color:#fff;">
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:27px;letter-spacing:-.02em;line-height:1.05;">{{ p.title }}</div>
+              <div style="font-size:14px;color:rgba(255,255,255,.8);margin-top:6px;">{{ p.city }}</div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+      <div style="flex:0 0 44px;"></div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section style="background:#F4F3EE;">
+    <div style="max-width:1360px;margin:0 auto;padding:100px 44px;display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;">
+      <div data-reveal>
+        <div style="display:inline-block;background:#96D428;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:13px;padding:7px 15px;border-radius:99px;margin-bottom:20px;">AVANT / APRÈS</div>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(38px,4.4vw,60px);line-height:.96;letter-spacing:-.03em;margin:0 0 20px;">La différence<br>se voit direct.</h2>
+        <p style="font-size:17px;color:#55554F;line-height:1.65;margin:0 0 30px;max-width:400px;">Glissez le curseur : plus de lumière, d'isolation et de valeur pour votre bien après rénovation.</p>
+        <div style="display:flex;gap:36px;">
+          <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:50px;line-height:1;">-40%</div><div style="font-size:14px;color:#6a6a66;margin-top:6px;">facture d'énergie</div></div>
+          <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:50px;line-height:1;">+15%</div><div style="font-size:14px;color:#6a6a66;margin-top:6px;">valeur du bien</div></div>
+        </div>
+      </div>
+      <div style="position:relative;height:460px;border-radius:26px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(14,14,14,.35);user-select:none;">
+        <div style="position:absolute;inset:0;background:linear-gradient(150deg,#9a958a,#6f6a5f);display:flex;align-items:flex-end;">
+          <span style="margin:20px;background:rgba(14,14,14,.6);color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:800;padding:7px 14px;border-radius:99px;">AVANT</span>
+        </div>
+        <div style="{{ afterStyle }}">
+          <div style="position:absolute;inset:0;background:linear-gradient(150deg,#a9d15e,#6fae12);display:flex;align-items:flex-end;justify-content:flex-end;">
+            <span style="margin:20px;background:#96D428;color:#0E0E0E;font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:800;padding:7px 14px;border-radius:99px;">APRÈS</span>
+          </div>
+        </div>
+        <div style="{{ handleStyle }}"></div>
+        <div style="position:absolute;top:50%;left:{{ clip }}%;transform:translate(-50%,-50%);z-index:5;width:50px;height:50px;border-radius:99px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;pointer-events:none;color:#0E0E0E;font-weight:800;font-size:18px;">⇆</div>
+        <input type="range" min="0" max="100" value="{{ clip }}" onInput="{{ onClip }}" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:6;margin:0;">
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section style="max-width:1360px;margin:0 auto;padding:100px 44px;">
+    <h2 data-reveal style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,5vw,72px);line-height:.95;letter-spacing:-.03em;margin:0 0 50px;">Comment<br>ça se passe ?</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;">
+      <sc-for list="{{ steps }}" as="step" hint-placeholder-count="4">
+        <div data-reveal data-reveal-delay="{{ step.delay }}" style="background:#F4F3EE;border-radius:22px;padding:28px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div style="width:52px;height:52px;border-radius:99px;background:#0E0E0E;color:#96D428;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;display:flex;align-items:center;justify-content:center;">{{ step.n }}</div>
+          <div>
+            <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:21px;margin:0 0 8px;letter-spacing:-.01em;">{{ step.title }}</h3>
+            <p style="margin:0;font-size:14.5px;color:#6a6a66;line-height:1.55;">{{ step.text }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- REVIEWS — mur défilant 2 colonnes -->
+  <section id="avis" style="background:#fff;border-top:1px solid #EDEDE8;">
+    <div style="max-width:1280px;margin:0 auto;padding:100px 44px;display:grid;grid-template-columns:.82fr 1.18fr;gap:56px;align-items:center;">
+
+      <div data-reveal>
+        <div style="display:inline-flex;align-items:center;gap:9px;background:#F4F3EE;border:1px solid #E7E5DD;border-radius:99px;padding:8px 15px;margin-bottom:22px;">
+          <span style="width:18px;height:18px;border-radius:99px;background:#96D428;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#0E0E0E;font-weight:800;">G</span>
+          <span style="font-size:13.5px;font-weight:600;color:#4A4A46;">Avis vérifiés Google</span>
+        </div>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,4.8vw,68px);line-height:.95;letter-spacing:-.03em;margin:0 0 18px;">Ce qu'en disent<br>nos clients.</h2>
+        <p style="font-size:17px;color:#55554F;line-height:1.65;margin:0 0 28px;max-width:360px;">La confiance se construit chantier après chantier. Voici quelques retours, parmi des centaines.</p>
+        <div style="display:flex;align-items:center;gap:18px;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:60px;line-height:1;">4,7</div>
+          <div>
+            <div style="color:#FF6A1A;font-size:19px;letter-spacing:2px;">★★★★★</div>
+            <div style="font-size:14px;color:#6a6a66;margin-top:4px;">sur <strong style="color:#0E0E0E;">100+</strong> avis Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:relative;height:600px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;height:100%;">
+
+          <div class="kom-vcol" style="overflow:hidden;">
+            <div class="kom-vtrack" style="display:flex;flex-direction:column;gap:20px;animation:kom-vup 34s linear infinite;will-change:transform;">
+              <sc-for list="{{ colA }}" as="r" hint-placeholder-count="4">
+                <div class="kom-vcard" style="background:#fff;border:1px solid #ECEAE3;border-radius:20px;padding:24px;box-shadow:0 2px 10px -6px rgba(14,14,14,.1);">
+                  <div style="color:#FF6A1A;font-size:15px;letter-spacing:2px;margin-bottom:14px;">★★★★★</div>
+                  <p style="font-size:15.5px;line-height:1.6;color:#2A2A28;margin:0 0 18px;">{{ r.text }}</p>
+                  <div style="display:flex;align-items:center;gap:11px;">
+                    <div style="width:40px;height:40px;border-radius:99px;background:#96D428;color:#0E0E0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">{{ r.initial }}</div>
+                    <div style="min-width:0;"><div style="font-weight:700;font-size:14px;">{{ r.name }}</div><div style="font-size:12.5px;color:#8a8a86;">{{ r.city }} · {{ r.date }}</div></div>
+                  </div>
+                </div>
+              </sc-for>
+              <sc-for list="{{ colA }}" as="r" hint-placeholder-count="4">
+                <div class="kom-vcard" style="background:#fff;border:1px solid #ECEAE3;border-radius:20px;padding:24px;box-shadow:0 2px 10px -6px rgba(14,14,14,.1);">
+                  <div style="color:#FF6A1A;font-size:15px;letter-spacing:2px;margin-bottom:14px;">★★★★★</div>
+                  <p style="font-size:15.5px;line-height:1.6;color:#2A2A28;margin:0 0 18px;">{{ r.text }}</p>
+                  <div style="display:flex;align-items:center;gap:11px;">
+                    <div style="width:40px;height:40px;border-radius:99px;background:#96D428;color:#0E0E0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">{{ r.initial }}</div>
+                    <div style="min-width:0;"><div style="font-weight:700;font-size:14px;">{{ r.name }}</div><div style="font-size:12.5px;color:#8a8a86;">{{ r.city }} · {{ r.date }}</div></div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div class="kom-vcol" style="overflow:hidden;">
+            <div class="kom-vtrack" style="display:flex;flex-direction:column;gap:20px;animation:kom-vdown 34s linear infinite;will-change:transform;">
+              <sc-for list="{{ colB }}" as="r" hint-placeholder-count="4">
+                <div class="kom-vcard" style="background:#fff;border:1px solid #ECEAE3;border-radius:20px;padding:24px;box-shadow:0 2px 10px -6px rgba(14,14,14,.1);">
+                  <div style="color:#FF6A1A;font-size:15px;letter-spacing:2px;margin-bottom:14px;">★★★★★</div>
+                  <p style="font-size:15.5px;line-height:1.6;color:#2A2A28;margin:0 0 18px;">{{ r.text }}</p>
+                  <div style="display:flex;align-items:center;gap:11px;">
+                    <div style="width:40px;height:40px;border-radius:99px;background:#0E0E0E;color:#96D428;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">{{ r.initial }}</div>
+                    <div style="min-width:0;"><div style="font-weight:700;font-size:14px;">{{ r.name }}</div><div style="font-size:12.5px;color:#8a8a86;">{{ r.city }} · {{ r.date }}</div></div>
+                  </div>
+                </div>
+              </sc-for>
+              <sc-for list="{{ colB }}" as="r" hint-placeholder-count="4">
+                <div class="kom-vcard" style="background:#fff;border:1px solid #ECEAE3;border-radius:20px;padding:24px;box-shadow:0 2px 10px -6px rgba(14,14,14,.1);">
+                  <div style="color:#FF6A1A;font-size:15px;letter-spacing:2px;margin-bottom:14px;">★★★★★</div>
+                  <p style="font-size:15.5px;line-height:1.6;color:#2A2A28;margin:0 0 18px;">{{ r.text }}</p>
+                  <div style="display:flex;align-items:center;gap:11px;">
+                    <div style="width:40px;height:40px;border-radius:99px;background:#0E0E0E;color:#96D428;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">{{ r.initial }}</div>
+                    <div style="min-width:0;"><div style="font-weight:700;font-size:14px;">{{ r.name }}</div><div style="font-size:12.5px;color:#8a8a86;">{{ r.city }} · {{ r.date }}</div></div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="max-width:920px;margin:0 auto;padding:100px 44px;">
+    <div data-reveal style="text-align:center;margin-bottom:46px;">
+      <div style="display:inline-block;background:#96D428;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:13px;padding:7px 15px;border-radius:99px;margin-bottom:18px;">FAQ</div>
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,3.8vw,52px);line-height:1;letter-spacing:-.03em;margin:0;">Les questions qu'on nous pose souvent.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+        <div style="{{ f.boxStyle }}">
+          <div onClick="{{ f.toggle }}" style="display:flex;justify-content:space-between;align-items:center;gap:18px;padding:22px 26px;cursor:pointer;">
+            <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17.5px;">{{ f.q }}</span>
+            <span style="{{ f.iconStyle }}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </div>
+          <div style="{{ f.bodyStyle }}">
+            <p style="margin:0;padding:0 26px 24px;font-size:15.5px;line-height:1.65;color:#55554F;max-width:640px;">{{ f.a }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#0E0E0E;color:#9a9a96;">
+    <div style="max-width:1360px;margin:0 auto;padding:80px 44px 30px;">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,6.6vw,110px);line-height:.9;letter-spacing:-.04em;color:#fff;margin-bottom:50px;white-space:nowrap;">ON CONSTRUIT ENSEMBLE.</div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;border-top:1px solid rgba(255,255,255,.1);padding-top:44px;">
+        <div>
+          <img src="assets/logo-athome.png" alt="AT HOME" style="height:50px;width:auto;margin-bottom:16px;">
+          <p style="font-size:14px;line-height:1.7;margin:0 0 16px;max-width:290px;">Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.</p>
+          <span style="display:inline-block;border:1px solid #96D428;color:#96D428;font-family:'Bricolage Grotesque',sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.06em;padding:6px 12px;border-radius:99px;">CERTIFIÉ RGE QUALIBAT</span>
+          <div style="display:flex;gap:12px;margin-top:20px;">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook" style="width:40px;height:40px;border-radius:99px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff;transition:all .3s ease;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.2-1.5 1.5-1.5h1.4V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8v3h2.5v7z"/></svg>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram" style="width:40px;height:40px;border-radius:99px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff;transition:all .3s ease;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:14px;margin-bottom:16px;">Prestations</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;"><span>Fenêtres & portes</span><span>Volets & motorisation</span><span>Portes de garage</span><span>Portails & carports</span><span>Couverture & toiture</span></div>
+        </div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:14px;margin-bottom:16px;">Entreprise</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;"><span>À propos</span><span>Réalisations</span><span>Dépannage</span><a href="#configurateur" style="color:inherit;">Configurateur</a><a href="#espace-pro" style="color:inherit;">Espace pro</a><span>Contact</span></div>
+        </div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:14px;margin-bottom:16px;">Contact</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;"><span style="color:#96D428;font-weight:700;">03 20 87 61 52</span><span>2108 Route de Lille</span><span>59270 Bailleul</span><span>Lun – Sam · 8h – 19h</span></div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.1);margin-top:44px;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:#63635f;">
+        <span>© 2026 AT HOME Couvertures & Fermetures — Tous droits réservés</span>
+        <span>Mentions légales · Politique de confidentialité</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  clip = 55;
+  state = { faq: -1 };
+  faqData = [
+    { q: "Le devis est-il vraiment gratuit ?", a: "Oui, totalement. Nous nous déplaçons chez vous pour une visite technique, prenons les mesures et vous remettons un devis détaillé sous 48h — sans aucun engagement de votre part." },
+    { q: "Quels sont vos délais d'intervention ?", a: "Selon la prestation et la saison, comptez en général 4 à 8 semaines entre la signature du devis et la pose. Pour un dépannage (volet bloqué, serrure), nous intervenons 7j/7, souvent le jour même." },
+    { q: "Quelles garanties proposez-vous ?", a: "Tous nos chantiers sont couverts par la garantie décennale. Les menuiseries bénéficient en plus des garanties fabricant, jusqu'à 10 ans selon les produits." },
+    { q: "Puis-je bénéficier d'aides pour mes travaux ?", a: "Oui. Nous sommes certifiés RGE Qualibat : vos travaux d'isolation et de menuiseries peuvent ouvrir droit à MaPrimeRénov', aux CEE et à la TVA réduite. Nous vous accompagnons dans les démarches." },
+    { q: "Travaillez-vous avec des marques reconnues ?", a: "Nous sommes partenaires K·LINE pour les menuiseries alu, et posons notamment du VELUX et du SOMFY pour la motorisation. Des produits éprouvés, fabriqués en France pour la plupart." },
+    { q: "Peut-on voir les produits avant d'acheter ?", a: "Bien sûr — notre showroom de 300 m² à Bailleul présente fenêtres, volets, portes, portails et motorisations en situation réelle. Venez toucher les matériaux et comparer, avec un conseiller." }
+  ];
+  colA = [
+    { text: "Équipe très professionnelle et à l'écoute. Pose de nos fenêtres impeccable, chantier propre. Je recommande vivement !", name: "Sophie D.", initial: "S", city: "Bailleul", date: "il y a 2 semaines" },
+    { text: "Réfection complète de notre toiture. Travail soigné, délais respectés et un très bon rapport qualité-prix.", name: "Karim B.", initial: "K", city: "Hazebrouck", date: "il y a 1 mois" },
+    { text: "Accueil au showroom au top, de vrais conseils sans pression. Nos volets roulants sont parfaits.", name: "Julie R.", initial: "J", city: "Nieppe", date: "il y a 3 semaines" },
+    { text: "Porte d'entrée changée en une journée. Propre, rapide, et un rendu vraiment haut de gamme.", name: "Thierry M.", initial: "T", city: "Estaires", date: "il y a 2 mois" }
+  ];
+  colB = [
+    { text: "Du devis à la pose du portail motorisé, tout a été parfait. Des artisans sérieux et de bon conseil.", name: "Michel & Anne L.", initial: "M", city: "Armentières", date: "il y a 1 mois" },
+    { text: "Dépannage d'un volet roulant en urgence, intervention le jour même. Merci pour votre réactivité !", name: "Nathalie V.", initial: "N", city: "Steenwerck", date: "il y a 2 mois" },
+    { text: "Isolation extérieure impeccable, la maison est bien plus confortable et les factures ont chuté.", name: "Bruno C.", initial: "B", city: "Merville", date: "il y a 1 mois" },
+    { text: "Une équipe qui tient ses délais et son budget. Rare et appréciable. Merci pour tout !", name: "Sandrine P.", initial: "S", city: "Bailleul", date: "il y a 5 semaines" }
+  ];
+  setRoot = (el) => { this.root = el; };
+  setMap = (el) => { this.mapEl = el; };
+  _initMap() {
+    if (!this.mapEl || this.map) return;
+    if (!window.L) { setTimeout(() => this._initMap(), 200); return; }
+    const L = window.L;
+    try {
+    const bailleul = [50.7439, 2.7336];
+    const map = L.map(this.mapEl, { scrollWheelZoom: false, zoomControl: false, attributionControl: false });
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+    map.setView(bailleul, 9);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { maxZoom: 18 }).addTo(map);
+    const circle = L.circle(bailleul, { radius: 50000, color: '#96D428', weight: 2.5, dashArray: '8 8', fillColor: '#96D428', fillOpacity: 0.09 }).addTo(map);
+    L.circle(bailleul, { radius: 25000, color: '#96D428', weight: 1.5, dashArray: '4 8', fill: false, opacity: .5 }).addTo(map);
+    // center marker
+    const dot = L.divIcon({ className: 'kom-map-dot-wrap', html: '<div class="kom-map-dot" style="width:18px;height:18px;background:#96D428;border:3px solid #0E0E0E;border-radius:99px;"></div>', iconSize: [18, 18], iconAnchor: [9, 9] });
+    L.marker(bailleul, { icon: dot, zIndexOffset: 1000 }).addTo(map)
+      .bindTooltip('Bailleul — siège & showroom', { permanent: true, direction: 'top', offset: [0, -12], className: 'kom-map-center' });
+    // cities
+    const cities = [
+      ['Lille', 50.6292, 3.0573, 'bottom', [0, 7]],
+      ['Dunkerque', 51.0344, 2.3768, 'top', [0, -7]],
+      ['Roubaix', 50.6942, 3.1746, 'right', [8, 0]],
+      ['Tourcoing', 50.7239, 3.1612, 'top', [0, -7]],
+      ['Armentières', 50.6881, 2.8811, 'right', [8, 0]],
+      ['Hazebrouck', 50.7222, 2.5394, 'top', [0, -7]],
+      ['Saint-Omer', 50.7480, 2.2528, 'left', [-8, 0]],
+      ['Béthune', 50.5303, 2.6408, 'left', [-8, 0]],
+      ['Lens', 50.4292, 2.8317, 'bottom', [0, 7]],
+      ['Ypres', 50.8503, 2.8858, 'top', [0, -7]],
+      ['Merville', 50.6428, 2.6428, 'bottom', [0, 7]]
+    ];
+    cities.forEach(([name, lat, lng, dir, off]) => {
+      L.circleMarker([lat, lng], { radius: 4.5, color: '#0E0E0E', weight: 2, fillColor: '#0E0E0E', fillOpacity: 1 }).addTo(map)
+        .bindTooltip(name, { permanent: true, direction: dir, offset: off, className: 'kom-map-label' });
+    });
+    map.fitBounds(circle.getBounds(), { padding: [34, 34] });
+    this.map = map;
+    setTimeout(() => map.invalidateSize(), 400);
+    } catch (err) { console.warn('map init failed', err); }
+  }
+  setHero = (el) => { this.hero = el; };
+  setBlob = (el) => { this.blob = el; };
+  setRail = (el) => { if (el) { this.rail = el; setTimeout(() => this._rail(), 0); } };
+  setPeek = (el) => { this.peek = el; };
+  setPeekInner = (el) => { this.peekInner = el; };
+  setPeekLabel = (el) => { this.peekLabel = el; };
+
+  componentDidMount() {
+    setTimeout(() => this._initMap(), 0);
+    this._reveals();
+    this._counters();
+    this._blob();
+    this._rail();
+  }
+  componentWillUnmount() {
+    this.io && this.io.disconnect();
+    this.io2 && this.io2.disconnect();
+  }
+
+  _reveals() {
+    if (!this.root) return;
+    const els = this.root.querySelectorAll('[data-reveal]');
+    els.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(36px)';
+      el.style.transition = 'opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1)';
+      const d = el.getAttribute('data-reveal-delay');
+      if (d) el.style.transitionDelay = d + 'ms';
+    });
+    this.io = new IntersectionObserver((ents) => {
+      ents.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(el => this.io.observe(el));
+  }
+
+  _counters() {
+    const els = this.root.querySelectorAll('[data-count-to]');
+    this.io2 = new IntersectionObserver((ents) => {
+      ents.forEach(e => { if (e.isIntersecting) { this._run(e.target); this.io2.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    els.forEach(el => this.io2.observe(el));
+  }
+  _run(el) {
+    const to = parseFloat(el.getAttribute('data-count-to'));
+    const dur = 1600, t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(to * e).toLocaleString('fr-FR');
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  _blob() {
+    if (!this.hero || !this.blob) return;
+    this.hero.addEventListener('pointermove', (e) => {
+      const r = this.hero.getBoundingClientRect();
+      this.blob.style.opacity = '1';
+      this.blob.style.transform = `translate(${e.clientX - r.left}px, ${e.clientY - r.top}px) translate(-50%,-50%)`;
+    });
+    this.hero.addEventListener('pointerleave', () => { this.blob.style.opacity = '0'; });
+  }
+
+  _rail() {
+    const el = this.rail;
+    if (!el || el._railWired) return;
+    el._railWired = true;
+    let down = false, sx = 0, sl = 0, moved = false;
+    el.addEventListener('pointerdown', (e) => { down = true; moved = false; sx = e.clientX; sl = el.scrollLeft; el.style.cursor = 'grabbing'; });
+    window.addEventListener('pointermove', (e) => { if (!down) return; const dx = e.clientX - sx; if (Math.abs(dx) > 4) moved = true; el.scrollLeft = sl - dx; });
+    window.addEventListener('pointerup', () => { down = false; el.style.cursor = 'grab'; });
+    el.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+  }
+
+  _railStep(dir) {
+    const r = this.rail;
+    if (!r || !r.firstElementChild) return;
+    const w = r.firstElementChild.getBoundingClientRect().width + 22;
+    const i = Math.round(r.scrollLeft / w) + dir;
+    r.scrollTo({ left: Math.max(0, i * w), behavior: 'smooth' });
+  }
+
+  _setClip(v) { this.clip = +v; this.forceUpdate(); }
+
+  renderVals() {
+    return {
+      setRoot: this.setRoot, setHero: this.setHero, setBlob: this.setBlob, setMap: this.setMap,
+      setRail: this.setRail, setPeek: this.setPeek, setPeekInner: this.setPeekInner, setPeekLabel: this.setPeekLabel,
+      colA: this.colA, colB: this.colB,
+      railPrev: () => this._railStep(-1),
+      railNext: () => this._railStep(1),
+      faqs: this.faqData.map((f, i) => {
+        const open = this.state.faq === i;
+        return {
+          q: f.q, a: f.a,
+          toggle: () => this.setState({ faq: open ? -1 : i }),
+          boxStyle: `border:1.5px solid ${open ? '#96D428' : '#EDEDE8'};border-radius:18px;background:${open ? '#FAFDF2' : '#fff'};transition:border-color .3s ease, background .3s ease;overflow:hidden;`,
+          iconStyle: `width:34px;height:34px;border-radius:99px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;transition:all .35s ease;background:${open ? '#96D428' : '#F4F3EE'};color:#0E0E0E;transform:rotate(${open ? 45 : 0}deg);`,
+          bodyStyle: `max-height:${open ? '300px' : '0'};overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1);`
+        };
+      }),
+      marquee: ["Fenêtres", "Volets", "Portes d'entrée", "Portes de garage", "Portails", "Carports", "Velux", "Motorisation", "Isolation", "Toiture", "Extension", "Dépannage"],
+      services: [
+        { num: "01", label: "Fenêtres & portes-fenêtres", desc: "PVC · Alu · Bois", color: "linear-gradient(150deg,#a9d15e,#6fae12)" },
+        { num: "02", label: "Volets & motorisation", desc: "Roulants & battants", color: "linear-gradient(150deg,#c9d3b0,#8fa06a)" },
+        { num: "03", label: "Portes d'entrée", desc: "Sécurité & design", color: "linear-gradient(150deg,#e0b483,#c88a4a)" },
+        { num: "04", label: "Portes de garage", desc: "Sectionnelles, motorisées", color: "linear-gradient(150deg,#a9b8c4,#6d7f8e)" },
+        { num: "05", label: "Portails & carports", desc: "Alu sur mesure", color: "linear-gradient(150deg,#f0a35e,#d97a1e)" },
+        { num: "06", label: "Couverture & toiture", desc: "Rénovation, zinguerie", color: "linear-gradient(150deg,#b08a76,#6b4a3a)" },
+        { num: "07", label: "Isolation extérieure", desc: "ITE, économies d'énergie", color: "linear-gradient(150deg,#9fc0a8,#5f8a6c)" },
+        { num: "08", label: "Extension", desc: "Agrandir votre maison", color: "linear-gradient(150deg,#c4bdaa,#8a8069)" }
+      ],
+      projects: [
+        { tag: "Menuiserie", title: "Rénovation fenêtres alu", city: "Bailleul (59)", bg: "linear-gradient(150deg,#8ea0b2,#54606f)" },
+        { tag: "Fermeture", title: "Portail coulissant motorisé", city: "Armentières (59)", bg: "linear-gradient(150deg,#9c8f7d,#6b5f4f)" },
+        { tag: "Couverture", title: "Réfection de toiture", city: "Hazebrouck (59)", bg: "linear-gradient(150deg,#a5765c,#5c463a)" },
+        { tag: "Menuiserie", title: "Porte d'entrée sur mesure", city: "Steenwerck (59)", bg: "linear-gradient(150deg,#7fa06a,#4c6b38)" },
+        { tag: "Isolation", title: "Isolation extérieure ITE", city: "Nieppe (59)", bg: "linear-gradient(150deg,#c8a45e,#9a7326)" }
+      ],
+      steps: [
+        { n: "1", title: "Étude & conseil", text: "Visite technique gratuite et conseils adaptés à votre habitat et budget.", delay: "0" },
+        { n: "2", title: "Devis détaillé", text: "Un devis clair et transparent, sans surprise ni engagement.", delay: "90" },
+        { n: "3", title: "Pose experte", text: "Installation soignée par nos poseurs qualifiés, chantier propre.", delay: "180" },
+        { n: "4", title: "SAV & garantie", text: "Service après-vente réactif et garanties jusqu'à 10 ans.", delay: "270" }
+      ],
+      clip: this.clip,
+      onClip: (e) => this._setClip(e.target.value),
+      afterStyle: `position:absolute;inset:0;clip-path:inset(0 ${100 - this.clip}% 0 0);`,
+      handleStyle: `position:absolute;top:0;bottom:0;left:${this.clip}%;width:3px;background:#96D428;transform:translateX(-1.5px);z-index:4;box-shadow:0 0 14px rgba(150,212,40,.6);`
+    };
+  }
+}
+</script>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#96D428"/><g transform="translate(60,60)"><path d="M40 0 L80 34 L68 34 L68 80 L12 80 L12 34 L0 34 Z" fill="#0E0E0E"/></g></svg></template>
+</body>
+</html>

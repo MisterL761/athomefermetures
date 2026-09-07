@@ -1,0 +1,424 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { PRESTATIONS } from "@/data/prestations";
+import { URGENCY_OPTIONS } from "@/data/devis";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const crumbs = [
+  { name: "Accueil", path: "/" },
+  { name: "Demande de devis", path: "/devis" },
+];
+
+const title = "Demande de devis gratuit | AT HOME Fermetures — Bailleul";
+const description =
+  "Demandez votre devis gratuit en 4 étapes pour vos menuiseries, fermetures, toiture ou isolation. Réponse sous 48h par AT HOME, artisan RGE à Bailleul (59).";
+
+const FIELDS = [
+  { name: "firstName", label: "Prénom", type: "text", autocomplete: "given-name" },
+  { name: "lastName", label: "Nom", type: "text", autocomplete: "family-name" },
+  { name: "email", label: "Email", type: "email", autocomplete: "email" },
+  { name: "phone", label: "Téléphone", type: "tel", autocomplete: "tel" },
+] as const;
+---
+
+<Layout title={title} description={description} path="/devis" jsonLd={[breadcrumbSchema(crumbs)]}>
+  <div class="mx-auto w-full max-w-[760px] px-6 pt-[150px] min-[820px]:px-11">
+    <div class="mb-2.5 flex items-center justify-between gap-2">
+      <span id="step-label" class="font-heading text-[13px] font-extrabold uppercase tracking-[0.1em] text-text-muted">
+        Étape <span id="step-current">1</span> / 4
+      </span>
+      <span id="step-title" class="text-[13.5px] text-text-muted">Vos prestations</span>
+    </div>
+    <div class="h-1.5 overflow-hidden rounded-full bg-border-light" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-labelledby="step-label" id="progress-track">
+      <div id="progress-fill" class="h-full rounded-full bg-lime transition-[width] duration-500 ease-[cubic-bezier(.16,1,.3,1)]" style="width: 25%;"></div>
+    </div>
+  </div>
+
+  <form id="devis-form" novalidate class="mx-auto w-full max-w-[1100px] px-6 py-10 min-[820px]:px-11 min-[820px]:py-[40px]">
+    <section data-step="1" aria-labelledby="step1-heading">
+      <h1 id="step1-heading" data-step-heading tabindex="-1" class="mb-2.5 font-heading text-[clamp(32px,4vw,52px)] font-extrabold leading-none tracking-[-0.03em]">
+        Quel est votre projet ?
+      </h1>
+      <p class="mb-9 text-lg text-text-soft">Sélectionnez une ou plusieurs prestations.</p>
+
+      <div class="grid grid-cols-2 gap-4 min-[640px]:grid-cols-3 min-[900px]:grid-cols-4">
+        {
+          PRESTATIONS.map((prestation) => (
+            <label class="dv-card group cursor-pointer rounded-[18px] border-2 border-border p-2 transition-transform has-[:checked]:border-lime has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-ink">
+              <input type="checkbox" name="prestations" value={prestation.slug} class="sr-only" />
+              <span
+                class="relative block h-[130px] overflow-hidden rounded-[14px]"
+                style={`background: linear-gradient(150deg, ${prestation.gradient[0]}, ${prestation.gradient[1]});`}
+              >
+                <span class="absolute inset-0 [background:repeating-linear-gradient(135deg,rgba(255,255,255,0.12)_0px,rgba(255,255,255,0.12)_2px,transparent_2px,transparent_24px)]" />
+                <span class="absolute right-2.5 top-2.5 flex h-[26px] w-[26px] scale-[0.6] items-center justify-center rounded-full bg-white/85 text-ink opacity-0 transition-all duration-200 group-has-[:checked]:scale-100 group-has-[:checked]:opacity-100">
+                  ✓
+                </span>
+              </span>
+              <span class="block px-1.5 pb-1.5 pt-3.5 font-heading text-[15.5px] font-bold leading-[1.2]">{prestation.homeLabel}</span>
+            </label>
+          ))
+        }
+      </div>
+
+      <div class="mt-9 flex items-center justify-end gap-4.5">
+        <span id="step1-count" class="text-sm text-text-muted">Aucune prestation sélectionnée</span>
+        <button type="button" data-next class="dv-btn rounded-full bg-border-light px-8 py-[17px] font-heading text-[16.5px] font-extrabold text-text-muted" disabled>
+          Continuer →
+        </button>
+      </div>
+    </section>
+
+    <section data-step="2" hidden aria-labelledby="step2-heading">
+      <h2 id="step2-heading" data-step-heading tabindex="-1" class="mb-2.5 font-heading text-[clamp(32px,4vw,52px)] font-extrabold leading-none tracking-[-0.03em]">
+        Sous quel délai ?
+      </h2>
+      <p class="mb-9 text-lg text-text-soft">Cela nous aide à organiser notre visite technique.</p>
+
+      <div class="grid grid-cols-1 gap-4 min-[640px]:grid-cols-2">
+        {
+          URGENCY_OPTIONS.map((option) => (
+            <label class="dv-card cursor-pointer rounded-[18px] border-2 border-border p-6 transition-colors has-[:checked]:border-lime has-[:checked]:bg-bg-alt has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-ink">
+              <input type="radio" name="urgency" value={option.value} class="sr-only" />
+              <span class="block font-heading text-lg font-extrabold">{option.label}</span>
+              <span class="mt-1 block text-sm text-text-soft">{option.description}</span>
+            </label>
+          ))
+        }
+      </div>
+
+      <div class="mt-9 flex items-center justify-between gap-4.5">
+        <button type="button" data-prev class="dv-btn rounded-full border-[1.5px] border-ink px-8 py-[17px] font-heading text-[16.5px] font-extrabold text-ink">
+          ← Retour
+        </button>
+        <button type="button" data-next class="dv-btn rounded-full bg-border-light px-8 py-[17px] font-heading text-[16.5px] font-extrabold text-text-muted" disabled>
+          Continuer →
+        </button>
+      </div>
+    </section>
+
+    <section data-step="3" hidden aria-labelledby="step3-heading">
+      <h2 id="step3-heading" data-step-heading tabindex="-1" class="mb-2.5 font-heading text-[clamp(32px,4vw,52px)] font-extrabold leading-none tracking-[-0.03em]">
+        Vos coordonnées
+      </h2>
+      <p class="mb-9 text-lg text-text-soft">Pour vous transmettre votre devis détaillé sous 48h.</p>
+
+      <div class="grid grid-cols-1 gap-5 min-[640px]:grid-cols-2">
+        {
+          FIELDS.map((field) => (
+            <div>
+              <label for={field.name} class="mb-1.5 block text-sm font-bold">
+                {field.label}
+              </label>
+              <input
+                id={field.name}
+                name={field.name}
+                type={field.type}
+                autocomplete={field.autocomplete}
+                required
+                aria-describedby={`${field.name}-error`}
+                class="w-full rounded-xl border-[1.5px] border-border px-4 py-3.5 text-base outline-none transition-colors focus:border-ink aria-[invalid=true]:border-red-500"
+              />
+              <p id={`${field.name}-error`} class="mt-1.5 hidden text-sm text-red-600" role="alert" />
+            </div>
+          ))
+        }
+        <div class="min-[640px]:col-span-2">
+          <label for="address" class="mb-1.5 block text-sm font-bold">Adresse</label>
+          <input id="address" name="address" type="text" autocomplete="street-address" required aria-describedby="address-error" class="w-full rounded-xl border-[1.5px] border-border px-4 py-3.5 text-base outline-none transition-colors focus:border-ink aria-[invalid=true]:border-red-500" />
+          <p id="address-error" class="mt-1.5 hidden text-sm text-red-600" role="alert" />
+        </div>
+        <div>
+          <label for="postalCode" class="mb-1.5 block text-sm font-bold">Code postal</label>
+          <input id="postalCode" name="postalCode" type="text" inputmode="numeric" autocomplete="postal-code" required aria-describedby="postalCode-error" class="w-full rounded-xl border-[1.5px] border-border px-4 py-3.5 text-base outline-none transition-colors focus:border-ink aria-[invalid=true]:border-red-500" />
+          <p id="postalCode-error" class="mt-1.5 hidden text-sm text-red-600" role="alert" />
+        </div>
+        <div>
+          <label for="city" class="mb-1.5 block text-sm font-bold">Ville</label>
+          <input id="city" name="city" type="text" autocomplete="address-level2" required aria-describedby="city-error" class="w-full rounded-xl border-[1.5px] border-border px-4 py-3.5 text-base outline-none transition-colors focus:border-ink aria-[invalid=true]:border-red-500" />
+          <p id="city-error" class="mt-1.5 hidden text-sm text-red-600" role="alert" />
+        </div>
+        <div class="min-[640px]:col-span-2">
+          <label for="message" class="mb-1.5 block text-sm font-bold">Message <span class="font-normal text-text-muted">(optionnel)</span></label>
+          <textarea id="message" name="message" rows="4" class="w-full rounded-xl border-[1.5px] border-border px-4 py-3.5 text-base outline-none transition-colors focus:border-ink"></textarea>
+        </div>
+      </div>
+
+      <div class="mt-9 flex items-center justify-between gap-4.5">
+        <button type="button" data-prev class="dv-btn rounded-full border-[1.5px] border-ink px-8 py-[17px] font-heading text-[16.5px] font-extrabold text-ink">
+          ← Retour
+        </button>
+        <button type="button" data-next class="dv-btn rounded-full bg-lime px-8 py-[17px] font-heading text-[16.5px] font-extrabold text-ink">
+          Continuer →
+        </button>
+      </div>
+    </section>
+
+    <section data-step="4" hidden aria-labelledby="step4-heading">
+      <h2 id="step4-heading" data-step-heading tabindex="-1" class="mb-2.5 font-heading text-[clamp(32px,4vw,52px)] font-extrabold leading-none tracking-[-0.03em]">
+        Récapitulatif
+      </h2>
+      <p class="mb-9 text-lg text-text-soft">Vérifiez votre demande avant envoi.</p>
+
+      <div id="recap" class="mb-7 flex flex-col gap-5"></div>
+
+      <label class="mb-7 flex items-start gap-3 text-sm text-text-soft">
+        <input type="checkbox" name="consent" required class="mt-0.5 h-5 w-5 flex-none rounded border-border" />
+        J'accepte d'être recontacté(e) par AT HOME Fermetures au sujet de ma demande de devis.
+      </label>
+
+      <p id="submit-error" class="mb-5 hidden text-sm text-red-600" role="alert"></p>
+
+      <div class="flex items-center justify-between gap-4.5">
+        <button type="button" data-prev class="dv-btn rounded-full border-[1.5px] border-ink px-8 py-[17px] font-heading text-[16.5px] font-extrabold text-ink">
+          ← Retour
+        </button>
+        <button type="submit" id="submit-btn" class="dv-btn rounded-full bg-lime px-8 py-[17px] font-heading text-[16.5px] font-extrabold text-ink">
+          Envoyer ma demande
+        </button>
+      </div>
+    </section>
+
+    <section data-step="success" hidden class="py-10 text-center">
+      <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-lime text-3xl font-extrabold text-ink">✓</div>
+      <h2 data-step-heading tabindex="-1" class="mb-3 font-heading text-[clamp(28px,3.6vw,44px)] font-extrabold tracking-[-0.03em]">Demande envoyée !</h2>
+      <p id="success-message" class="mx-auto max-w-[480px] text-lg text-text-soft">
+        Merci, votre demande a bien été transmise. Notre équipe vous recontacte sous 48h avec votre devis détaillé.
+      </p>
+      <a href="/" class="btn-outline mt-8 inline-flex">Retour à l'accueil</a>
+    </section>
+  </form>
+</Layout>
+
+<script is:inline define:vars={{ endpoint: import.meta.env.PUBLIC_FORM_ENDPOINT ?? "" }}>
+  // TODO(intégration backend) : PUBLIC_FORM_ENDPOINT n'est pas configuré.
+  // Définissez cette variable d'environnement (voir README.md) pour brancher
+  // ce formulaire à un backend réel (API, service tiers, etc.).
+  const form = document.getElementById("devis-form");
+  const sections = Array.from(form.querySelectorAll("[data-step]"));
+  const stepCurrentEl = document.getElementById("step-current");
+  const stepTitleEl = document.getElementById("step-title");
+  const progressFill = document.getElementById("progress-fill");
+  const progressTrack = document.getElementById("progress-track");
+
+  const STEP_TITLES = { 1: "Vos prestations", 2: "Urgence des travaux", 3: "Vos coordonnées", 4: "Récapitulatif" };
+  let currentStep = 1;
+
+  function showStep(step, { focusHeading = true } = {}) {
+    currentStep = step;
+    sections.forEach((section) => {
+      section.hidden = section.dataset.step !== String(step);
+    });
+    if (typeof step === "number") {
+      stepCurrentEl.textContent = String(step);
+      stepTitleEl.textContent = STEP_TITLES[step];
+      progressFill.style.width = `${(step / 4) * 100}%`;
+      progressTrack.setAttribute("aria-valuenow", String(step));
+      progressTrack.parentElement && (progressTrack.parentElement.hidden = false);
+    } else {
+      progressTrack.parentElement && (progressTrack.parentElement.hidden = true);
+    }
+    if (focusHeading) {
+      const heading = form.querySelector(`[data-step="${step}"] [data-step-heading]`);
+      if (heading) heading.focus();
+      window.scrollTo({ top: form.offsetTop - 130, behavior: "auto" });
+    }
+    if (step === 4) buildRecap();
+  }
+
+  form.querySelectorAll("[data-next]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (currentStep === 3 && !validateStep3()) return;
+      showStep(currentStep + 1);
+    });
+  });
+  form.querySelectorAll("[data-prev]").forEach((btn) => {
+    btn.addEventListener("click", () => showStep(currentStep - 1));
+  });
+
+  // Étape 1 : sélection des prestations
+  const prestationInputs = Array.from(form.querySelectorAll('input[name="prestations"]'));
+  const step1Count = document.getElementById("step1-count");
+  const step1Next = form.querySelector('[data-step="1"] [data-next]');
+  function updateStep1() {
+    const selected = prestationInputs.filter((i) => i.checked);
+    step1Count.textContent =
+      selected.length === 0
+        ? "Aucune prestation sélectionnée"
+        : `${selected.length} prestation${selected.length > 1 ? "s" : ""} sélectionnée${selected.length > 1 ? "s" : ""}`;
+    setButtonEnabled(step1Next, selected.length > 0);
+  }
+  prestationInputs.forEach((input) => input.addEventListener("change", updateStep1));
+
+  // Étape 2 : urgence
+  const urgencyInputs = Array.from(form.querySelectorAll('input[name="urgency"]'));
+  const step2Next = form.querySelector('[data-step="2"] [data-next]');
+  urgencyInputs.forEach((input) =>
+    input.addEventListener("change", () => setButtonEnabled(step2Next, urgencyInputs.some((i) => i.checked))),
+  );
+
+  function setButtonEnabled(btn, enabled) {
+    btn.disabled = !enabled;
+    btn.classList.toggle("bg-lime", enabled);
+    btn.classList.toggle("text-ink", enabled);
+    btn.classList.toggle("bg-border-light", !enabled);
+    btn.classList.toggle("text-text-muted", !enabled);
+  }
+
+  // Étape 3 : validation des coordonnées
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const PHONE_RE = /^(?:\+33|0)[1-9](?:[\s.-]?\d{2}){4}$/;
+  const POSTAL_RE = /^\d{5}$/;
+
+  function setFieldError(name, message) {
+    const input = form.querySelector(`#${name}`);
+    const error = document.getElementById(`${name}-error`);
+    if (!input || !error) return false;
+    if (message) {
+      input.setAttribute("aria-invalid", "true");
+      error.textContent = message;
+      error.classList.remove("hidden");
+      return false;
+    }
+    input.removeAttribute("aria-invalid");
+    error.textContent = "";
+    error.classList.add("hidden");
+    return true;
+  }
+
+  function validateStep3() {
+    const data = new FormData(form);
+    let valid = true;
+    let firstInvalid = null;
+
+    const required = {
+      firstName: "Merci d'indiquer votre prénom.",
+      lastName: "Merci d'indiquer votre nom.",
+      address: "Merci d'indiquer votre adresse.",
+      city: "Merci d'indiquer votre ville.",
+    };
+    for (const [name, message] of Object.entries(required)) {
+      const value = String(data.get(name) ?? "").trim();
+      const ok = setFieldError(name, value ? "" : message);
+      if (!ok && !firstInvalid) firstInvalid = name;
+      valid = valid && ok;
+    }
+
+    const email = String(data.get("email") ?? "").trim();
+    const emailOk = setFieldError("email", EMAIL_RE.test(email) ? "" : "Merci d'indiquer un email valide.");
+    if (!emailOk && !firstInvalid) firstInvalid = "email";
+    valid = valid && emailOk;
+
+    const phone = String(data.get("phone") ?? "").trim();
+    const phoneOk = setFieldError("phone", PHONE_RE.test(phone) ? "" : "Merci d'indiquer un téléphone valide (ex : 06 12 34 56 78).");
+    if (!phoneOk && !firstInvalid) firstInvalid = "phone";
+    valid = valid && phoneOk;
+
+    const postalCode = String(data.get("postalCode") ?? "").trim();
+    const postalOk = setFieldError("postalCode", POSTAL_RE.test(postalCode) ? "" : "Le code postal doit comporter 5 chiffres.");
+    if (!postalOk && !firstInvalid) firstInvalid = "postalCode";
+    valid = valid && postalOk;
+
+    if (!valid && firstInvalid) {
+      const el = document.getElementById(firstInvalid);
+      el?.focus();
+    }
+    return valid;
+  }
+
+  // Étape 4 : récapitulatif
+  const prestationLabels = Object.fromEntries(
+    prestationInputs.map((i) => [i.value, i.closest("label")?.lastElementChild?.textContent ?? i.value]),
+  );
+  const urgencyLabels = Object.fromEntries(
+    urgencyInputs.map((i) => [i.value, i.closest("label")?.querySelector("span")?.textContent ?? i.value]),
+  );
+
+  function recapRow(label, value, step) {
+    const row = document.createElement("div");
+    row.className = "flex items-start justify-between gap-4 rounded-2xl border border-border-card bg-white p-5";
+    row.innerHTML = `
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-text-muted">${label}</div>
+        <div class="mt-1 font-semibold">${value}</div>
+      </div>
+      <button type="button" data-goto="${step}" class="flex-none text-sm font-bold text-ink underline underline-offset-2">Modifier</button>
+    `;
+    return row;
+  }
+
+  function buildRecap() {
+    const recap = document.getElementById("recap");
+    recap.innerHTML = "";
+    const data = new FormData(form);
+
+    const selectedPrestations = prestationInputs
+      .filter((i) => i.checked)
+      .map((i) => prestationLabels[i.value])
+      .join(", ");
+    recap.appendChild(recapRow("Prestations", selectedPrestations || "—", 1));
+
+    const urgency = urgencyInputs.find((i) => i.checked);
+    recap.appendChild(recapRow("Délai souhaité", urgency ? urgencyLabels[urgency.value] : "—", 2));
+
+    const identity = `${data.get("firstName") ?? ""} ${data.get("lastName") ?? ""}`.trim();
+    const contact = `${identity} · ${data.get("email") ?? ""} · ${data.get("phone") ?? ""}`;
+    recap.appendChild(recapRow("Coordonnées", contact, 3));
+
+    const address = `${data.get("address") ?? ""}, ${data.get("postalCode") ?? ""} ${data.get("city") ?? ""}`;
+    recap.appendChild(recapRow("Adresse", address, 3));
+
+    recap.querySelectorAll("[data-goto]").forEach((btn) => {
+      btn.addEventListener("click", () => showStep(Number(btn.dataset.goto)));
+    });
+  }
+
+  // Envoi du formulaire
+  const submitBtn = document.getElementById("submit-btn");
+  const submitError = document.getElementById("submit-error");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const consent = form.querySelector('input[name="consent"]');
+    if (!consent.checked) {
+      submitError.textContent = "Merci de cocher la case de consentement avant l'envoi.";
+      submitError.classList.remove("hidden");
+      consent.focus();
+      return;
+    }
+    submitError.classList.add("hidden");
+
+    const payload = Object.fromEntries(new FormData(form).entries());
+    payload.prestations = prestationInputs.filter((i) => i.checked).map((i) => i.value);
+
+    if (!endpoint) {
+      console.warn(
+        "[AT HOME devis] PUBLIC_FORM_ENDPOINT non configuré : la demande n'a pas été envoyée à un backend. " +
+          "Voir README.md pour brancher ce formulaire. Données capturées :",
+        payload,
+      );
+      showStep("success");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Envoi en cours...";
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      showStep("success");
+    } catch (err) {
+      submitError.textContent =
+        "Une erreur est survenue lors de l'envoi. Merci de réessayer, ou contactez-nous directement au 03 20 87 61 52.";
+      submitError.classList.remove("hidden");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Envoyer ma demande";
+    }
+  });
+
+  showStep(1, { focusHeading: false });
+</script>

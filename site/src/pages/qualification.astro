@@ -1,0 +1,124 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import Layout from "@/layouts/Layout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Icon from "@/components/Icon.astro";
+import Faq from "@/components/Faq.astro";
+import { breadcrumbSchema, faqSchema } from "@/lib/schema";
+
+const crumbs = [
+  { name: "Accueil", path: "/" },
+  { name: "Qualification", path: "/qualification" },
+];
+
+const title = "RGE Qualibat & certifications | AT HOME — Bailleul (59)";
+const description =
+  "AT HOME Fermetures est certifié RGE Qualibat à Bailleul (59) : garantie décennale, aides MaPrimeRénov', CEE et partenaires K·LINE, VELUX, SOMFY.";
+
+// Chaque certificat est cherché dans public/certificats/<fileBase>.{pdf,jpg,jpeg,png,webp}.
+// Le bouton "Voir / Télécharger" n'apparaît que si le fichier existe réellement au build,
+// pour ne jamais générer de lien mort. Voir README.md pour la liste des noms attendus.
+const CERT_EXTENSIONS = [".pdf", ".jpg", ".jpeg", ".png", ".webp"];
+const CERTIFICATS_DIR = path.join(process.cwd(), "public", "certificats");
+
+function findCertificateFile(fileBase: string): string | null {
+  for (const ext of CERT_EXTENSIONS) {
+    if (fs.existsSync(path.join(CERTIFICATS_DIR, `${fileBase}${ext}`))) {
+      return `/certificats/${fileBase}${ext}`;
+    }
+  }
+  return null;
+}
+
+const CERTIFICATIONS = [
+  {
+    icon: "badge-check" as const,
+    title: "RGE Qualibat",
+    description:
+      "La certification Reconnu Garant de l'Environnement atteste de notre compétence sur les travaux d'amélioration énergétique. Elle conditionne l'accès aux aides de l'État.",
+    fileBase: "rge-qualibat",
+  },
+  {
+    icon: "shield" as const,
+    title: "Garantie décennale",
+    description: "Tous nos chantiers sont couverts 10 ans, pour la structure comme pour l'étanchéité de vos ouvrages.",
+    fileBase: "garantie-decennale",
+  },
+  {
+    icon: "sparkle" as const,
+    title: "Partenaire K·LINE",
+    description: "Menuiseries aluminium fabriquées en France, à la finesse de profil reconnue dans le secteur.",
+    fileBase: "partenaire-k-line",
+  },
+  {
+    icon: "sun" as const,
+    title: "Partenaire VELUX",
+    description: "Pose certifiée de fenêtres de toit, avec kits d'étanchéité adaptés à chaque type de couverture.",
+    fileBase: "partenaire-velux",
+  },
+].map((cert) => ({ ...cert, certificateHref: findCertificateFile(cert.fileBase) }));
+
+const QUALIF_FAQ = [
+  {
+    question: "Qu'est-ce que la certification RGE apporte concrètement ?",
+    answer:
+      "Elle est obligatoire pour accéder à MaPrimeRénov', aux Certificats d'Économie d'Énergie (CEE) et à la TVA à taux réduit sur vos travaux de rénovation énergétique.",
+  },
+  {
+    question: "Comment vérifier qu'un artisan est bien certifié RGE ?",
+    answer:
+      "Vous pouvez consulter l'annuaire officiel France Rénov'. AT HOME Fermetures y est référencé sous certification Qualibat pour ses travaux de menuiserie et d'isolation.",
+  },
+  {
+    question: "La garantie décennale couvre-t-elle tous les travaux ?",
+    answer:
+      "Elle couvre les dommages compromettant la solidité de l'ouvrage ou le rendant impropre à sa destination : structure, étanchéité de toiture, pose de menuiseries extérieures.",
+  },
+];
+---
+
+<Layout title={title} description={description} path="/qualification" jsonLd={[breadcrumbSchema(crumbs), faqSchema(QUALIF_FAQ)]}>
+  <section class="mx-auto max-w-[1360px] px-6 pt-[150px] min-[820px]:px-11">
+    <Breadcrumbs crumbs={crumbs} class="mb-6" />
+    <div class="max-w-[720px] pb-14">
+      <span class="badge-pill mb-5 inline-block">QUALIFICATION</span>
+      <h1 class="mb-5 font-heading text-[clamp(38px,5vw,60px)] font-extrabold leading-[0.96] tracking-[-0.03em]">
+        Certifié RGE Qualibat, votre garantie qualité.
+      </h1>
+      <p class="text-lg leading-[1.65] text-text-soft">
+        À Bailleul, dans le Nord (59), AT HOME Fermetures est certifié RGE Qualibat : une reconnaissance de notre savoir-faire qui ouvre droit aux aides de l'État pour vos travaux de rénovation énergétique.
+      </p>
+    </div>
+  </section>
+
+  <section aria-label="Certifications et partenaires" class="mx-auto max-w-[1360px] px-6 pb-20 min-[820px]:px-11 min-[820px]:pb-28">
+    <div class="grid grid-cols-1 gap-5 min-[640px]:grid-cols-2 min-[1024px]:grid-cols-3">
+      {
+        CERTIFICATIONS.map((cert) => (
+          <div class="card-surface flex flex-col p-7">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-lime">
+              <Icon name={cert.icon} size={22} strokeWidth={1.8} />
+            </div>
+            <h2 class="mb-2 font-heading text-xl font-extrabold">{cert.title}</h2>
+            <p class="mb-5 text-[15px] leading-[1.6] text-text-soft">{cert.description}</p>
+            {cert.certificateHref && (
+              <a
+                href={cert.certificateHref}
+                target="_blank"
+                rel="noopener"
+                aria-label={`Voir le certificat ${cert.title}`}
+                class="fx-mag mt-auto inline-flex items-center gap-2 self-start rounded-full bg-ink px-5 py-2.5 text-[13.5px] font-bold text-white"
+              >
+                <Icon name="eye" size={15} strokeWidth={2} />
+                Voir le certificat
+              </a>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <Faq items={QUALIF_FAQ} id="qualification-faq" heading="Questions sur nos certifications." />
+</Layout>

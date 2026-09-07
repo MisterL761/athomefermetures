@@ -1,0 +1,237 @@
+---
+import Icon from "@/components/Icon.astro";
+import { CONFIGURATEUR_URL, ESPACE_CLIENT_URL, NAV_LINKS, PRESTATIONS_NAV, SITE } from "@/data/site";
+import logo from "@/assets/images/logo-athome.png";
+import { Image } from "astro:assets";
+---
+
+<a
+  href="#contenu"
+  class="fixed left-2 top-2 z-[100] -translate-y-24 rounded-full bg-lime px-5 py-3 font-heading font-bold text-ink transition-transform focus:translate-y-0"
+>
+  Aller au contenu principal
+</a>
+
+<header class="fixed inset-x-0 top-0 z-70">
+  <div class="bg-ink text-[#c8c8c4]">
+    <div
+      class="mx-auto flex max-w-[1360px] items-center justify-between gap-4 px-[clamp(18px,3vw,44px)] py-[7px] text-[12.5px]"
+    >
+      <span class="hidden whitespace-nowrap min-[820px]:inline">
+        Lun – Sam · 8h – 19h · {SITE.address.addressLocality} (59)
+      </span>
+      <div class="flex items-center gap-4">
+        <a
+          href={SITE.social.facebook}
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+          class="flex items-center text-white opacity-85 transition-opacity hover:opacity-100"
+        >
+          <Icon name="facebook" size={14} />
+        </a>
+        <a
+          href={SITE.social.instagram}
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram"
+          class="flex items-center text-white opacity-85 transition-opacity hover:opacity-100"
+        >
+          <Icon name="instagram" size={14} />
+        </a>
+        <span class="hidden h-3.5 w-px bg-white/20 min-[820px]:inline-block"></span>
+        <a
+          href={CONFIGURATEUR_URL}
+          target="_blank"
+          rel="noopener"
+          class="hidden items-center gap-1.5 whitespace-nowrap font-semibold text-white min-[820px]:inline-flex"
+        >
+          <Icon name="ruler" size={12} />
+          Configurateur
+        </a>
+        <span class="hidden h-3.5 w-px bg-white/20 min-[820px]:inline-block"></span>
+        <a
+          href="/contact#espace-pro"
+          class="hidden items-center gap-1.5 whitespace-nowrap font-semibold text-white min-[820px]:inline-flex"
+        >
+          <Icon name="home" size={12} />
+          Espace pro
+        </a>
+        <span class="hidden h-3.5 w-px bg-white/20 min-[820px]:inline-block"></span>
+        <a href={SITE.phoneHref} class="inline-flex items-center gap-1.5 whitespace-nowrap font-bold text-lime">
+          <Icon name="phone" size={12} />
+          {SITE.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-b border-border bg-white/88 backdrop-blur-md">
+    <div
+      class="mx-auto flex max-w-[1360px] items-center justify-between gap-[clamp(8px,1.6vw,30px)] px-[clamp(10px,2.6vw,44px)] py-[11px]"
+    >
+      <a href="/" class="block flex-none">
+        <Image
+          src={logo}
+          alt="AT HOME Couvertures & Fermetures"
+          class="block h-[clamp(36px,4.6vw,46px)] w-auto"
+          widths={[200, 300, 400]}
+          sizes="200px"
+        />
+      </a>
+
+      <nav
+        aria-label="Navigation principale"
+        class="hidden items-center gap-[clamp(9px,1.9vw,32px)] whitespace-nowrap text-[clamp(12px,1.35vw,13.5px)] font-bold uppercase tracking-[0.02em] text-ink min-[820px]:flex"
+      >
+        <a href="/" class="fx-nav">Accueil</a>
+        <a href="/societe" class="fx-nav">Société</a>
+        <span class="group relative">
+          <a href="/prestations" class="fx-nav inline-flex items-center">
+            Produits
+            <span class="ml-1.5 inline-block transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180">
+              <Icon name="chevron-down" size={10} strokeWidth={2.6} />
+            </span>
+          </a>
+          <div
+            class="invisible absolute left-[-18px] top-full translate-y-2 pt-3.5 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
+          >
+            <div class="rounded-2xl border border-border bg-white p-2.5 shadow-[0_24px_54px_-22px_rgba(14,14,14,0.3)]">
+              {
+                PRESTATIONS_NAV.map((item) => (
+                  <a
+                    href={item.href}
+                    class="block whitespace-nowrap rounded-[10px] px-[18px] py-[11px] text-[14.5px] font-semibold text-ink transition-[background,padding-left] duration-200 hover:bg-bg-alt hover:pl-[26px]"
+                  >
+                    {item.label}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </span>
+        {
+          NAV_LINKS.filter((l) => l.label !== "Société").map((link) => (
+            <a href={link.href} class="fx-nav" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener" : undefined}>
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex flex-none items-center gap-2 min-[820px]:gap-[clamp(8px,1.6vw,30px)]">
+        <a
+          href="/devis"
+          class="fx-mag fx-cta fx-devispulse inline-flex min-h-11 flex-none items-center gap-1.5 whitespace-nowrap rounded-full bg-lime px-3.5 py-2.5 font-heading text-[11.5px] font-extrabold text-ink min-[820px]:gap-2.5 min-[820px]:px-[clamp(14px,1.8vw,24px)] min-[820px]:py-3 min-[820px]:text-[clamp(12.5px,1.4vw,14.5px)]"
+        >
+          <span class="fx-ctadot h-1.5 w-1.5 rounded-full bg-ink min-[820px]:h-2 min-[820px]:w-2"></span>
+          Devis gratuit
+        </a>
+
+        <button
+          type="button"
+          id="burger-btn"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          class="flex h-11 w-11 flex-none items-center justify-center rounded-xl border-[1.5px] border-border-soft bg-white text-ink min-[820px]:hidden"
+        >
+          <Icon name="menu" size={20} strokeWidth={2} />
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div
+  id="mobile-menu"
+  data-open="false"
+  class="fixed inset-0 z-99 flex-col overflow-auto bg-white p-[22px_24px] min-[820px]:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu de navigation"
+>
+  <div class="mb-[22px] flex items-center justify-between">
+    <Image src={logo} alt="AT HOME" class="h-10 w-auto" widths={[160]} sizes="160px" />
+    <button
+      type="button"
+      id="burger-close"
+      aria-label="Fermer le menu"
+      class="flex h-11 w-11 items-center justify-center rounded-xl border-[1.5px] border-border-soft"
+    >
+      <Icon name="close" size={18} strokeWidth={2.2} />
+    </button>
+  </div>
+  <a href="/" class="border-b border-border-light py-[15px] font-heading text-2xl font-extrabold text-ink">Accueil</a>
+  <a href="/societe" class="border-b border-border-light py-[15px] font-heading text-2xl font-extrabold text-ink">Société</a>
+  <a href="/prestations" class="border-b border-border-light py-[15px] font-heading text-2xl font-extrabold text-ink">Prestations</a>
+  <a href="/realisations" class="border-b border-border-light py-[15px] font-heading text-2xl font-extrabold text-ink">Nos réalisations</a>
+  <a href="/qualification" class="border-b border-border-light py-[15px] font-heading text-2xl font-extrabold text-ink">Qualification</a>
+  <a href={CONFIGURATEUR_URL} target="_blank" rel="noopener" class="border-b border-border-light py-[15px] font-heading text-2xl font-extrabold text-ink">Configurateur</a>
+  <a href={ESPACE_CLIENT_URL} target="_blank" rel="noopener" class="border-b border-border-light py-[15px] font-heading text-2xl font-extrabold text-ink">Espace client</a>
+  <a href="/contact#espace-pro" class="py-4 font-heading text-[17px] font-bold text-text-soft">Espace pro</a>
+  <a href="/devis" class="mt-3 flex items-center justify-center gap-2.5 rounded-full bg-lime p-[17px] font-heading text-[17px] font-extrabold text-ink">
+    <span class="h-[9px] w-[9px] rounded-full bg-ink"></span>
+    Devis gratuit
+  </a>
+  <a href={SITE.phoneHref} class="mt-2.5 flex items-center justify-center gap-2.5 rounded-full bg-ink p-[17px] font-heading text-[17px] font-extrabold text-white">
+    <span class="text-lime"><Icon name="phone" size={16} /></span>
+    {SITE.phoneDisplay}
+  </a>
+</div>
+
+<script>
+  const burgerBtn = document.getElementById("burger-btn");
+  const burgerClose = document.getElementById("burger-close");
+  const menu = document.getElementById("mobile-menu");
+
+  if (burgerBtn && burgerClose && menu) {
+    let lastFocused: HTMLElement | null = null;
+
+    const focusableSelector =
+      'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    function openMenu() {
+      lastFocused = document.activeElement as HTMLElement;
+      menu!.dataset.open = "true";
+      menu!.style.display = "flex";
+      burgerBtn!.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+      burgerClose!.focus();
+      document.addEventListener("keydown", onKeydown);
+    }
+
+    function closeMenu() {
+      menu!.dataset.open = "false";
+      menu!.style.display = "none";
+      burgerBtn!.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", onKeydown);
+      (lastFocused ?? burgerBtn)!.focus();
+    }
+
+    function onKeydown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        closeMenu();
+        return;
+      }
+      if (event.key === "Tab") {
+        const focusables = Array.from(menu!.querySelectorAll<HTMLElement>(focusableSelector));
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    burgerBtn.addEventListener("click", openMenu);
+    burgerClose.addEventListener("click", closeMenu);
+    menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  }
+</script>

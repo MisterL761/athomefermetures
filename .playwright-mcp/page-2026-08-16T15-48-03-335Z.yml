@@ -1,0 +1,148 @@
+- generic [active] [ref=f4e1]:
+  - link "Dépannage 7j/7" [ref=f4e2] [cursor=pointer]:
+    - /url: tel:0320876152
+  - link "Aller au contenu principal" [ref=f4e5] [cursor=pointer]:
+    - /url: "#contenu"
+  - banner [ref=f4e6]:
+    - generic [ref=f4e8]:
+      - generic [ref=f4e9]: Lun – Sam · 8h – 19h · Bailleul (59)
+      - generic [ref=f4e10]:
+        - link "Facebook" [ref=f4e11] [cursor=pointer]:
+          - /url: https://www.facebook.com
+        - link "Instagram" [ref=f4e14] [cursor=pointer]:
+          - /url: https://www.instagram.com
+        - link "Configurateur" [ref=f4e20] [cursor=pointer]:
+          - /url: /configurateur
+        - link "Espace pro" [ref=f4e24] [cursor=pointer]:
+          - /url: /contact#espace-pro
+        - link "03 20 87 61 52" [ref=f4e28] [cursor=pointer]:
+          - /url: tel:0320876152
+    - generic [ref=f4e32]:
+      - link [ref=f4e33] [cursor=pointer]:
+        - /url: /
+        - img "AT HOME Couvertures & Fermetures" [ref=f4e34]
+      - navigation "Navigation principale" [ref=f4e35]:
+        - link "Société" [ref=f4e36] [cursor=pointer]:
+          - /url: /societe
+        - link [ref=f4e38] [cursor=pointer]:
+          - /url: /prestations
+        - link "Nos réalisations" [ref=f4e42] [cursor=pointer]:
+          - /url: /realisations
+        - link "Qualification" [ref=f4e43] [cursor=pointer]:
+          - /url: /qualification
+        - link "Configurateur" [ref=f4e44] [cursor=pointer]:
+          - /url: /configurateur
+      - link "Devis gratuit" [ref=f4e45] [cursor=pointer]:
+        - /url: /devis
+  - main [ref=f4e47]:
+    - generic [ref=f4e48]:
+      - navigation "Fil d'Ariane" [ref=f4e49]:
+        - list [ref=f4e50]:
+          - listitem [ref=f4e51]:
+            - link "Accueil" [ref=f4e52] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f4e53]:
+            - generic [ref=f4e54]: /
+            - generic [ref=f4e55]: Contact
+      - generic [ref=f4e56]:
+        - generic [ref=f4e57]:
+          - generic [ref=f4e58]: CONTACT
+          - heading "Parlons de votre projet." [level=1] [ref=f4e59]
+          - paragraph [ref=f4e60]: Une question, un besoin de dépannage ou un projet à chiffrer ? Notre équipe vous répond du lundi au samedi.
+          - generic [ref=f4e61]:
+            - link "Téléphone 03 20 87 61 52" [ref=f4e62] [cursor=pointer]:
+              - /url: tel:0320876152
+              - generic [ref=f4e66]:
+                - generic [ref=f4e67]: Téléphone
+                - generic [ref=f4e68]: 03 20 87 61 52
+            - generic [ref=f4e74]:
+              - generic [ref=f4e75]: Showroom 300 m²
+              - generic [ref=f4e76]: 2108 Route de Lille, 59270 Bailleul
+            - generic [ref=f4e77]:
+              - generic [ref=f4e78]: Horaires
+              - generic [ref=f4e79]:
+                - generic [ref=f4e80]: Lundi – Vendredi
+                - strong [ref=f4e81]: 8h – 19h
+              - generic [ref=f4e82]:
+                - generic [ref=f4e83]: Samedi
+                - strong [ref=f4e84]: 9h – 18h
+              - generic [ref=f4e85]:
+                - generic [ref=f4e86]: Dimanche
+                - strong [ref=f4e87]: Fermé
+            - generic [ref=f4e88]:
+              - generic [ref=f4e89]: Espace pro
+              - paragraph [ref=f4e90]: "Architectes, agences immobilières, syndics : contactez-nous directement au 03 20 87 61 52 pour vos demandes professionnelles."
+        - generic [ref=f4e91]:
+          - heading "Envoyer un message" [level=2] [ref=f4e92]
+          - generic [ref=f4e93]:
+            - generic [ref=f4e94]:
+              - generic [ref=f4e95]:
+                - generic [ref=f4e96]: Nom complet
+                - textbox "Nom complet" [ref=f4e97]
+              - generic [ref=f4e98]:
+                - generic [ref=f4e99]: Téléphone
+                - textbox "Téléphone" [ref=f4e100]
+            - generic [ref=f4e101]:
+              - generic [ref=f4e102]: Email
+              - textbox "Email" [ref=f4e103]
+            - generic [ref=f4e104]:
+              - generic [ref=f4e105]: Message
+              - textbox "Message" [ref=f4e106]
+            - button "Envoyer le message" [ref=f4e107]
+  - contentinfo [ref=f4e108]:
+    - generic [ref=f4e109]:
+      - paragraph [ref=f4e110]: ON CONSTRUIT ENSEMBLE.
+      - generic [ref=f4e111]:
+        - generic [ref=f4e112]:
+          - img "AT HOME" [ref=f4e113]
+          - paragraph [ref=f4e114]: Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.
+          - generic [ref=f4e115]: CERTIFIÉ RGE QUALIBAT
+          - generic [ref=f4e116]:
+            - link "Facebook" [ref=f4e117] [cursor=pointer]:
+              - /url: https://www.facebook.com
+            - link "Instagram" [ref=f4e120] [cursor=pointer]:
+              - /url: https://www.instagram.com
+        - generic [ref=f4e125]:
+          - paragraph [ref=f4e126]: Prestations
+          - generic [ref=f4e127]:
+            - generic [ref=f4e128]: Fenêtres & portes
+            - generic [ref=f4e129]: Volets & motorisation
+            - generic [ref=f4e130]: Portes de garage
+            - generic [ref=f4e131]: Portails & carports
+            - generic [ref=f4e132]: Couverture & toiture
+        - generic [ref=f4e133]:
+          - paragraph [ref=f4e134]: Entreprise
+          - generic [ref=f4e135]:
+            - link "À propos" [ref=f4e136] [cursor=pointer]:
+              - /url: /societe
+            - link "Réalisations" [ref=f4e137] [cursor=pointer]:
+              - /url: /realisations
+            - link "Dépannage" [ref=f4e138] [cursor=pointer]:
+              - /url: tel:0320876152
+            - link "Configurateur" [ref=f4e139] [cursor=pointer]:
+              - /url: /configurateur
+            - link "Espace pro" [ref=f4e140] [cursor=pointer]:
+              - /url: /contact#espace-pro
+            - link "Contact" [ref=f4e141] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f4e142]:
+          - paragraph [ref=f4e143]: Contact
+          - generic [ref=f4e144]:
+            - link "03 20 87 61 52" [ref=f4e145] [cursor=pointer]:
+              - /url: tel:0320876152
+            - generic [ref=f4e146]: 2108 Route de Lille
+            - generic [ref=f4e147]: 59270 Bailleul
+            - generic [ref=f4e148]: Lun – Sam · 8h – 19h
+      - generic [ref=f4e149]:
+        - generic [ref=f4e150]: © 2026 AT HOME Couvertures & Fermetures — Tous droits réservés
+        - generic [ref=f4e151]:
+          - link "Mentions légales" [ref=f4e152] [cursor=pointer]:
+            - /url: /mentions-legales
+          - text: ·
+          - link "Politique de confidentialité" [ref=f4e153] [cursor=pointer]:
+            - /url: /politique-de-confidentialite
+  - generic [ref=f4e156]:
+    - button [ref=f4e157]
+    - button [ref=f4e163]
+    - button [ref=f4e167]
+    - button [ref=f4e175]

@@ -1,0 +1,9 @@
+[  408952ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:4329/_astro/hero.BCCHOc9U_ZgkQut.webp:0
+[  408952ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:4329/_astro/logo-athome.DN1YKrkF_8bQlK.webp:0
+[  417346ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:4329/_astro/porte-entree.BSdtDoFR_ObhNe.webp:0
+[  417346ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:4329/_astro/porte-garage.BS-9QdCL_1uxeV9.webp:0
+[  417346ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:4329/_astro/porte-garage2.COdGfjWa_29ES8l.webp:0
+[  417346ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:4329/_astro/verriere.UKBCjMNg_1TzPiM.webp:0
+[  418713ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:4329/_astro/leaflet-src.7ah4FPQk.js:0
+[  418716ms] Failed to fetch dynamically imported module: http://localhost:4329/_astro/leaflet-src.7ah4FPQk.js
+[  425311ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:4329/_astro/volet-roulant.jpg.By8in66X_Z1EfE6s.webp:0

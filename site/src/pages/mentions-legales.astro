@@ -1,0 +1,66 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { SITE } from "@/data/site";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const crumbs = [
+  { name: "Accueil", path: "/" },
+  { name: "Mentions légales", path: "/mentions-legales" },
+];
+
+const title = "Mentions légales | AT HOME Fermetures — Bailleul (59)";
+const description = "Mentions légales du site AT HOME Couvertures & Fermetures : éditeur, hébergeur, propriété intellectuelle et conditions d'utilisation.";
+---
+
+<Layout title={title} description={description} path="/mentions-legales" noindex jsonLd={[breadcrumbSchema(crumbs)]}>
+  <section class="mx-auto max-w-[820px] px-6 pb-20 pt-[150px] min-[820px]:px-11">
+    <Breadcrumbs crumbs={crumbs} class="mb-6" />
+    <h1 class="mb-10 font-heading text-[clamp(32px,4vw,48px)] font-extrabold leading-none tracking-[-0.03em]">Mentions légales</h1>
+
+    <div class="prose flex flex-col gap-8 text-[15.5px] leading-[1.7] text-text-soft">
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Éditeur du site</h2>
+        <p>
+          {SITE.legalForm}<br />
+          {SITE.address.streetAddress}, {SITE.address.postalCode} {SITE.address.addressLocality}<br />
+          Téléphone : {SITE.phoneDisplay}<br />
+          Email : {SITE.email}<br />
+          SIRET : [à compléter]<br />
+          RCS : [à compléter]
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Directeur de la publication</h2>
+        <p>[Nom du représentant légal à compléter]</p>
+      </div>
+
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Hébergement</h2>
+        <p>[Nom de l'hébergeur, adresse et téléphone à compléter]</p>
+      </div>
+
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Propriété intellectuelle</h2>
+        <p>
+          L'ensemble des contenus présents sur ce site (textes, images, logos, mises en page) est la propriété d'AT HOME Couvertures & Fermetures, sauf mention contraire, et ne peut être reproduit sans autorisation préalable.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Limitation de responsabilité</h2>
+        <p>
+          AT HOME Fermetures s'efforce d'assurer l'exactitude des informations diffusées sur ce site, mais ne saurait être tenue responsable des erreurs, omissions ou de l'indisponibilité temporaire du site.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Données personnelles</h2>
+        <p>
+          Pour toute information relative au traitement de vos données personnelles, consultez notre <a href="/politique-de-confidentialite" class="font-semibold text-ink underline underline-offset-2">politique de confidentialité</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

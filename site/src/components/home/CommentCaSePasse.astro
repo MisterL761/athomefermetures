@@ -1,0 +1,41 @@
+---
+const STEPS = [
+  {
+    title: "Étude & conseil",
+    description: "Visite technique gratuite et conseils adaptés à votre habitat et budget.",
+  },
+  {
+    title: "Devis détaillé",
+    description: "Un devis clair et transparent, sans surprise ni engagement.",
+  },
+  {
+    title: "Pose experte",
+    description: "Installation soignée par nos poseurs qualifiés, chantier propre.",
+  },
+  {
+    title: "SAV & garantie",
+    description: "Service après-vente réactif et garanties jusqu'à 10 ans.",
+  },
+];
+---
+
+<section aria-labelledby="comment-heading" class="mx-auto max-w-[1360px] px-6 py-16 min-[820px]:px-11 min-[820px]:py-[100px]">
+  <h2 id="comment-heading" data-reveal class="mb-[50px] font-heading text-[clamp(40px,5vw,72px)] font-extrabold leading-[0.95] tracking-[-0.03em]">
+    Comment<br />ça se passe ?
+  </h2>
+  <div class="grid grid-cols-1 gap-[22px] min-[560px]:grid-cols-2 min-[820px]:grid-cols-4">
+    {
+      STEPS.map((step, index) => (
+        <div data-reveal data-reveal-delay={index * 90} class="flex min-h-[220px] flex-col justify-between rounded-[22px] bg-bg-alt p-7">
+          <div class="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-ink font-heading text-[22px] font-extrabold text-lime">
+            {index + 1}
+          </div>
+          <div>
+            <h3 class="mb-2 font-heading text-[21px] font-extrabold tracking-[-0.01em]">{step.title}</h3>
+            <p class="text-[14.5px] leading-[1.55] text-text-muted">{step.description}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

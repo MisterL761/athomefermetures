@@ -1,0 +1,127 @@
+- generic [active] [ref=f9e1]:
+  - link "Dépannage 7j/7" [ref=f9e2] [cursor=pointer]:
+    - /url: tel:0320876152
+  - link "Aller au contenu principal" [ref=f9e5] [cursor=pointer]:
+    - /url: "#contenu"
+  - banner [ref=f9e6]:
+    - generic [ref=f9e8]:
+      - generic [ref=f9e9]: Lun – Sam · 8h – 19h · Bailleul (59)
+      - generic [ref=f9e10]:
+        - link "Facebook" [ref=f9e11] [cursor=pointer]:
+          - /url: https://www.facebook.com
+        - link "Instagram" [ref=f9e14] [cursor=pointer]:
+          - /url: https://www.instagram.com
+        - link "Configurateur" [ref=f9e20] [cursor=pointer]:
+          - /url: /configurateur
+        - link "Espace pro" [ref=f9e24] [cursor=pointer]:
+          - /url: /contact#espace-pro
+        - link "03 20 87 61 52" [ref=f9e28] [cursor=pointer]:
+          - /url: tel:0320876152
+    - generic [ref=f9e32]:
+      - link [ref=f9e33] [cursor=pointer]:
+        - /url: /
+        - img "AT HOME Couvertures & Fermetures" [ref=f9e34]
+      - navigation "Navigation principale" [ref=f9e35]:
+        - link "Société" [ref=f9e36] [cursor=pointer]:
+          - /url: /societe
+        - link [ref=f9e38] [cursor=pointer]:
+          - /url: /prestations
+        - link "Nos réalisations" [ref=f9e42] [cursor=pointer]:
+          - /url: /realisations
+        - link "Qualification" [ref=f9e43] [cursor=pointer]:
+          - /url: /qualification
+        - link "Configurateur" [ref=f9e44] [cursor=pointer]:
+          - /url: /configurateur
+      - link "Devis gratuit" [ref=f9e45] [cursor=pointer]:
+        - /url: /devis
+  - main [ref=f9e47]:
+    - generic [ref=f9e48]:
+      - navigation "Fil d'Ariane" [ref=f9e49]:
+        - list [ref=f9e50]:
+          - listitem [ref=f9e51]:
+            - link "Accueil" [ref=f9e52] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f9e53]:
+            - generic [ref=f9e54]: /
+            - generic [ref=f9e55]: Mentions légales
+      - heading "Mentions légales" [level=1] [ref=f9e56]
+      - generic [ref=f9e57]:
+        - generic [ref=f9e58]:
+          - heading "Éditeur du site" [level=2] [ref=f9e59]
+          - paragraph [ref=f9e60]: "AT HOME Couvertures & Fermetures 2108 Route de Lille, 59270 Bailleul Téléphone : 03 20 87 61 52 Email : contact@athome-fermetures.fr SIRET : [à compléter] RCS : [à compléter]"
+        - generic [ref=f9e61]:
+          - heading "Directeur de la publication" [level=2] [ref=f9e62]
+          - paragraph [ref=f9e63]: "[Nom du représentant légal à compléter]"
+        - generic [ref=f9e64]:
+          - heading "Hébergement" [level=2] [ref=f9e65]
+          - paragraph [ref=f9e66]: "[Nom de l'hébergeur, adresse et téléphone à compléter]"
+        - generic [ref=f9e67]:
+          - heading "Propriété intellectuelle" [level=2] [ref=f9e68]
+          - paragraph [ref=f9e69]: L'ensemble des contenus présents sur ce site (textes, images, logos, mises en page) est la propriété d'AT HOME Couvertures & Fermetures, sauf mention contraire, et ne peut être reproduit sans autorisation préalable.
+        - generic [ref=f9e70]:
+          - heading "Limitation de responsabilité" [level=2] [ref=f9e71]
+          - paragraph [ref=f9e72]: AT HOME Fermetures s'efforce d'assurer l'exactitude des informations diffusées sur ce site, mais ne saurait être tenue responsable des erreurs, omissions ou de l'indisponibilité temporaire du site.
+        - generic [ref=f9e73]:
+          - heading "Données personnelles" [level=2] [ref=f9e74]
+          - paragraph [ref=f9e75]:
+            - text: Pour toute information relative au traitement de vos données personnelles, consultez notre
+            - link "politique de confidentialité" [ref=f9e76] [cursor=pointer]:
+              - /url: /politique-de-confidentialite
+            - text: .
+  - contentinfo [ref=f9e77]:
+    - generic [ref=f9e78]:
+      - paragraph [ref=f9e79]: ON CONSTRUIT ENSEMBLE.
+      - generic [ref=f9e80]:
+        - generic [ref=f9e81]:
+          - img "AT HOME" [ref=f9e82]
+          - paragraph [ref=f9e83]: Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.
+          - generic [ref=f9e84]: CERTIFIÉ RGE QUALIBAT
+          - generic [ref=f9e85]:
+            - link "Facebook" [ref=f9e86] [cursor=pointer]:
+              - /url: https://www.facebook.com
+            - link "Instagram" [ref=f9e89] [cursor=pointer]:
+              - /url: https://www.instagram.com
+        - generic [ref=f9e94]:
+          - paragraph [ref=f9e95]: Prestations
+          - generic [ref=f9e96]:
+            - generic [ref=f9e97]: Fenêtres & portes
+            - generic [ref=f9e98]: Volets & motorisation
+            - generic [ref=f9e99]: Portes de garage
+            - generic [ref=f9e100]: Portails & carports
+            - generic [ref=f9e101]: Couverture & toiture
+        - generic [ref=f9e102]:
+          - paragraph [ref=f9e103]: Entreprise
+          - generic [ref=f9e104]:
+            - link "À propos" [ref=f9e105] [cursor=pointer]:
+              - /url: /societe
+            - link "Réalisations" [ref=f9e106] [cursor=pointer]:
+              - /url: /realisations
+            - link "Dépannage" [ref=f9e107] [cursor=pointer]:
+              - /url: tel:0320876152
+            - link "Configurateur" [ref=f9e108] [cursor=pointer]:
+              - /url: /configurateur
+            - link "Espace pro" [ref=f9e109] [cursor=pointer]:
+              - /url: /contact#espace-pro
+            - link "Contact" [ref=f9e110] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f9e111]:
+          - paragraph [ref=f9e112]: Contact
+          - generic [ref=f9e113]:
+            - link "03 20 87 61 52" [ref=f9e114] [cursor=pointer]:
+              - /url: tel:0320876152
+            - generic [ref=f9e115]: 2108 Route de Lille
+            - generic [ref=f9e116]: 59270 Bailleul
+            - generic [ref=f9e117]: Lun – Sam · 8h – 19h
+      - generic [ref=f9e118]:
+        - generic [ref=f9e119]: © 2026 AT HOME Couvertures & Fermetures — Tous droits réservés
+        - generic [ref=f9e120]:
+          - link "Mentions légales" [ref=f9e121] [cursor=pointer]:
+            - /url: /mentions-legales
+          - text: ·
+          - link "Politique de confidentialité" [ref=f9e122] [cursor=pointer]:
+            - /url: /politique-de-confidentialite
+  - generic [ref=f9e125]:
+    - button [ref=f9e126]
+    - button [ref=f9e132]
+    - button [ref=f9e136]
+    - button [ref=f9e144]

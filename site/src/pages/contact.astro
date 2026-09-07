@@ -1,0 +1,158 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Icon from "@/components/Icon.astro";
+import { SITE } from "@/data/site";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const crumbs = [
+  { name: "Accueil", path: "/" },
+  { name: "Contact", path: "/contact" },
+];
+
+const title = "Contact AT HOME Fermetures | Bailleul (59)";
+const description =
+  "Contactez AT HOME Couvertures & Fermetures à Bailleul (59) : téléphone, adresse du showroom, horaires et formulaire de contact en ligne.";
+---
+
+<Layout title={title} description={description} path="/contact" jsonLd={[breadcrumbSchema(crumbs)]}>
+  <section class="mx-auto max-w-[1360px] px-6 pt-[150px] min-[820px]:px-11">
+    <Breadcrumbs crumbs={crumbs} class="mb-6" />
+    <div class="grid grid-cols-1 gap-10 pb-20 min-[820px]:grid-cols-[0.9fr_1.1fr] min-[820px]:gap-14 min-[820px]:pb-28">
+      <div>
+        <span class="badge-pill mb-5 inline-block">CONTACT</span>
+        <h1 class="mb-6 font-heading text-[clamp(36px,4.6vw,56px)] font-extrabold leading-[0.96] tracking-[-0.03em]">
+          Parlons de votre projet.
+        </h1>
+        <p class="mb-8 text-lg leading-[1.65] text-text-soft">
+          Une question, un besoin de dépannage ou un projet à chiffrer ? Notre équipe vous répond du lundi au samedi.
+        </p>
+
+        <div class="flex flex-col gap-5">
+          <a href={SITE.phoneHref} class="fx-mag flex items-center gap-4 rounded-2xl border border-border-card bg-white p-5">
+            <span class="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-lime"><Icon name="phone" size={18} /></span>
+            <span>
+              <span class="block text-xs font-bold uppercase tracking-wide text-text-muted">Téléphone</span>
+              <span class="block font-heading text-lg font-extrabold">{SITE.phoneDisplay}</span>
+            </span>
+          </a>
+          <div class="flex items-center gap-4 rounded-2xl border border-border-card bg-white p-5">
+            <span class="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-lime"><Icon name="pin" size={18} /></span>
+            <span>
+              <span class="block text-xs font-bold uppercase tracking-wide text-text-muted">Showroom {SITE.showroom}</span>
+              <span class="block font-heading text-lg font-extrabold">{SITE.address.streetAddress}, {SITE.address.postalCode} {SITE.address.addressLocality}</span>
+            </span>
+          </div>
+          <div class="rounded-2xl border border-border-card bg-white p-5">
+            <span class="mb-2.5 block text-xs font-bold uppercase tracking-wide text-text-muted">Horaires</span>
+            {
+              SITE.hours.map((row) => (
+                <div class="flex justify-between border-b border-border-light py-2 text-[14.5px] last:border-b-0">
+                  <span class="text-text-soft">{row.day}</span>
+                  <strong>{row.hours}</strong>
+                </div>
+              ))
+            }
+          </div>
+          <div id="espace-pro" class="rounded-2xl border border-border-card bg-bg-alt p-5">
+            <span class="mb-1 block font-heading text-base font-extrabold">Espace pro</span>
+            <p class="text-sm text-text-soft">
+              Architectes, agences immobilières, syndics : contactez-nous directement au {SITE.phoneDisplay} pour vos demandes professionnelles.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-3xl border border-border-card bg-white p-8 min-[820px]:p-10">
+        <h2 class="mb-6 font-heading text-2xl font-extrabold tracking-[-0.02em]">Envoyer un message</h2>
+        <form id="contact-form" novalidate class="flex flex-col gap-5">
+          <div class="grid grid-cols-1 gap-5 min-[500px]:grid-cols-2">
+            <div>
+              <label for="c-name" class="mb-1.5 block text-sm font-bold">Nom complet</label>
+              <input id="c-name" name="name" type="text" autocomplete="name" required aria-describedby="c-name-error" class="w-full rounded-xl border-[1.5px] border-border px-4 py-3.5 text-base outline-none focus:border-ink aria-[invalid=true]:border-red-500" />
+              <p id="c-name-error" class="mt-1.5 hidden text-sm text-red-600" role="alert"></p>
+            </div>
+            <div>
+              <label for="c-phone" class="mb-1.5 block text-sm font-bold">Téléphone</label>
+              <input id="c-phone" name="phone" type="tel" autocomplete="tel" required aria-describedby="c-phone-error" class="w-full rounded-xl border-[1.5px] border-border px-4 py-3.5 text-base outline-none focus:border-ink aria-[invalid=true]:border-red-500" />
+              <p id="c-phone-error" class="mt-1.5 hidden text-sm text-red-600" role="alert"></p>
+            </div>
+          </div>
+          <div>
+            <label for="c-email" class="mb-1.5 block text-sm font-bold">Email</label>
+            <input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-email-error" class="w-full rounded-xl border-[1.5px] border-border px-4 py-3.5 text-base outline-none focus:border-ink aria-[invalid=true]:border-red-500" />
+            <p id="c-email-error" class="mt-1.5 hidden text-sm text-red-600" role="alert"></p>
+          </div>
+          <div>
+            <label for="c-message" class="mb-1.5 block text-sm font-bold">Message</label>
+            <textarea id="c-message" name="message" rows="5" required aria-describedby="c-message-error" class="w-full rounded-xl border-[1.5px] border-border px-4 py-3.5 text-base outline-none focus:border-ink aria-[invalid=true]:border-red-500"></textarea>
+            <p id="c-message-error" class="mt-1.5 hidden text-sm text-red-600" role="alert"></p>
+          </div>
+          <p id="contact-success" class="hidden rounded-xl bg-lime/20 px-4 py-3 text-sm font-semibold text-[#3f5c14]" role="status">
+            Merci, votre message a bien été envoyé. Nous vous répondons sous 48h.
+          </p>
+          <button type="submit" class="fx-mag rounded-full bg-lime px-8 py-4 font-heading text-base font-extrabold text-ink">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script is:inline define:vars={{ endpoint: import.meta.env.PUBLIC_FORM_ENDPOINT ?? "" }}>
+  // TODO(intégration backend) : PUBLIC_FORM_ENDPOINT n'est pas configuré.
+  // Voir README.md pour brancher ce formulaire à un backend réel.
+  const form = document.getElementById("contact-form");
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const PHONE_RE = /^(?:\+33|0)[1-9](?:[\s.-]?\d{2}){4}$/;
+
+  function setFieldError(name, message) {
+    const input = document.getElementById(name);
+    const error = document.getElementById(`${name}-error`);
+    if (message) {
+      input.setAttribute("aria-invalid", "true");
+      error.textContent = message;
+      error.classList.remove("hidden");
+      return false;
+    }
+    input.removeAttribute("aria-invalid");
+    error.classList.add("hidden");
+    return true;
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    let valid = true;
+    let firstInvalid = null;
+
+    const name = String(data.get("name") ?? "").trim();
+    if (!setFieldError("c-name", name ? "" : "Merci d'indiquer votre nom.")) { valid = false; firstInvalid ??= "c-name"; }
+
+    const phone = String(data.get("phone") ?? "").trim();
+    if (!setFieldError("c-phone", PHONE_RE.test(phone) ? "" : "Merci d'indiquer un téléphone valide.")) { valid = false; firstInvalid ??= "c-phone"; }
+
+    const email = String(data.get("email") ?? "").trim();
+    if (!setFieldError("c-email", EMAIL_RE.test(email) ? "" : "Merci d'indiquer un email valide.")) { valid = false; firstInvalid ??= "c-email"; }
+
+    const message = String(data.get("message") ?? "").trim();
+    if (!setFieldError("c-message", message ? "" : "Merci d'indiquer votre message.")) { valid = false; firstInvalid ??= "c-message"; }
+
+    if (!valid) {
+      document.getElementById(firstInvalid)?.focus();
+      return;
+    }
+
+    const payload = Object.fromEntries(data.entries());
+    if (!endpoint) {
+      console.warn("[AT HOME contact] PUBLIC_FORM_ENDPOINT non configuré. Données capturées :", payload);
+    } else {
+      try {
+        await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      } catch (err) {
+        console.error("[AT HOME contact] Échec de l'envoi :", err);
+      }
+    }
+    document.getElementById("contact-success").classList.remove("hidden");
+    form.reset();
+  });
+</script>

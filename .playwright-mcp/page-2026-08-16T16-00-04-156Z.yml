@@ -1,0 +1,119 @@
+- generic [active] [ref=f33e1]:
+  - link "Dépannage 7j/7" [ref=f33e2] [cursor=pointer]:
+    - /url: tel:0320876152
+  - link "Aller au contenu principal" [ref=f33e5] [cursor=pointer]:
+    - /url: "#contenu"
+  - banner [ref=f33e6]:
+    - generic [ref=f33e9]:
+      - link "Facebook" [ref=f33e10] [cursor=pointer]:
+        - /url: https://www.facebook.com
+      - link "Instagram" [ref=f33e13] [cursor=pointer]:
+        - /url: https://www.instagram.com
+      - link "03 20 87 61 52" [ref=f33e18] [cursor=pointer]:
+        - /url: tel:0320876152
+    - generic [ref=f33e22]:
+      - link [ref=f33e23] [cursor=pointer]:
+        - /url: /
+        - img "AT HOME Couvertures & Fermetures" [ref=f33e24]
+      - button "Ouvrir le menu" [ref=f33e25]
+  - main [ref=f33e28]:
+    - generic [ref=f33e29]:
+      - generic [ref=f33e30]:
+        - generic [ref=f33e31]: Étape 1 / 4
+        - generic [ref=f33e32]: Vos prestations
+      - progressbar "Étape 1 / 4" [ref=f33e33]
+    - region [ref=f33e36]:
+      - heading "Quel est votre projet ?" [level=1] [ref=f33e37]
+      - paragraph [ref=f33e38]: Sélectionnez une ou plusieurs prestations.
+      - generic [ref=f33e39]:
+        - generic [ref=f33e40] [cursor=pointer]:
+          - checkbox "✓ Fenêtres & portes-fenêtres" [ref=f33e41]
+          - generic [ref=f33e42]: ✓
+          - generic [ref=f33e45]: Fenêtres & portes-fenêtres
+        - generic [ref=f33e46] [cursor=pointer]:
+          - checkbox "✓ Portes-fenêtres & baies vitrées" [ref=f33e47]
+          - generic [ref=f33e48]: ✓
+          - generic [ref=f33e51]: Portes-fenêtres & baies vitrées
+        - generic [ref=f33e52] [cursor=pointer]:
+          - checkbox "✓ Volets & motorisation" [ref=f33e53]
+          - generic [ref=f33e54]: ✓
+          - generic [ref=f33e57]: Volets & motorisation
+        - generic [ref=f33e58] [cursor=pointer]:
+          - checkbox "✓ Portes de garage" [ref=f33e59]
+          - generic [ref=f33e60]: ✓
+          - generic [ref=f33e63]: Portes de garage
+        - generic [ref=f33e64] [cursor=pointer]:
+          - checkbox "✓ Portails & carports" [ref=f33e65]
+          - generic [ref=f33e66]: ✓
+          - generic [ref=f33e69]: Portails & carports
+        - generic [ref=f33e70] [cursor=pointer]:
+          - checkbox "✓ Portes d'entrée" [ref=f33e71]
+          - generic [ref=f33e72]: ✓
+          - generic [ref=f33e75]: Portes d'entrée
+        - generic [ref=f33e76] [cursor=pointer]:
+          - checkbox "✓ Velux & fenêtres de toit" [ref=f33e77]
+          - generic [ref=f33e78]: ✓
+          - generic [ref=f33e81]: Velux & fenêtres de toit
+        - generic [ref=f33e82] [cursor=pointer]:
+          - checkbox "✓ Couverture & toiture" [ref=f33e83]
+          - generic [ref=f33e84]: ✓
+          - generic [ref=f33e87]: Couverture & toiture
+        - generic [ref=f33e88] [cursor=pointer]:
+          - checkbox "✓ Isolation extérieure" [ref=f33e89]
+          - generic [ref=f33e90]: ✓
+          - generic [ref=f33e93]: Isolation extérieure
+      - generic [ref=f33e94]:
+        - generic [ref=f33e95]: Aucune prestation sélectionnée
+        - button "Continuer →" [disabled] [ref=f33e96]
+  - contentinfo [ref=f33e97]:
+    - generic [ref=f33e98]:
+      - paragraph [ref=f33e99]: ON CONSTRUIT ENSEMBLE.
+      - generic [ref=f33e100]:
+        - generic [ref=f33e101]:
+          - img "AT HOME" [ref=f33e102]
+          - paragraph [ref=f33e103]: Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.
+          - generic [ref=f33e104]: CERTIFIÉ RGE QUALIBAT
+          - generic [ref=f33e105]:
+            - link "Facebook" [ref=f33e106] [cursor=pointer]:
+              - /url: https://www.facebook.com
+            - link "Instagram" [ref=f33e109] [cursor=pointer]:
+              - /url: https://www.instagram.com
+        - generic [ref=f33e114]:
+          - paragraph [ref=f33e115]: Prestations
+          - generic [ref=f33e116]:
+            - generic [ref=f33e117]: Fenêtres & portes
+            - generic [ref=f33e118]: Volets & motorisation
+            - generic [ref=f33e119]: Portes de garage
+            - generic [ref=f33e120]: Portails & carports
+            - generic [ref=f33e121]: Couverture & toiture
+        - generic [ref=f33e122]:
+          - paragraph [ref=f33e123]: Entreprise
+          - generic [ref=f33e124]:
+            - link "À propos" [ref=f33e125] [cursor=pointer]:
+              - /url: /societe
+            - link "Réalisations" [ref=f33e126] [cursor=pointer]:
+              - /url: /realisations
+            - link "Dépannage" [ref=f33e127] [cursor=pointer]:
+              - /url: tel:0320876152
+            - link "Configurateur" [ref=f33e128] [cursor=pointer]:
+              - /url: /configurateur
+            - link "Espace pro" [ref=f33e129] [cursor=pointer]:
+              - /url: /contact#espace-pro
+            - link "Contact" [ref=f33e130] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f33e131]:
+          - paragraph [ref=f33e132]: Contact
+          - generic [ref=f33e133]:
+            - link "03 20 87 61 52" [ref=f33e134] [cursor=pointer]:
+              - /url: tel:0320876152
+            - generic [ref=f33e135]: 2108 Route de Lille
+            - generic [ref=f33e136]: 59270 Bailleul
+            - generic [ref=f33e137]: Lun – Sam · 8h – 19h
+      - generic [ref=f33e138]:
+        - generic [ref=f33e139]: © 2026 AT HOME Couvertures & Fermetures — Tous droits réservés
+        - generic [ref=f33e140]:
+          - link "Mentions légales" [ref=f33e141] [cursor=pointer]:
+            - /url: /mentions-legales
+          - text: ·
+          - link "Politique de confidentialité" [ref=f33e142] [cursor=pointer]:
+            - /url: /politique-de-confidentialite

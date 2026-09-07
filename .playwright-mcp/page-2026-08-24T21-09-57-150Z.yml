@@ -1,0 +1,136 @@
+- generic [active] [ref=f48e1]:
+  - link "Dépannage 7j/7" [ref=f48e2] [cursor=pointer]:
+    - /url: tel:0320876152
+  - link "Aller au contenu principal" [ref=f48e5] [cursor=pointer]:
+    - /url: "#contenu"
+  - banner [ref=f48e6]:
+    - generic [ref=f48e9]:
+      - link "Facebook" [ref=f48e10] [cursor=pointer]:
+        - /url: https://www.facebook.com
+      - link "Instagram" [ref=f48e13] [cursor=pointer]:
+        - /url: https://www.instagram.com
+      - link "03 20 87 61 52" [ref=f48e18] [cursor=pointer]:
+        - /url: tel:0320876152
+    - generic [ref=f48e22]:
+      - link [ref=f48e23] [cursor=pointer]:
+        - /url: /
+        - img "AT HOME Couvertures & Fermetures" [ref=f48e24]
+      - button "Ouvrir le menu" [ref=f48e25]
+  - main [ref=f48e28]:
+    - generic [ref=f48e29]:
+      - navigation "Fil d'Ariane" [ref=f48e30]:
+        - list [ref=f48e31]:
+          - listitem [ref=f48e32]:
+            - link "Accueil" [ref=f48e33] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f48e34]:
+            - generic [ref=f48e35]: /
+            - generic [ref=f48e36]: Qualification
+      - generic [ref=f48e37]:
+        - generic [ref=f48e38]: QUALIFICATION
+        - heading "Certifié RGE Qualibat, votre garantie qualité." [level=1] [ref=f48e39]
+        - paragraph [ref=f48e40]: "À Bailleul, dans le Nord (59), AT HOME Fermetures est certifié RGE Qualibat : une reconnaissance de notre savoir-faire qui ouvre droit aux aides de l'État pour vos travaux de rénovation énergétique."
+    - region "Certifications et partenaires" [ref=f48e41]:
+      - generic [ref=f48e42]:
+        - generic [ref=f48e43]:
+          - heading "RGE Qualibat" [level=2] [ref=f48e48]
+          - paragraph [ref=f48e49]: La certification Reconnu Garant de l'Environnement atteste de notre compétence sur les travaux d'amélioration énergétique. Elle conditionne l'accès aux aides de l'État.
+          - link "Voir le certificat RGE Qualibat" [ref=f48e50] [cursor=pointer]:
+            - /url: /certificats/rge-qualibat.pdf
+            - text: Voir le certificat
+        - generic [ref=f48e54]:
+          - heading "Garantie décennale" [level=2] [ref=f48e59]
+          - paragraph [ref=f48e60]: Tous nos chantiers sont couverts 10 ans, pour la structure comme pour l'étanchéité de vos ouvrages.
+          - link "Voir le certificat Garantie décennale" [ref=f48e61] [cursor=pointer]:
+            - /url: /certificats/garantie-decennale.pdf
+            - text: Voir le certificat
+        - generic [ref=f48e65]:
+          - heading "Partenaire K·LINE" [level=2] [ref=f48e69]
+          - paragraph [ref=f48e70]: Menuiseries aluminium fabriquées en France, à la finesse de profil reconnue dans le secteur.
+          - link "Voir le certificat Partenaire K·LINE" [ref=f48e71] [cursor=pointer]:
+            - /url: /certificats/partenaire-k-line.pdf
+            - text: Voir le certificat
+        - generic [ref=f48e75]:
+          - heading "Partenaire VELUX" [level=2] [ref=f48e80]
+          - paragraph [ref=f48e81]: Pose certifiée de fenêtres de toit, avec kits d'étanchéité adaptés à chaque type de couverture.
+          - link "Voir le certificat Partenaire VELUX" [ref=f48e82] [cursor=pointer]:
+            - /url: /certificats/partenaire-velux.pdf
+            - text: Voir le certificat
+        - generic [ref=f48e86]:
+          - heading "Partenaire SOMFY" [level=2] [ref=f48e90]
+          - paragraph [ref=f48e91]: Motorisation de volets roulants, portails et portes de garage, pilotable à distance.
+          - link "Voir le certificat Partenaire SOMFY" [ref=f48e92] [cursor=pointer]:
+            - /url: /certificats/partenaire-somfy.pdf
+            - text: Voir le certificat
+        - generic [ref=f48e96]:
+          - heading "Éco-responsable" [level=2] [ref=f48e100]
+          - paragraph [ref=f48e101]: Nos travaux d'isolation et de menuiserie réduisent durablement la consommation énergétique de votre logement.
+          - link "Voir le certificat Éco-responsable" [ref=f48e102] [cursor=pointer]:
+            - /url: /certificats/eco-responsable.pdf
+            - text: Voir le certificat
+    - region [ref=f48e106]:
+      - generic [ref=f48e107]:
+        - generic [ref=f48e108]: FAQ
+        - heading "Questions sur nos certifications." [level=2] [ref=f48e109]
+      - generic [ref=f48e110]:
+        - generic [ref=f48e111]:
+          - button "Qu'est-ce que la certification RGE apporte concrètement ?" [ref=f48e112]
+          - paragraph [ref=f48e117]: Elle est obligatoire pour accéder à MaPrimeRénov', aux Certificats d'Économie d'Énergie (CEE) et à la TVA à taux réduit sur vos travaux de rénovation énergétique.
+        - generic [ref=f48e118]:
+          - button "Comment vérifier qu'un artisan est bien certifié RGE ?" [ref=f48e119]
+          - paragraph [ref=f48e124]: Vous pouvez consulter l'annuaire officiel France Rénov'. AT HOME Fermetures y est référencé sous certification Qualibat pour ses travaux de menuiserie et d'isolation.
+        - generic [ref=f48e125]:
+          - button "La garantie décennale couvre-t-elle tous les travaux ?" [ref=f48e126]
+          - paragraph [ref=f48e131]: "Elle couvre les dommages compromettant la solidité de l'ouvrage ou le rendant impropre à sa destination : structure, étanchéité de toiture, pose de menuiseries extérieures."
+  - contentinfo [ref=f48e132]:
+    - generic [ref=f48e133]:
+      - paragraph [ref=f48e134]: ON CONSTRUIT ENSEMBLE.
+      - generic [ref=f48e135]:
+        - generic [ref=f48e136]:
+          - img "AT HOME" [ref=f48e137]
+          - paragraph [ref=f48e138]: Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.
+          - generic [ref=f48e139]: CERTIFIÉ RGE QUALIBAT
+          - generic [ref=f48e140]:
+            - link "Facebook" [ref=f48e141] [cursor=pointer]:
+              - /url: https://www.facebook.com
+            - link "Instagram" [ref=f48e144] [cursor=pointer]:
+              - /url: https://www.instagram.com
+        - generic [ref=f48e149]:
+          - paragraph [ref=f48e150]: Prestations
+          - generic [ref=f48e151]:
+            - generic [ref=f48e152]: Fenêtres & portes
+            - generic [ref=f48e153]: Volets & motorisation
+            - generic [ref=f48e154]: Portes de garage
+            - generic [ref=f48e155]: Portails & carports
+            - generic [ref=f48e156]: Couverture & toiture
+        - generic [ref=f48e157]:
+          - paragraph [ref=f48e158]: Entreprise
+          - generic [ref=f48e159]:
+            - link "À propos" [ref=f48e160] [cursor=pointer]:
+              - /url: /societe
+            - link "Réalisations" [ref=f48e161] [cursor=pointer]:
+              - /url: /realisations
+            - link "Dépannage" [ref=f48e162] [cursor=pointer]:
+              - /url: tel:0320876152
+            - link "Configurateur" [ref=f48e163] [cursor=pointer]:
+              - /url: /configurateur
+            - link "Espace pro" [ref=f48e164] [cursor=pointer]:
+              - /url: /contact#espace-pro
+            - link "Contact" [ref=f48e165] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f48e166]:
+          - paragraph [ref=f48e167]: Contact
+          - generic [ref=f48e168]:
+            - link "03 20 87 61 52" [ref=f48e169] [cursor=pointer]:
+              - /url: tel:0320876152
+            - generic [ref=f48e170]: 2108 Route de Lille
+            - generic [ref=f48e171]: 59270 Bailleul
+            - generic [ref=f48e172]: Lun – Sam · 8h – 19h
+      - generic [ref=f48e173]:
+        - generic [ref=f48e174]: © 2026 AT HOME Couvertures & Fermetures — Tous droits réservés
+        - generic [ref=f48e175]:
+          - link "Mentions légales" [ref=f48e176] [cursor=pointer]:
+            - /url: /mentions-legales
+          - text: ·
+          - link "Politique de confidentialité" [ref=f48e177] [cursor=pointer]:
+            - /url: /politique-de-confidentialite

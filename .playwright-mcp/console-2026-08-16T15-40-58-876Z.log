@@ -1,0 +1,1 @@
+[   12140ms] [WARNING] [AT HOME devis] PUBLIC_FORM_ENDPOINT non configuré : la demande n'a pas été envoyée à un backend. Voir README.md pour brancher ce formulaire. Données capturées : {prestations: Array(1), urgency: 1mois, firstName: Julie, lastName: Dupont, email: julie.dupont@example.fr} @ http://localhost:4321/devis:2977

@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+@import "@fontsource/bricolage-grotesque/700.css";
+@import "@fontsource/bricolage-grotesque/800.css";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+
+@theme {
+  /* Palette — extraite de la maquette athome-*.html */
+  --color-lime: #96d428;
+  --color-ink: #0e0e0e;
+  /* #ff6a1a assombri à #c94b0f pour atteindre 4.5:1 en texte blanc (AA) */
+  --color-orange: #c94b0f;
+
+  --color-bg-alt: #f4f3ee;
+  --color-border: #edede8;
+  --color-border-soft: #e7e5dd;
+  --color-border-card: #eceae3;
+  --color-border-light: #f0eee5;
+
+  --color-text-muted: #6a6a66;
+  --color-text-soft: #55554f;
+  --color-text-softer: #4a4a46;
+  /* assombri de #8a8a7c pour atteindre 4.5:1 sur fond blanc (AA) */
+  --color-text-faint: #6c6c5e;
+  --color-text-body: #2a2a28;
+  /* réservé aux fonds sombres (ex. footer) — n'utiliser text-cool que sur bg-ink */
+  --color-text-cool: #9a9a96;
+
+  --font-heading: "Bricolage Grotesque", ui-sans-serif, sans-serif;
+  --font-body: "Space Grotesk", ui-sans-serif, sans-serif;
+
+  --ease-kom: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --breakpoint-xs: 390px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+
+  ::selection {
+    background: var(--color-lime);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+@layer components {
+  /* Bouton pilule primaire (lime) */
+  .btn-primary {
+    @apply inline-flex items-center gap-2.5 rounded-full bg-lime px-7 py-4 font-heading text-[17px] font-extrabold text-ink transition-transform duration-300 hover:-translate-y-0.5;
+  }
+
+  /* Bouton pilule secondaire (contour noir) */
+  .btn-outline {
+    @apply inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-ink px-7 py-4 font-heading text-[17px] font-extrabold text-ink transition-transform duration-300 hover:-translate-y-0.5;
+  }
+
+  /* Bouton pilule sombre (fond noir, invert lime au survol) */
+  .btn-dark {
+    @apply inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-4 font-heading text-[17px] font-extrabold text-white transition-transform duration-300 hover:-translate-y-0.5;
+  }
+
+  .badge-pill {
+    @apply inline-block rounded-full bg-lime px-[15px] py-[7px] font-heading text-[13px] font-extrabold text-ink;
+  }
+
+  .card-surface {
+    @apply rounded-[20px] border border-border-card bg-white;
+  }
+
+  /* Effet "magnétique" au survol des CTA (brillance diagonale) */
+  .fx-mag {
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.3s var(--ease-kom),
+      box-shadow 0.3s ease;
+  }
+  .fx-mag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px -12px rgba(14, 14, 14, 0.35);
+  }
+  .fx-mag:active {
+    transform: translateY(0) scale(0.98);
+  }
+  .fx-mag::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -70%;
+    width: 45%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.55s ease;
+    pointer-events: none;
+  }
+  .fx-mag:hover::after {
+    left: 125%;
+  }
+
+  .fx-cta:hover {
+    background: var(--color-ink) !important;
+    color: #fff !important;
+  }
+  .fx-cta:hover .fx-ctadot {
+    background: var(--color-lime) !important;
+  }
+
+  .fx-nav {
+    position: relative;
+    text-decoration: none;
+  }
+  .fx-nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 2px;
+    width: 0;
+    background: var(--color-ink);
+    transition: width 0.32s var(--ease-kom);
+  }
+  .fx-nav:hover::after,
+  .fx-nav:focus-visible::after {
+    width: 100%;
+  }
+
+  /* Reveal au scroll (désactivé si prefers-reduced-motion) */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.85s var(--ease-kom),
+      transform 0.85s var(--ease-kom);
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes kom-sos {
+  0%,
+  100% {
+    box-shadow:
+      0 16px 38px -10px rgba(255, 106, 26, 0.65),
+      0 0 0 0 rgba(255, 106, 26, 0.45);
+  }
+  50% {
+    box-shadow:
+      0 16px 38px -10px rgba(255, 106, 26, 0.65),
+      0 0 0 12px rgba(255, 106, 26, 0);
+  }
+}
+.fx-sos {
+  animation: kom-sos 2.6s ease-in-out infinite;
+}
+
+@keyframes kom-kb {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07);
+  }
+}
+.fx-kenburns {
+  animation: kom-kb 9s ease-in-out infinite alternate;
+}
+
+@keyframes kom-vup {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+@keyframes kom-vdown {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.fx-marquee-up {
+  animation: kom-vup 34s linear infinite;
+}
+.fx-marquee-down {
+  animation: kom-vdown 34s linear infinite;
+}
+.fx-marquee-paused:hover .fx-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes kom-mappulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(150, 212, 40, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 22px rgba(150, 212, 40, 0);
+  }
+}
+.fx-mappulse {
+  animation: kom-mappulse 2.4s ease-out infinite;
+}
+
+@keyframes kom-devispulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(150, 212, 40, 0.75),
+      0 0 0 0 rgba(150, 212, 40, 0.45);
+  }
+  60% {
+    box-shadow:
+      0 0 0 10px rgba(150, 212, 40, 0),
+      0 0 0 22px rgba(150, 212, 40, 0);
+  }
+  100% {
+    box-shadow:
+      0 0 0 10px rgba(150, 212, 40, 0),
+      0 0 0 22px rgba(150, 212, 40, 0);
+  }
+}
+.fx-devispulse {
+  animation: kom-devispulse 1.5s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-sos,
+  .fx-kenburns,
+  .fx-marquee-up,
+  .fx-marquee-down,
+  .fx-mappulse,
+  .fx-devispulse {
+    animation: none !important;
+  }
+}
+
+/* Menu mobile plein écran */
+#mobile-menu[data-open="false"] {
+  display: none;
+}
+

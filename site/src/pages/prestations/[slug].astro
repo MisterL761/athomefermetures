@@ -1,0 +1,191 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Icon from "@/components/Icon.astro";
+import Faq from "@/components/Faq.astro";
+import { PRESTATIONS, getRelatedPrestations } from "@/data/prestations";
+import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
+
+export function getStaticPaths() {
+  return PRESTATIONS.map((prestation) => ({
+    params: { slug: prestation.slug },
+    props: { prestation },
+  }));
+}
+
+const { prestation } = Astro.props;
+const related = getRelatedPrestations(prestation);
+
+const crumbs = [
+  { name: "Accueil", path: "/" },
+  { name: "Prestations", path: "/prestations" },
+  { name: prestation.navLabel, path: `/prestations/${prestation.slug}` },
+];
+
+const jsonLd: Record<string, unknown>[] = [
+  breadcrumbSchema(crumbs),
+  serviceSchema({ name: prestation.navLabel, description: prestation.seoDescription, slug: prestation.slug }),
+];
+if (prestation.faq.length > 0) jsonLd.push(faqSchema(prestation.faq));
+---
+
+<Layout title={prestation.seoTitle} description={prestation.seoDescription} path={`/prestations/${prestation.slug}`} jsonLd={jsonLd}>
+  <section class="mx-auto max-w-[1360px] px-6 pt-[150px] min-[820px]:px-11">
+    <Breadcrumbs crumbs={crumbs} class="mb-6" />
+
+    <div class="grid grid-cols-1 items-center gap-10 pb-16 min-[820px]:grid-cols-2 min-[820px]:gap-14 min-[820px]:pb-[70px]">
+      <div>
+        <span class="badge-pill mb-5 inline-block">{prestation.badge}</span>
+        <h1 class="mb-[22px] font-heading text-[clamp(36px,4.6vw,64px)] font-extrabold leading-[0.96] tracking-[-0.03em]">
+          {prestation.title}
+        </h1>
+        <p class="mb-[30px] max-w-[480px] text-lg leading-[1.65] text-[#4a4a46]">{prestation.lead}</p>
+        <div class="mb-8 flex flex-wrap gap-3.5">
+          <a href="/devis" class="fx-mag fx-cta inline-flex items-center gap-2.5 rounded-full bg-lime px-[30px] py-[17px] font-heading text-[17px] font-extrabold text-ink">
+            <span class="fx-ctadot h-[9px] w-[9px] rounded-full bg-ink"></span>
+            Devis gratuit sous 48h
+          </a>
+          <a href="tel:0320876152" class="fx-mag inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-ink px-[26px] py-[17px] font-heading text-[17px] font-extrabold text-ink">
+            03 20 87 61 52
+          </a>
+        </div>
+        <div class="flex flex-wrap items-center gap-5">
+          <div class="flex items-center gap-2.5">
+            <span class="text-[15px] text-orange">★★★★★</span>
+            <span class="text-sm text-text-soft"><strong class="text-ink">4,7/5</strong> · 100+ avis</span>
+          </div>
+          <div class="h-5 w-px bg-border-soft"></div>
+          <span class="text-sm text-text-soft">{prestation.ratingNote}</span>
+        </div>
+      </div>
+
+      <div class="relative h-[360px] overflow-hidden rounded-3xl min-[820px]:h-[480px]">
+        <div
+          class="absolute inset-0 transition-transform duration-[800ms] hover:scale-[1.06]"
+          style={`background: linear-gradient(150deg, ${prestation.gradient[0]}, ${prestation.gradient[1]});`}
+        >
+        </div>
+        <div class="absolute inset-0 [background:repeating-linear-gradient(135deg,rgba(255,255,255,0.1)_0px,rgba(255,255,255,0.1)_2px,transparent_2px,transparent_28px)]"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-center text-sm font-semibold text-white/80">
+          Photo — {prestation.homeLabel.toLowerCase()}
+        </div>
+        <span class="absolute bottom-5 left-[22px] rounded-full bg-white/94 px-[17px] py-[9px] text-[13.5px] font-bold">
+          {prestation.heroCaption}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-bg-alt">
+    <div class="mx-auto max-w-[1360px] px-6 py-16 min-[820px]:px-11 min-[820px]:py-[90px]">
+      <h2 class="mb-11 font-heading text-[clamp(30px,3.4vw,46px)] font-extrabold leading-none tracking-[-0.03em]">
+        {prestation.materialsTitle}
+      </h2>
+      <div class={`grid grid-cols-1 gap-5 min-[560px]:grid-cols-2 ${prestation.materials.length >= 3 ? "min-[900px]:grid-cols-3" : ""}`}>
+        {
+          prestation.materials.map((material) => (
+            <div
+              class={`rounded-[20px] border-[1.5px] p-[30px] ${
+                material.featured ? "border-ink bg-ink text-white" : "border-border-card bg-white"
+              }`}
+            >
+              {material.featured && (
+                <span class="mb-5 inline-block rounded-full bg-lime px-[11px] py-[5px] font-heading text-[11.5px] font-extrabold text-ink">
+                  LE PLUS DEMANDÉ
+                </span>
+              )}
+              <div class={`mb-5 flex h-[52px] w-[52px] items-center justify-center rounded-[14px] ${material.featured ? "bg-white/10" : "bg-bg-alt"}`}>
+                <Icon name="ruler" size={24} strokeWidth={1.7} class={material.featured ? "text-lime" : "text-ink"} />
+              </div>
+              <h3 class="mb-2.5 font-heading text-[22px] font-extrabold">{material.name}</h3>
+              <p class={`mb-[18px] text-[15px] leading-[1.6] ${material.featured ? "text-[#c8c8c4]" : "text-text-soft"}`}>
+                {material.description}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {material.tags.map((tag) => (
+                  <span class={`rounded-full px-[13px] py-1.5 text-[12.5px] font-semibold ${material.featured ? "bg-white/10" : "bg-bg-alt"}`}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-[1360px] grid-cols-1 items-center gap-10 px-6 py-16 min-[820px]:grid-cols-[0.9fr_1.1fr] min-[820px]:gap-14 min-[820px]:px-11 min-[820px]:py-[90px]">
+    <div
+      class="relative h-[300px] overflow-hidden rounded-3xl min-[820px]:h-[440px]"
+      style={`background: linear-gradient(150deg, ${prestation.gradient[1]}, ${prestation.gradient[0]});`}
+    >
+      <div class="absolute inset-0 [background:repeating-linear-gradient(135deg,rgba(255,255,255,0.12)_0px,rgba(255,255,255,0.12)_2px,transparent_2px,transparent_26px)]"></div>
+      <div class="absolute inset-0 flex items-center justify-center text-center text-sm font-semibold text-white/80">
+        {prestation.benefitsImageCaption}
+      </div>
+    </div>
+    <div>
+      <h2 class="mb-[34px] font-heading text-[clamp(30px,3.4vw,46px)] font-extrabold leading-none tracking-[-0.03em]">
+        {prestation.benefitsTitle}
+      </h2>
+      <div class="flex flex-col gap-[22px]">
+        {
+          prestation.benefits.map((benefit) => (
+            <div class="flex items-start gap-[18px]">
+              <div class="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-lime">
+                <Icon name={benefit.icon} size={20} strokeWidth={1.9} />
+              </div>
+              <div>
+                <h3 class="mb-1 font-heading text-lg font-extrabold">{benefit.title}</h3>
+                <p class="text-[15px] leading-[1.6] text-text-soft">{benefit.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ink text-white">
+    <div class="mx-auto max-w-[900px] px-6 py-16 text-center min-[820px]:px-11 min-[820px]:py-[90px]">
+      <h2 class="mb-[18px] font-heading text-[clamp(34px,4vw,56px)] font-extrabold leading-[0.96] tracking-[-0.03em]">
+        Votre projet {prestation.homeLabel.toLowerCase()}<br />commence <span class="text-lime">ici.</span>
+      </h2>
+      <p class="mx-auto mb-[34px] max-w-[440px] text-[17px] leading-[1.6] text-[#c8c8c4]">
+        Visite technique et devis détaillé gratuits, sous 48h. Ou venez comparer les matériaux au showroom de Bailleul.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3.5">
+        <a href="/devis" class="fx-mag inline-flex items-center gap-2.5 rounded-full bg-lime px-[30px] py-[17px] font-heading text-[17px] font-extrabold text-ink">
+          Demander mon devis gratuit
+        </a>
+        <a href="tel:0320876152" class="fx-mag inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-white/50 px-[26px] py-[17px] font-heading text-[17px] font-extrabold text-white">
+          03 20 87 61 52
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {prestation.faq.length > 0 && <Faq items={prestation.faq} id="faq-prestation" eyebrow="FAQ" heading={`Questions fréquentes — ${prestation.navLabel.toLowerCase()}`} />}
+
+  {
+    related.length > 0 && (
+      <section aria-labelledby="related-heading" class="mx-auto max-w-[1360px] px-6 py-16 min-[820px]:px-11 min-[820px]:py-[90px]">
+        <h2 id="related-heading" class="mb-8 font-heading text-[clamp(26px,3vw,38px)] font-extrabold tracking-[-0.02em]">
+          Prestations connexes
+        </h2>
+        <div class="grid grid-cols-1 gap-5 min-[640px]:grid-cols-3">
+          {related.map((item) => (
+            <a href={`/prestations/${item.slug}`} class="card-surface group block p-6 transition-colors hover:border-lime">
+              <span class="mb-3 block font-heading text-lg font-extrabold">{item.homeLabel}</span>
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-text-soft group-hover:text-ink">
+                Découvrir
+                <Icon name="arrow-up-right" size={14} strokeWidth={2.4} />
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Layout>

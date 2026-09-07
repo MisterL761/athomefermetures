@@ -1,0 +1,90 @@
+---
+import Icon from "@/components/Icon.astro";
+import { CONFIGURATEUR_URL, FOOTER_PRESTATIONS, SITE } from "@/data/site";
+import logo from "@/assets/images/logo-athome.png";
+import { Image } from "astro:assets";
+
+const year = 2026;
+---
+
+<footer class="bg-ink text-[#9a9a96]">
+  <div class="mx-auto max-w-[1360px] px-[22px] pb-[30px] pt-20 min-[820px]:px-11">
+    <p
+      class="mb-[50px] whitespace-normal font-heading text-[clamp(34px,10vw,44px)] font-extrabold leading-[0.9] tracking-[-0.04em] text-white min-[820px]:whitespace-nowrap min-[820px]:text-[clamp(40px,6.6vw,110px)]"
+    >
+      {SITE.claim}
+    </p>
+
+    <div class="grid grid-cols-1 gap-10 border-t border-white/10 pt-11 min-[820px]:grid-cols-[1.6fr_1fr_1fr_1fr]">
+      <div>
+        <Image src={logo} alt="AT HOME" class="mb-4 h-[50px] w-auto" widths={[180]} sizes="180px" />
+        <p class="mb-4 max-w-[290px] text-sm leading-[1.7]">
+          Menuiseries &amp; fermetures. La solution durable pour votre habitat, à Bailleul depuis {SITE.foundedYear}.
+        </p>
+        <span class="inline-block rounded-full border border-lime px-3 py-1.5 font-heading text-[11.5px] font-extrabold tracking-[0.06em] text-lime">
+          CERTIFIÉ RGE QUALIBAT
+        </span>
+        <div class="mt-5 flex gap-3">
+          <a
+            href={SITE.social.facebook}
+            target="_blank"
+            rel="noopener"
+            aria-label="Facebook"
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-lime hover:text-lime"
+          >
+            <Icon name="facebook" size={17} />
+          </a>
+          <a
+            href={SITE.social.instagram}
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-lime hover:text-lime"
+          >
+            <Icon name="instagram" size={17} />
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-4 text-sm font-bold text-white">Prestations</p>
+        <div class="flex flex-col gap-2.5 text-sm">
+          {FOOTER_PRESTATIONS.map((label) => <span>{label}</span>)}
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-4 text-sm font-bold text-white">Entreprise</p>
+        <div class="flex flex-col gap-2.5 text-sm">
+          <a href="/societe" class="text-inherit hover:text-lime">À propos</a>
+          <a href="/realisations" class="text-inherit hover:text-lime">Réalisations</a>
+          <a href={SITE.phoneHref} class="text-inherit hover:text-lime">Dépannage</a>
+          <a href={CONFIGURATEUR_URL} target="_blank" rel="noopener" class="text-inherit hover:text-lime">Configurateur</a>
+          <a href="/contact#espace-pro" class="text-inherit hover:text-lime">Espace pro</a>
+          <a href="/contact" class="text-inherit hover:text-lime">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-4 text-sm font-bold text-white">Contact</p>
+        <div class="flex flex-col gap-2.5 text-sm">
+          <a href={SITE.phoneHref} class="font-bold text-lime">{SITE.phoneDisplay}</a>
+          <span>{SITE.address.streetAddress}</span>
+          <span>{SITE.address.postalCode} {SITE.address.addressLocality}</span>
+          <span>Lun – Sam · 8h – 19h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-11 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-[22px] text-[13px] text-text-cool">
+      <span>© {year} {SITE.name} — Tous droits réservés</span>
+      <span class="flex flex-wrap gap-1.5">
+        <a href="/mentions-legales" class="text-inherit hover:text-white">Mentions légales</a>
+        ·
+        <a href="/politique-de-confidentialite" class="text-inherit hover:text-white">Politique de confidentialité</a>
+        ·
+        <button type="button" data-cookie-reopen class="text-inherit underline-offset-2 hover:text-white hover:underline">Gérer les cookies</button>
+      </span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: inherit; }
+  ::selection { background: #96D428; color: #0E0E0E; }
+  .kom-nav { position: relative; text-decoration: none; }
+  .kom-nav::after { content:""; position:absolute; left:0; bottom:-5px; height:2px; width:0; background:#0E0E0E; transition:width .32s cubic-bezier(.16,1,.3,1); }
+  .kom-nav:hover::after { width:100%; }
+  .kom-dd { position: relative; }
+  .kom-dd-menu { position: absolute; top: 100%; left: -18px; padding-top: 14px; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .25s ease, transform .25s cubic-bezier(.16,1,.3,1), visibility .25s; z-index: 80; }
+  .kom-dd:hover .kom-dd-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+  .kom-dd-item { display: block; padding: 11px 22px 11px 18px; font-size: 14.5px; font-weight: 600; letter-spacing: 0; text-transform: none; color: #0E0E0E; white-space: nowrap; border-radius: 10px; transition: background .2s ease, padding-left .25s ease; }
+  .kom-dd-item:hover { background: #F4F3EE; padding-left: 26px; }
+  .kom-dd-caret { display:inline-block; margin-left:6px; transition: transform .25s ease; }
+  .kom-dd:hover .kom-dd-caret { transform: rotate(180deg); }
+  .kom-mag { position: relative; overflow: hidden; transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease; }
+  .kom-mag:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -12px rgba(14,14,14,.35); }
+  .kom-mag:active { transform: translateY(0) scale(.98); }
+  .kom-mag::after { content:""; position:absolute; top:0; bottom:0; left:-70%; width:45%; background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent); transform:skewX(-20deg); transition:left .55s ease; pointer-events:none; }
+  .kom-mag:hover::after { left:125%; }
+  .kom-cta:hover { background:#0E0E0E !important; color:#fff !important; }
+  .kom-cta:hover .kom-ctadot { background:#96D428 !important; }
+  .dv-card { transition: transform .3s cubic-bezier(.16,1,.3,1), border-color .3s ease, box-shadow .3s ease; cursor: pointer; }
+  .dv-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(14,14,14,.3); }
+  .dv-btn { transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease, opacity .3s ease; cursor: pointer; }
+  .dv-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -12px rgba(14,14,14,.35); }
+  .dv-btn:active { transform: translateY(0) scale(.98); }
+  .dv-zoom:hover .dv-zoomin { transform: scale(1.07); }
+  input::placeholder, textarea::placeholder { color: #9a9a92; }
+</style>
+
+<style id="mobile-overrides">
+@media (max-width: 820px) {
+  body { overflow-x: hidden; }
+  /* grilles : tout passe en 1 colonne, sauf les stats en 2x2 */
+  [style*="grid-template-columns"]:not(.m-2col) { grid-template-columns: 1fr !important; }
+  .m-2col { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .m-2col [style*="height: 130px"] { height: 74px !important; }
+  .m-2col [style*="padding: 26px 24px"] { padding: 16px 14px !important; }
+  .m-2col [style*="font-size: 15.5px"] { font-size: 14px !important; }
+  .m-2col [style*="width: 52px"] { width: 40px !important; height: 40px !important; font-size: 16px !important; border-radius: 10px !important; }
+  .m-2col [style*="font-size: 18px"] { font-size: 15px !important; margin: 10px 0 3px !important; }
+  .m-2col [style*="font-size: 13.5px"][style*="line-height"] { font-size: 12px !important; }
+  [style*="font-size: 78px"] { font-size: 50px !important; }
+
+  /* header : nav remplacée par un burger, bandeau allégé */
+  header nav { display: none !important; }
+  .m-burger { display: inline-flex !important; }
+  .m-hide { display: none !important; }
+  header [style*="height: 14px"] { display: none !important; }
+  header [style*="height: 22px"] { display: none !important; }
+
+  /* espacements */
+  /* menu mobile */
+  header .kom-cta { display: none !important; }
+  .m-menu { display: none; }
+  #mnav:checked ~ .m-menu { display: flex !important; }
+  /* avis : une seule colonne */
+  .kom-vcol + .kom-vcol { display: none !important; }
+  /* carte zone : pleine largeur */
+  .m-mapwrap { margin-left: -20px !important; margin-right: -20px !important; padding: 0 !important; border: none !important; border-radius: 0 !important; background: transparent !important; }
+  .m-mapwrap > div:first-child { border-radius: 0 !important; height: 430px !important; }
+  .m-mapwrap > div:last-child { padding: 14px 20px 4px !important; }
+  section { padding-left: 20px !important; padding-right: 20px !important; }
+  section > div[style*="max-width"] { padding-left: 0 !important; padding-right: 0 !important; }
+  section:first-of-type { padding-top: 130px !important; }
+
+  /* hero */
+  .m-heropad { left: 18px !important; right: 18px !important; flex-wrap: wrap; gap: 8px; }
+  h1 { font-size: clamp(32px, 9.4vw, 46px) !important; }
+  [style*="height: 640px"] { height: 540px !important; }
+
+  /* galerie réalisations */
+  [style*="flex: 0 0 440px"] { flex: 0 0 66vw !important; }
+  [style*="height: 520px"] { height: 330px !important; }
+
+  /* footer */
+  footer [style*="white-space: nowrap"] { white-space: normal !important; font-size: clamp(34px, 10vw, 44px) !important; }
+  footer { padding-left: 4px; padding-right: 4px; }
+
+  /* cartes avis : hauteur réduite */
+  [style*="height: 600px"] { height: 520px !important; }
+}
+</style>
+</helmet>
+<div style="background:#FFFFFF;color:#0E0E0E;font-family:'Space Grotesk',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;">
+
+  <!-- Header -->
+  <input type="checkbox" id="mnav" style="display:none;">
+  <div class="m-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:99;flex-direction:column;padding:22px 24px;overflow:auto;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+            <img src="assets/logo-athome.png" alt="AT HOME" style="height:40px;width:auto;">
+            <label for="mnav" style="width:44px;height:44px;border:1.5px solid #E7E5DD;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E0E0E" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></label>
+          </div>
+          <a href="Direction-KOM.dc.html#societe" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0E0E0E;padding:15px 0;border-bottom:1px solid #F0EEE5;">Société</a>
+          <a href="Direction-KOM.dc.html#prestations" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0E0E0E;padding:15px 0;border-bottom:1px solid #F0EEE5;">Prestations</a>
+          <a href="Direction-KOM.dc.html#realisations" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0E0E0E;padding:15px 0;border-bottom:1px solid #F0EEE5;">Nos réalisations</a>
+          <a href="Direction-KOM.dc.html#qualification" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0E0E0E;padding:15px 0;border-bottom:1px solid #F0EEE5;">Qualification</a>
+          <a href="Direction-KOM.dc.html#configurateur" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0E0E0E;padding:15px 0;border-bottom:1px solid #F0EEE5;">Configurateur</a>
+          <a href="Direction-KOM.dc.html#espace-pro" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;color:#55554F;padding:16px 0;">Espace pro</a>
+          <a href="Devis.dc.html" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:10px;background:#96D428;color:#0E0E0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:17px;padding:17px;border-radius:99px;"><span style="width:9px;height:9px;border-radius:99px;background:#0E0E0E;display:inline-block;"></span>Devis gratuit</a>
+          <a href="tel:0320876152" style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:10px;background:#0E0E0E;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:17px;padding:17px;border-radius:99px;"><span style="color:#96D428;">☏</span> 03 20 87 61 52</a>
+        </div>
+  <header style="position:fixed;top:0;left:0;right:0;z-index:70;">
+    <!-- bandeau utilitaire -->
+    <div style="background:#0E0E0E;color:#C8C8C4;">
+      <div style="max-width:1360px;margin:0 auto;padding:7px clamp(18px,3vw,44px);display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:12.5px;">
+        <span class="m-hide" style="white-space:nowrap;">Lun – Sam · 8h – 19h · Bailleul (59)</span>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook" style="display:flex;align-items:center;color:#fff;opacity:.85;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.2-1.5 1.5-1.5h1.4V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8v3h2.5v7z"/></svg>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex;align-items:center;color:#fff;opacity:.85;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <span style="width:1px;height:14px;background:rgba(255,255,255,.2);"></span>
+          <a href="Direction-KOM.dc.html#configurateur" class="m-hide" style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:600;white-space:nowrap;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="#0E0E0E"/><circle cx="15" cy="12" r="2" fill="#0E0E0E"/><circle cx="7" cy="18" r="2" fill="#0E0E0E"/></svg>Configurateur
+          </a>
+          <span style="width:1px;height:14px;background:rgba(255,255,255,.2);"></span>
+          <a href="Direction-KOM.dc.html#espace-pro" class="m-hide" style="display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:600;white-space:nowrap;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Espace pro
+          </a>
+          <span style="width:1px;height:14px;background:rgba(255,255,255,.2);"></span>
+          <a href="tel:0320876152" style="display:inline-flex;align-items:center;gap:6px;color:#96D428;font-weight:700;white-space:nowrap;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 16.9v2.6a1.8 1.8 0 01-2 1.8 17.6 17.6 0 01-7.6-2.7 17.3 17.3 0 01-5.4-5.4A17.6 17.6 0 012.3 5.6 1.8 1.8 0 014 3.6h2.6a1.8 1.8 0 011.8 1.5c.1.8.3 1.6.5 2.4a1.8 1.8 0 01-.4 1.8L7.4 10.4a14.2 14.2 0 005.3 5.3l1-1.1a1.8 1.8 0 011.8-.4c.8.2 1.6.4 2.4.5a1.8 1.8 0 011.5 1.8z"/></svg>03 20 87 61 52
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- barre principale : logo + nav + CTA -->
+    <div style="background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid #EDEDE8;">
+      <div style="max-width:1360px;margin:0 auto;padding:11px clamp(10px,2.6vw,44px);display:flex;justify-content:space-between;align-items:center;gap:clamp(8px,1.6vw,30px);">
+        <a href="Direction-KOM.dc.html" style="flex:0 0 auto;display:block;"><img src="assets/logo-athome.png" alt="AT HOME Couvertures Fermetures" style="height:clamp(36px,4.6vw,46px);width:auto;display:block;"></a>
+        <nav style="display:flex;align-items:center;gap:clamp(9px,1.9vw,32px);font-size:clamp(12px,1.35vw,13.5px);font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:#0E0E0E;white-space:nowrap;">
+        <a href="Direction-KOM.dc.html#societe" class="kom-nav" style="color:inherit;text-decoration:none;">Société</a>
+        <span class="kom-dd">
+          <a href="Direction-KOM.dc.html#prestations" class="kom-nav" style="color:inherit;text-decoration:none;">Prestations<span class="kom-dd-caret"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></a>
+          <div class="kom-dd-menu">
+            <div style="background:#fff;border:1px solid #EDEDE8;border-radius:16px;padding:10px;box-shadow:0 24px 54px -22px rgba(14,14,14,.3);">
+              <a href="Prestation-Fenetres.dc.html" class="kom-dd-item">Fenêtres et portes-fenêtres</a>
+              <a href="Direction-KOM.dc.html#prestations" class="kom-dd-item">Portes d'entrée</a>
+              <a href="Direction-KOM.dc.html#prestations" class="kom-dd-item">Volets</a>
+              <a href="Direction-KOM.dc.html#prestations" class="kom-dd-item">Portes de garage</a>
+              <a href="Direction-KOM.dc.html#prestations" class="kom-dd-item">Portails et carports</a>
+              <a href="Direction-KOM.dc.html#prestations" class="kom-dd-item">Velux</a>
+              <a href="Direction-KOM.dc.html#prestations" class="kom-dd-item">Motorisation de volets roulants</a>
+              <a href="Direction-KOM.dc.html#prestations" class="kom-dd-item">Isolation extérieure</a>
+              <a href="Direction-KOM.dc.html#prestations" class="kom-dd-item">Extension</a>
+            </div>
+          </div>
+        </span>
+        <a href="Direction-KOM.dc.html#realisations" class="kom-nav" style="color:inherit;text-decoration:none;">Nos réalisations</a>
+        <a href="Direction-KOM.dc.html#qualification" class="kom-nav" style="color:inherit;text-decoration:none;">Qualification</a>
+        <a href="Direction-KOM.dc.html#configurateur" class="kom-nav" style="color:inherit;text-decoration:none;">Configurateur</a>
+        </nav>
+        <label for="mnav" class="m-burger" style="display:none;width:44px;height:44px;border:1.5px solid #E7E5DD;border-radius:12px;background:#fff;color:#0E0E0E;align-items:center;justify-content:center;flex:0 0 auto;cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></label>
+        
+        <a href="Devis.dc.html" class="kom-mag kom-cta" style="display:inline-flex;align-items:center;gap:9px;background:#96D428;color:#0E0E0E;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(12.5px,1.4vw,14.5px);padding:12px clamp(14px,1.8vw,24px);border-radius:99px;white-space:nowrap;flex:0 0 auto;">
+          <span class="kom-ctadot" style="width:8px;height:8px;border-radius:99px;background:#0E0E0E;display:inline-block;"></span>Devis gratuit
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Progress -->
+  <div style="max-width:760px;margin:0 auto;width:100%;padding:150px clamp(18px,3vw,44px) 0;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#8a8a7c;">Étape {{ stepNum }} / 3</span>
+      <span style="font-size:13.5px;color:#8a8a7c;">{{ stepLabel }}</span>
+    </div>
+    <div style="height:6px;border-radius:99px;background:#F0EEE5;overflow:hidden;">
+      <div style="{{ progressStyle }}"></div>
+    </div>
+  </div>
+
+  <div style="flex:1;max-width:1100px;margin:0 auto;width:100%;padding:40px clamp(18px,3vw,44px) 90px;">
+
+    <!-- STEP 1 : produits -->
+    <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.03em;margin:0 0 10px;">Quel est votre projet ?</h1>
+        <p style="font-size:17px;color:#55554F;margin:0 0 36px;">Sélectionnez une ou plusieurs prestations.</p>
+        <div class="m-2col" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:16px;">
+          <sc-for list="{{ products }}" as="p" hint-placeholder-count="9">
+            <div class="dv-card dv-zoom" onClick="{{ p.toggle }}" style="{{ p.style }}">
+              <div style="position:relative;height:130px;border-radius:14px;overflow:hidden;">
+                <div class="dv-zoomin" style="position:absolute;inset:0;background:{{ p.bg }};transition:transform .6s ease;"></div>
+                <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.12) 0 2px,transparent 2px 24px);"></div>
+                <div style="{{ p.checkStyle }}">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0E0E0E" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+                </div>
+              </div>
+              <div style="padding:14px 6px 6px;">
+                <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15.5px;line-height:1.2;">{{ p.label }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:flex-end;align-items:center;gap:18px;margin-top:36px;">
+          <span style="font-size:14px;color:#8a8a7c;">{{ selCount }}</span>
+          <button class="dv-btn" onClick="{{ next1 }}" style="{{ next1Style }}">Continuer →</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- STEP 2 : délai -->
+    <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.03em;margin:0 0 10px;">Quand souhaitez-vous réaliser vos travaux ?</h1>
+        <p style="font-size:17px;color:#55554F;margin:0 0 36px;">Cela nous aide à organiser votre visite technique.</p>
+        <div class="m-2col" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px;max-width:960px;">
+          <sc-for list="{{ delays }}" as="d" hint-placeholder-count="4">
+            <div class="dv-card" onClick="{{ d.pick }}" style="{{ d.style }}">
+              <div style="{{ d.iconStyle }}">{{ d.big }}</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;margin:14px 0 4px;">{{ d.label }}</div>
+              <div style="font-size:13.5px;color:#8a8a7c;line-height:1.45;">{{ d.sub }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:36px;">
+          <button class="dv-btn" onClick="{{ back1 }}" style="background:transparent;border:1.5px solid #E7E5DD;color:#0E0E0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;padding:14px 24px;border-radius:99px;">← Retour</button>
+          <button class="dv-btn" onClick="{{ next2 }}" style="{{ next2Style }}">Continuer →</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- STEP 3 : coordonnées -->
+    <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start;">
+        <div>
+          <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.03em;margin:0 0 10px;">Vos coordonnées</h1>
+          <p style="font-size:17px;color:#55554F;margin:0 0 32px;">Un conseiller vous rappelle sous 48h pour organiser votre étude gratuite.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <input placeholder="Prénom *" style="border:1.5px solid #E7E5DD;border-radius:14px;padding:16px 18px;font-size:15px;font-family:inherit;background:#fff;outline:none;">
+            <input placeholder="Nom *" style="border:1.5px solid #E7E5DD;border-radius:14px;padding:16px 18px;font-size:15px;font-family:inherit;background:#fff;outline:none;">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <input type="tel" placeholder="Téléphone *" style="border:1.5px solid #E7E5DD;border-radius:14px;padding:16px 18px;font-size:15px;font-family:inherit;background:#fff;outline:none;">
+            <input type="email" placeholder="E-mail" style="border:1.5px solid #E7E5DD;border-radius:14px;padding:16px 18px;font-size:15px;font-family:inherit;background:#fff;outline:none;">
+          </div>
+          <input placeholder="Adresse — n° et rue *" style="width:100%;border:1.5px solid #E7E5DD;border-radius:14px;padding:16px 18px;font-size:15px;font-family:inherit;background:#fff;outline:none;margin-bottom:14px;">
+          <div style="display:grid;grid-template-columns:180px 1fr;gap:14px;margin-bottom:14px;">
+            <input inputmode="numeric" placeholder="Code postal *" style="border:1.5px solid #E7E5DD;border-radius:14px;padding:16px 18px;font-size:15px;font-family:inherit;background:#fff;outline:none;">
+            <input placeholder="Ville *" style="border:1.5px solid #E7E5DD;border-radius:14px;padding:16px 18px;font-size:15px;font-family:inherit;background:#fff;outline:none;">
+          </div>
+          <textarea placeholder="Précisions sur votre projet (optionnel)" rows="4" style="width:100%;border:1.5px solid #E7E5DD;border-radius:14px;padding:16px 18px;font-size:15px;font-family:inherit;background:#fff;outline:none;resize:none;margin-bottom:22px;"></textarea>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <button class="dv-btn" onClick="{{ back2 }}" style="background:transparent;border:1.5px solid #E7E5DD;color:#0E0E0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;padding:14px 24px;border-radius:99px;">← Retour</button>
+            <button class="dv-btn" onClick="{{ submit }}" style="background:#96D428;color:#0E0E0E;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16.5px;padding:17px 32px;border-radius:99px;">Envoyer ma demande</button>
+          </div>
+          <p style="font-size:12.5px;color:#9a9a92;margin:16px 0 0;">* Champs obligatoires · Sans engagement · Vos données ne sont jamais partagées.</p>
+        </div>
+        <div style="background:#F4F3EE;border-radius:20px;padding:28px;position:sticky;top:24px;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#8a8a7c;margin-bottom:18px;">Votre demande</div>
+          <div style="margin-bottom:18px;">
+            <div style="font-size:13px;color:#8a8a7c;margin-bottom:8px;">Prestations</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <sc-for list="{{ recap }}" as="r" hint-placeholder-count="2">
+                <span style="background:#fff;border:1px solid #E7E5DD;border-radius:99px;padding:7px 14px;font-size:13.5px;font-weight:600;">{{ r }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div style="border-top:1px solid #E4E1D6;padding-top:16px;">
+            <div style="font-size:13px;color:#8a8a7c;margin-bottom:6px;">Délai souhaité</div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;">{{ recapDelay }}</div>
+          </div>
+          <div style="border-top:1px solid #E4E1D6;margin-top:16px;padding-top:16px;display:flex;align-items:center;gap:10px;">
+            <span style="color:#FF6A1A;font-size:14px;">★★★★★</span>
+            <span style="font-size:12.5px;color:#55554F;">4,7/5 · 100+ avis Google</span>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- STEP 4 : merci -->
+    <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;padding:60px 0;">
+        <div style="width:84px;height:84px;border-radius:99px;background:#96D428;display:inline-flex;align-items:center;justify-content:center;margin-bottom:28px;">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#0E0E0E" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,4vw,54px);line-height:1;letter-spacing:-.03em;margin:0 0 14px;">Demande envoyée !</h1>
+        <p style="font-size:17.5px;color:#55554F;line-height:1.6;margin:0 auto 34px;max-width:440px;">Merci pour votre confiance. Un conseiller AT HOME vous rappelle <strong style="color:#0E0E0E;">sous 48h</strong> pour organiser votre étude gratuite.</p>
+        <a href="Direction-KOM.dc.html" class="dv-btn" style="display:inline-flex;align-items:center;gap:10px;background:#0E0E0E;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;padding:16px 30px;border-radius:99px;">← Retour au site</a>
+      </div>
+    </sc-if>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer style="background:#0E0E0E;color:#9a9a96;">
+    <div style="max-width:1360px;margin:0 auto;padding:80px 44px 30px;">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,6.6vw,110px);line-height:.9;letter-spacing:-.04em;color:#fff;margin-bottom:50px;white-space:nowrap;">ON CONSTRUIT ENSEMBLE.</div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;border-top:1px solid rgba(255,255,255,.1);padding-top:44px;">
+        <div>
+          <img src="assets/logo-athome.png" alt="AT HOME" style="height:50px;width:auto;margin-bottom:16px;">
+          <p style="font-size:14px;line-height:1.7;margin:0 0 16px;max-width:290px;">Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.</p>
+          <span style="display:inline-block;border:1px solid #96D428;color:#96D428;font-family:'Bricolage Grotesque',sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.06em;padding:6px 12px;border-radius:99px;">CERTIFIÉ RGE QUALIBAT</span>
+          <div style="display:flex;gap:12px;margin-top:20px;">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook" style="width:40px;height:40px;border-radius:99px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff;transition:all .3s ease;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.2-1.5 1.5-1.5h1.4V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8v3h2.5v7z"/></svg>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram" style="width:40px;height:40px;border-radius:99px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff;transition:all .3s ease;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:14px;margin-bottom:16px;">Prestations</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;"><span>Fenêtres & portes</span><span>Volets & motorisation</span><span>Portes de garage</span><span>Portails & carports</span><span>Couverture & toiture</span></div>
+        </div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:14px;margin-bottom:16px;">Entreprise</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;"><span>À propos</span><span>Réalisations</span><span>Dépannage</span><a href="Direction-KOM.dc.html#configurateur" style="color:inherit;">Configurateur</a><a href="Direction-KOM.dc.html#espace-pro" style="color:inherit;">Espace pro</a><span>Contact</span></div>
+        </div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:14px;margin-bottom:16px;">Contact</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;"><span style="color:#96D428;font-weight:700;">03 20 87 61 52</span><span>2108 Route de Lille</span><span>59270 Bailleul</span><span>Lun – Sam · 8h – 19h</span></div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.1);margin-top:44px;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:#63635f;">
+        <span>© 2026 AT HOME Couvertures & Fermetures — Tous droits réservés</span>
+        <span>Mentions légales · Politique de confidentialité</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { step: 1, sel: [], delay: -1 };
+
+  products = [
+    { label: "Fenêtres et portes-fenêtres", bg: "linear-gradient(150deg,#a9d15e,#6fae12)" },
+    { label: "Portes d'entrée", bg: "linear-gradient(150deg,#c9d3b0,#8fa06a)" },
+    { label: "Volets", bg: "linear-gradient(150deg,#9fc0a8,#5f8a6c)" },
+    { label: "Portes de garage", bg: "linear-gradient(150deg,#a9b8c4,#6d7f8e)" },
+    { label: "Portails et carports", bg: "linear-gradient(150deg,#f0a35e,#d97a1e)" },
+    { label: "Velux", bg: "linear-gradient(150deg,#e0c483,#c09a44)" },
+    { label: "Motorisation de volets roulants", bg: "linear-gradient(150deg,#b6ab96,#847860)" },
+    { label: "Isolation extérieure", bg: "linear-gradient(150deg,#8fb59b,#4c7a5c)" },
+    { label: "Extension", bg: "linear-gradient(150deg,#c4bdaa,#8a8069)" }
+  ];
+  delayOpts = [
+    { label: "C'est urgent", sub: "Dépannage ou besoin immédiat", big: "!" },
+    { label: "Dans 1 mois", sub: "Projet prêt à démarrer", big: "1" },
+    { label: "Dans 3 mois", sub: "Je compare et je planifie", big: "3" },
+    { label: "6 mois ou plus", sub: "Je me renseigne pour plus tard", big: "6+" }
+  ];
+
+  _toggle(i) {
+    this.setState(s => {
+      const sel = s.sel.includes(i) ? s.sel.filter(x => x !== i) : [...s.sel, i];
+      return { sel };
+    });
+  }
+
+  renderVals() {
+    const { step, sel, delay } = this.state;
+    const labels = ["Vos prestations", "Votre délai", "Vos coordonnées", "Confirmation"];
+    return {
+      stepNum: Math.min(step, 3),
+      stepLabel: labels[step - 1],
+      progressStyle: `height:100%;border-radius:99px;background:#96D428;transition:width .5s cubic-bezier(.16,1,.3,1);width:${Math.min(step, 3) / 3 * 100}%;`,
+      isStep1: step === 1, isStep2: step === 2, isStep3: step === 3, isStep4: step === 4,
+
+      products: this.products.map((p, i) => {
+        const on = sel.includes(i);
+        return {
+          label: p.label, bg: p.bg,
+          toggle: () => this._toggle(i),
+          style: `border:2px solid ${on ? '#96D428' : '#EDEDE8'};background:${on ? '#FAFDF2' : '#fff'};border-radius:18px;padding:8px;`,
+          checkStyle: `position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:99px;display:flex;align-items:center;justify-content:center;transition:all .25s ease;background:${on ? '#96D428' : 'rgba(255,255,255,.85)'};opacity:${on ? 1 : 0};transform:scale(${on ? 1 : .6});`
+        };
+      }),
+      selCount: sel.length === 0 ? "Aucune prestation sélectionnée" : (sel.length === 1 ? "1 prestation sélectionnée" : sel.length + " prestations sélectionnées"),
+      next1: () => { if (sel.length) this.setState({ step: 2 }); window.scrollTo(0, 0); },
+      next1Style: `background:${sel.length ? '#96D428' : '#EDEDE8'};color:${sel.length ? '#0E0E0E' : '#9a9a92'};border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16.5px;padding:17px 32px;border-radius:99px;${sel.length ? '' : 'pointer-events:none;'}`,
+
+      delays: this.delayOpts.map((d, i) => {
+        const on = delay === i;
+        return {
+          label: d.label, sub: d.sub, big: d.big,
+          pick: () => this.setState({ delay: i }),
+          style: `border:2px solid ${on ? '#96D428' : '#EDEDE8'};background:${on ? '#FAFDF2' : '#fff'};border-radius:18px;padding:26px 24px;text-align:left;`,
+          iconStyle: `width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:21px;transition:all .25s ease;background:${on ? '#96D428' : '#F4F3EE'};color:#0E0E0E;`
+        };
+      }),
+      back1: () => { this.setState({ step: 1 }); window.scrollTo(0, 0); },
+      next2: () => { if (delay >= 0) this.setState({ step: 3 }); window.scrollTo(0, 0); },
+      next2Style: `background:${delay >= 0 ? '#96D428' : '#EDEDE8'};color:${delay >= 0 ? '#0E0E0E' : '#9a9a92'};border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16.5px;padding:17px 32px;border-radius:99px;${delay >= 0 ? '' : 'pointer-events:none;'}`,
+
+      recap: sel.map(i => this.products[i].label),
+      recapDelay: delay >= 0 ? this.delayOpts[delay].label : "—",
+      back2: () => { this.setState({ step: 2 }); window.scrollTo(0, 0); },
+      submit: () => { this.setState({ step: 4 }); window.scrollTo(0, 0); }
+    };
+  }
+}
+</script>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#96D428"/><g transform="translate(60,60)"><path d="M40 0 L80 34 L68 34 L68 80 L12 80 L12 34 L0 34 Z" fill="#0E0E0E"/></g></svg></template>
+</body>
+</html>

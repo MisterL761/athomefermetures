@@ -1,0 +1,192 @@
+---
+import Icon from "@/components/Icon.astro";
+import { SITE } from "@/data/site";
+import { BAILLEUL, ZONE_CITIES } from "@/data/zone";
+
+const cityList = ZONE_CITIES.map((c) => c.name).join(", ");
+---
+
+<section id="zone" aria-labelledby="zone-heading" class="bg-bg-alt">
+  <div class="mx-auto grid max-w-[1360px] grid-cols-1 gap-10 px-6 py-16 min-[820px]:grid-cols-[0.92fr_1.08fr] min-[820px]:gap-14 min-[820px]:px-11 min-[820px]:py-[100px]">
+    <div data-reveal>
+      <span class="badge-pill mb-5 inline-block">ZONE D'INTERVENTION</span>
+      <h2 id="zone-heading" class="mb-[18px] font-heading text-[clamp(34px,3.8vw,52px)] font-extrabold leading-[1] tracking-[-0.03em]">
+        Nous nous déplaçons à environ 50 km autour de Bailleul.
+      </h2>
+      <p class="mb-6 max-w-[480px] text-[17px] leading-[1.65] text-text-soft">
+        Basés à {BAILLEUL.name}, entre Lille et Dunkerque, nous nous déplaçons dans un rayon d'environ 50 km, dans tout le Nord (59) et le Pas-de-Calais voisin, pour vos travaux de menuiseries, fermetures, isolation et toiture :
+        <strong class="text-ink">métropole lilloise (Lille, Roubaix, Tourcoing, Villeneuve-d'Ascq)</strong>,
+        Flandre intérieure (Hazebrouck, Merville, Estaires, Nieppe, Steenwerck), littoral dunkerquois, Saint-Omer, Béthune, Lens et jusqu'à Ypres en Belgique.
+      </p>
+
+      <div data-reveal data-reveal-delay="80" class="max-w-[440px] rounded-[18px] border border-border-card bg-white p-6">
+        {
+          SITE.hours.map((row) => (
+            <div class="flex justify-between border-b border-border-light py-2 text-[14.5px] last:border-b-0">
+              <span class="text-text-soft">{row.day}</span>
+              <strong>{row.hours}</strong>
+            </div>
+          ))
+        }
+        <div class="mt-1.5 flex flex-wrap items-center justify-between gap-3.5 border-t border-border-light pt-3.5">
+          <div>
+            <div class="text-[12.5px] text-text-muted">Showroom {SITE.showroom}</div>
+            <div class="text-sm font-bold">{SITE.address.streetAddress}, {SITE.address.postalCode} {SITE.address.addressLocality}</div>
+          </div>
+          <a href={SITE.phoneHref} class="fx-mag inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-ink px-[18px] py-[11px] font-heading text-[13.5px] font-extrabold text-white">
+            <Icon name="phone" size={13} class="text-lime" />
+            {SITE.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal data-reveal-delay="120" class="relative overflow-hidden rounded-3xl border border-border-card bg-white p-4 min-[820px]:mx-0 min-[820px]:p-4 max-[819px]:-mx-6 max-[819px]:rounded-none max-[819px]:border-0 max-[819px]:bg-transparent max-[819px]:p-0">
+      <div
+        id="zone-map"
+        class="isolate h-[430px] rounded-2xl bg-[#edf0ea] min-[820px]:h-[480px] max-[819px]:rounded-none"
+        role="img"
+        aria-label={`Carte de la zone d'intervention d'AT HOME Fermetures autour de Bailleul, incluant ${cityList}`}
+      >
+      </div>
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-3.5 border-t border-border-light px-2.5 pb-1 pt-4 max-[819px]:px-5">
+        <span class="text-[13.5px] text-text-muted">
+          Déplacement et étude <strong class="text-ink">gratuits</strong> à environ 50 km autour de {BAILLEUL.name}
+        </span>
+        <span class="inline-flex items-center gap-2 text-[13.5px] font-bold text-[#577f24]">
+          <span class="h-2.5 w-2.5 rounded-full bg-lime"></span>
+          Nord (59) · Pas-de-Calais · Flandre belge
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <p class="sr-only">
+    AT HOME Fermetures intervient pour vos travaux de menuiserie, fermetures, couverture et isolation à {cityList} et dans toutes les communes situées dans un rayon d'environ 50 km autour de {BAILLEUL.name}, dans le Nord (59).
+  </p>
+</section>
+
+<script>
+  import { BAILLEUL, ZONE_CITIES } from "@/data/zone";
+
+  const mapEl = document.getElementById("zone-map");
+  if (mapEl) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            observer.disconnect();
+            void loadMap();
+          }
+        }
+      },
+      { rootMargin: "200px" },
+    );
+    observer.observe(mapEl);
+  }
+
+  async function loadMap() {
+    const [L] = await Promise.all([import("leaflet"), import("leaflet/dist/leaflet.css")]);
+    if (!mapEl) return;
+
+    const map = L.map(mapEl, {
+      center: [BAILLEUL.lat, BAILLEUL.lng],
+      zoom: 9,
+      scrollWheelZoom: false,
+      attributionControl: false,
+    });
+
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+      subdomains: "abcd",
+      maxZoom: 19,
+    }).addTo(map);
+
+    L.circle([BAILLEUL.lat, BAILLEUL.lng], {
+      radius: 50000,
+      color: "#96D428",
+      weight: 2.5,
+      opacity: 1,
+      dashArray: "8 8",
+      fillColor: "#96D428",
+      fillOpacity: 0.09,
+    }).addTo(map);
+
+    L.circle([BAILLEUL.lat, BAILLEUL.lng], {
+      radius: 25000,
+      color: "#96D428",
+      weight: 1.5,
+      opacity: 0.5,
+      dashArray: "4 8",
+      fill: false,
+    }).addTo(map);
+
+    for (const city of ZONE_CITIES) {
+      L.circleMarker([city.lat, city.lng], {
+        radius: 5,
+        color: "#0E0E0E",
+        weight: 2,
+        fillColor: "#0E0E0E",
+        fillOpacity: 1,
+      })
+        .addTo(map)
+        .bindTooltip(city.name, {
+          permanent: true,
+          direction: "top",
+          className: "kom-map-label",
+          offset: [0, -6],
+        });
+    }
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const centerIcon = L.divIcon({
+      className: "kom-map-dot-wrap",
+      html: `<div class="kom-map-dot${reduceMotion ? "" : " fx-mappulse"}" style="width:18px;height:18px;background:#96D428;border:3px solid #0E0E0E;border-radius:99px;"></div>`,
+      iconSize: [18, 18],
+    });
+
+    L.marker([BAILLEUL.lat, BAILLEUL.lng], { icon: centerIcon, zIndexOffset: 1000 })
+      .addTo(map)
+      .bindTooltip(`${BAILLEUL.name} — siège & showroom`, {
+        permanent: true,
+        direction: "top",
+        className: "kom-map-center",
+        offset: [0, -12],
+      });
+  }
+</script>
+
+<style is:global>
+  .kom-map-label {
+    background: #fff;
+    border: 1px solid #e0ddd2;
+    border-radius: 99px;
+    padding: 2px 8px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #0e0e0e;
+    box-shadow: 0 4px 10px -6px rgba(14, 14, 14, 0.3);
+    white-space: nowrap;
+  }
+  .kom-map-label::before {
+    display: none;
+  }
+  .kom-map-center {
+    background: #0e0e0e;
+    color: #fff;
+    border: none;
+    border-radius: 99px;
+    padding: 5px 13px;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 12.5px;
+    font-weight: 800;
+    box-shadow: 0 8px 18px -8px rgba(14, 14, 14, 0.5);
+    white-space: nowrap;
+  }
+  .kom-map-center::before {
+    display: none;
+  }
+  .kom-map-dot-wrap {
+    z-index: 1000 !important;
+  }
+</style>

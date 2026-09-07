@@ -1,0 +1,142 @@
+- generic [active] [ref=f20e1]:
+  - link "Dépannage 7j/7" [ref=f20e2] [cursor=pointer]:
+    - /url: tel:0320876152
+  - link "Aller au contenu principal" [ref=f20e5] [cursor=pointer]:
+    - /url: "#contenu"
+  - banner [ref=f20e6]:
+    - generic [ref=f20e8]:
+      - generic [ref=f20e9]: Lun – Sam · 8h – 19h · Bailleul (59)
+      - generic [ref=f20e10]:
+        - link "Facebook" [ref=f20e11] [cursor=pointer]:
+          - /url: https://www.facebook.com
+        - link "Instagram" [ref=f20e14] [cursor=pointer]:
+          - /url: https://www.instagram.com
+        - link "Configurateur" [ref=f20e20] [cursor=pointer]:
+          - /url: /configurateur
+        - link "Espace pro" [ref=f20e24] [cursor=pointer]:
+          - /url: /contact#espace-pro
+        - link "03 20 87 61 52" [ref=f20e28] [cursor=pointer]:
+          - /url: tel:0320876152
+    - generic [ref=f20e32]:
+      - link [ref=f20e33] [cursor=pointer]:
+        - /url: /
+        - img "AT HOME Couvertures & Fermetures" [ref=f20e34]
+      - navigation "Navigation principale" [ref=f20e35]:
+        - link "Société" [ref=f20e36] [cursor=pointer]:
+          - /url: /societe
+        - link [ref=f20e38] [cursor=pointer]:
+          - /url: /prestations
+        - link "Nos réalisations" [ref=f20e42] [cursor=pointer]:
+          - /url: /realisations
+        - link "Qualification" [ref=f20e43] [cursor=pointer]:
+          - /url: /qualification
+        - link "Configurateur" [ref=f20e44] [cursor=pointer]:
+          - /url: /configurateur
+      - link "Devis gratuit" [ref=f20e45] [cursor=pointer]:
+        - /url: /devis
+  - main [ref=f20e47]:
+    - generic [ref=f20e48]:
+      - generic [ref=f20e49]:
+        - generic [ref=f20e50]: Étape 1 / 4
+        - generic [ref=f20e51]: Vos prestations
+      - progressbar "Étape 1 / 4" [ref=f20e52]
+    - region [ref=f20e55]:
+      - heading "Quel est votre projet ?" [level=1] [ref=f20e56]
+      - paragraph [ref=f20e57]: Sélectionnez une ou plusieurs prestations.
+      - generic [ref=f20e58]:
+        - generic [ref=f20e59] [cursor=pointer]:
+          - checkbox "✓ Fenêtres & portes-fenêtres" [ref=f20e60]
+          - generic [ref=f20e61]: ✓
+          - generic [ref=f20e64]: Fenêtres & portes-fenêtres
+        - generic [ref=f20e65] [cursor=pointer]:
+          - checkbox "✓ Portes-fenêtres & baies vitrées" [ref=f20e66]
+          - generic [ref=f20e67]: ✓
+          - generic [ref=f20e70]: Portes-fenêtres & baies vitrées
+        - generic [ref=f20e71] [cursor=pointer]:
+          - checkbox "✓ Volets & motorisation" [ref=f20e72]
+          - generic [ref=f20e73]: ✓
+          - generic [ref=f20e76]: Volets & motorisation
+        - generic [ref=f20e77] [cursor=pointer]:
+          - checkbox "✓ Portes de garage" [ref=f20e78]
+          - generic [ref=f20e79]: ✓
+          - generic [ref=f20e82]: Portes de garage
+        - generic [ref=f20e83] [cursor=pointer]:
+          - checkbox "✓ Portails & carports" [ref=f20e84]
+          - generic [ref=f20e85]: ✓
+          - generic [ref=f20e88]: Portails & carports
+        - generic [ref=f20e89] [cursor=pointer]:
+          - checkbox "✓ Portes d'entrée" [ref=f20e90]
+          - generic [ref=f20e91]: ✓
+          - generic [ref=f20e94]: Portes d'entrée
+        - generic [ref=f20e95] [cursor=pointer]:
+          - checkbox "✓ Velux & fenêtres de toit" [ref=f20e96]
+          - generic [ref=f20e97]: ✓
+          - generic [ref=f20e100]: Velux & fenêtres de toit
+        - generic [ref=f20e101] [cursor=pointer]:
+          - checkbox "✓ Couverture & toiture" [ref=f20e102]
+          - generic [ref=f20e103]: ✓
+          - generic [ref=f20e106]: Couverture & toiture
+        - generic [ref=f20e107] [cursor=pointer]:
+          - checkbox "✓ Isolation extérieure" [ref=f20e108]
+          - generic [ref=f20e109]: ✓
+          - generic [ref=f20e112]: Isolation extérieure
+      - generic [ref=f20e113]:
+        - generic [ref=f20e114]: Aucune prestation sélectionnée
+        - button "Continuer →" [disabled] [ref=f20e115]
+  - contentinfo [ref=f20e116]:
+    - generic [ref=f20e117]:
+      - paragraph [ref=f20e118]: ON CONSTRUIT ENSEMBLE.
+      - generic [ref=f20e119]:
+        - generic [ref=f20e120]:
+          - img "AT HOME" [ref=f20e121]
+          - paragraph [ref=f20e122]: Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.
+          - generic [ref=f20e123]: CERTIFIÉ RGE QUALIBAT
+          - generic [ref=f20e124]:
+            - link "Facebook" [ref=f20e125] [cursor=pointer]:
+              - /url: https://www.facebook.com
+            - link "Instagram" [ref=f20e128] [cursor=pointer]:
+              - /url: https://www.instagram.com
+        - generic [ref=f20e133]:
+          - paragraph [ref=f20e134]: Prestations
+          - generic [ref=f20e135]:
+            - generic [ref=f20e136]: Fenêtres & portes
+            - generic [ref=f20e137]: Volets & motorisation
+            - generic [ref=f20e138]: Portes de garage
+            - generic [ref=f20e139]: Portails & carports
+            - generic [ref=f20e140]: Couverture & toiture
+        - generic [ref=f20e141]:
+          - paragraph [ref=f20e142]: Entreprise
+          - generic [ref=f20e143]:
+            - link "À propos" [ref=f20e144] [cursor=pointer]:
+              - /url: /societe
+            - link "Réalisations" [ref=f20e145] [cursor=pointer]:
+              - /url: /realisations
+            - link "Dépannage" [ref=f20e146] [cursor=pointer]:
+              - /url: tel:0320876152
+            - link "Configurateur" [ref=f20e147] [cursor=pointer]:
+              - /url: /configurateur
+            - link "Espace pro" [ref=f20e148] [cursor=pointer]:
+              - /url: /contact#espace-pro
+            - link "Contact" [ref=f20e149] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f20e150]:
+          - paragraph [ref=f20e151]: Contact
+          - generic [ref=f20e152]:
+            - link "03 20 87 61 52" [ref=f20e153] [cursor=pointer]:
+              - /url: tel:0320876152
+            - generic [ref=f20e154]: 2108 Route de Lille
+            - generic [ref=f20e155]: 59270 Bailleul
+            - generic [ref=f20e156]: Lun – Sam · 8h – 19h
+      - generic [ref=f20e157]:
+        - generic [ref=f20e158]: © 2026 AT HOME Couvertures & Fermetures — Tous droits réservés
+        - generic [ref=f20e159]:
+          - link "Mentions légales" [ref=f20e160] [cursor=pointer]:
+            - /url: /mentions-legales
+          - text: ·
+          - link "Politique de confidentialité" [ref=f20e161] [cursor=pointer]:
+            - /url: /politique-de-confidentialite
+  - generic [ref=f20e164]:
+    - button [ref=f20e165]
+    - button [ref=f20e171]
+    - button [ref=f20e175]
+    - button [ref=f20e183]

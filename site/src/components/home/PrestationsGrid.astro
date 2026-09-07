@@ -1,0 +1,41 @@
+---
+import Icon from "@/components/Icon.astro";
+import { PRESTATIONS } from "@/data/prestations";
+---
+
+<section id="prestations" aria-labelledby="prestations-heading" class="mx-auto max-w-[1360px] px-6 py-16 min-[820px]:px-11 min-[820px]:py-[100px]">
+  <div data-reveal class="mb-5 flex flex-wrap items-end justify-between gap-8">
+    <h2 id="prestations-heading" class="font-heading text-[clamp(40px,5vw,72px)] font-extrabold leading-[0.95] tracking-[-0.03em]">
+      Tout l'habitat,<br />un seul artisan.
+    </h2>
+    <p class="max-w-[320px] pb-2.5 text-base text-text-muted">
+      Survolez une prestation pour la découvrir. De la fenêtre à la toiture, on maîtrise tout.
+    </p>
+  </div>
+
+  <div class="border-t border-border-soft">
+    {
+      PRESTATIONS.map((prestation, index) => (
+        <a
+          href={`/prestations/${prestation.slug}`}
+          class="group flex items-center justify-between gap-5 border-b border-border-soft py-7 transition-[padding-left] duration-[450ms] ease-[cubic-bezier(.16,1,.3,1)] hover:pl-[26px] focus-visible:pl-[26px]"
+        >
+          <div class="flex min-w-0 items-baseline gap-6">
+            <span class="w-[34px] flex-none font-body text-[15px] font-semibold text-text-muted transition-colors duration-300 group-hover:text-lime group-focus-visible:text-lime">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <span class="font-heading text-[clamp(24px,3.4vw,46px)] font-extrabold leading-none tracking-[-0.02em]">
+              {prestation.homeLabel}
+            </span>
+          </div>
+          <div class="flex flex-none items-center gap-5">
+            <span class="hidden text-[15px] text-text-muted min-[820px]:inline">{prestation.homeDescriptor}</span>
+            <span class="flex h-[46px] w-[46px] flex-none -translate-x-2 rotate-[-30deg] items-center justify-center rounded-full bg-lime text-ink opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:rotate-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:rotate-0 group-focus-visible:opacity-100">
+              <Icon name="arrow-up-right" size={20} strokeWidth={2.2} />
+            </span>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,180 @@
+- generic [active] [ref=f46e1]:
+  - link "Dépannage 7j/7" [ref=f46e2] [cursor=pointer]:
+    - /url: tel:0320876152
+  - link "Aller au contenu principal" [ref=f46e5] [cursor=pointer]:
+    - /url: "#contenu"
+  - banner [ref=f46e6]:
+    - generic [ref=f46e9]:
+      - link "Facebook" [ref=f46e10] [cursor=pointer]:
+        - /url: https://www.facebook.com
+      - link "Instagram" [ref=f46e13] [cursor=pointer]:
+        - /url: https://www.instagram.com
+      - link "03 20 87 61 52" [ref=f46e18] [cursor=pointer]:
+        - /url: tel:0320876152
+    - generic [ref=f46e22]:
+      - link [ref=f46e23] [cursor=pointer]:
+        - /url: /
+        - img "AT HOME Couvertures & Fermetures" [ref=f46e24]
+      - button "Ouvrir le menu" [ref=f46e25]
+  - main [ref=f46e28]:
+    - generic [ref=f46e29]:
+      - navigation "Fil d'Ariane" [ref=f46e30]:
+        - list [ref=f46e31]:
+          - listitem [ref=f46e32]:
+            - link "Accueil" [ref=f46e33] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f46e34]:
+            - generic [ref=f46e35]: /
+            - link "Prestations" [ref=f46e36] [cursor=pointer]:
+              - /url: /prestations
+          - listitem [ref=f46e37]:
+            - generic [ref=f46e38]: /
+            - generic [ref=f46e39]: Isolation extérieure
+      - generic [ref=f46e40]:
+        - generic [ref=f46e41]:
+          - generic [ref=f46e42]: ISOLATION · ITE
+          - heading "Isolation thermique par l'extérieur (ITE)." [level=1] [ref=f46e43]
+          - paragraph [ref=f46e44]: L'isolation extérieure enveloppe votre maison sans réduire la surface habitable, supprime les ponts thermiques et rénove votre façade en un seul chantier. Un geste fort pour votre confort et vos factures.
+          - generic [ref=f46e45]:
+            - link "Devis gratuit sous 48h" [ref=f46e46] [cursor=pointer]:
+              - /url: /devis
+            - link "03 20 87 61 52" [ref=f46e48] [cursor=pointer]:
+              - /url: tel:0320876152
+          - generic [ref=f46e49]:
+            - generic [ref=f46e50]:
+              - generic [ref=f46e51]: ★★★★★
+              - generic [ref=f46e52]:
+                - strong [ref=f46e53]: 4,7/5
+                - text: · 100+ avis
+            - generic [ref=f46e55]: RGE Qualibat · Éligible MaPrimeRénov'
+        - generic [ref=f46e56]:
+          - generic [ref=f46e59]: Photo — isolation extérieure
+          - generic [ref=f46e60]: Isolation extérieure enduite · Bailleul
+    - generic [ref=f46e62]:
+      - heading "Deux finitions, une même performance." [level=2] [ref=f46e63]
+      - generic [ref=f46e64]:
+        - generic [ref=f46e65]:
+          - generic [ref=f46e66]: LE PLUS DEMANDÉ
+          - heading "Enduit sur isolant" [level=3] [ref=f46e70]
+          - paragraph [ref=f46e71]: Solution la plus courante, large choix de teintes, bon rapport performance/prix.
+          - generic [ref=f46e72]:
+            - generic [ref=f46e73]: Économique
+            - generic [ref=f46e74]: Personnalisable
+        - generic [ref=f46e75]:
+          - heading "Bardage" [level=3] [ref=f46e79]
+          - paragraph [ref=f46e80]: Finition bois, composite ou métallique, pour un rendu contemporain et une protection renforcée.
+          - generic [ref=f46e81]:
+            - generic [ref=f46e82]: Design
+            - generic [ref=f46e83]: Durable
+    - generic [ref=f46e84]:
+      - generic [ref=f46e85]: Photo — façade rénovée en isolation extérieure
+      - generic [ref=f46e88]:
+        - heading "Ce que change une isolation extérieure." [level=2] [ref=f46e89]
+        - generic [ref=f46e90]:
+          - generic [ref=f46e96]:
+            - heading "Jusqu'à -30% sur le chauffage" [level=3] [ref=f46e97]
+            - paragraph [ref=f46e98]: Suppression des ponts thermiques au niveau des murs, la principale source de déperdition.
+          - generic [ref=f46e103]:
+            - heading "Une façade entièrement rénovée" [level=3] [ref=f46e104]
+            - paragraph [ref=f46e105]: L'ITE offre l'occasion de moderniser l'aspect extérieur de votre maison en un seul chantier.
+          - generic [ref=f46e110]:
+            - heading "Surface habitable préservée" [level=3] [ref=f46e111]
+            - paragraph [ref=f46e112]: Contrairement à l'isolation intérieure, l'ITE ne réduit pas la surface de vos pièces.
+          - generic [ref=f46e118]:
+            - heading "Aides financières" [level=3] [ref=f46e119]
+            - paragraph [ref=f46e120]: Travaux éligibles à MaPrimeRénov', aux CEE et à la TVA à 5,5% selon votre profil.
+    - generic [ref=f46e122]:
+      - heading "Votre projet isolation extérieure commence ici." [level=2] [ref=f46e123]: Votre projet isolation extérieurecommence ici.
+      - paragraph [ref=f46e124]: Visite technique et devis détaillé gratuits, sous 48h. Ou venez comparer les matériaux au showroom de Bailleul.
+      - generic [ref=f46e125]:
+        - link "Demander mon devis gratuit" [ref=f46e126] [cursor=pointer]:
+          - /url: /devis
+        - link "03 20 87 61 52" [ref=f46e127] [cursor=pointer]:
+          - /url: tel:0320876152
+    - region [ref=f46e128]:
+      - generic [ref=f46e129]:
+        - generic [ref=f46e130]: FAQ
+        - heading "Questions fréquentes — isolation extérieure" [level=2] [ref=f46e131]
+      - generic [ref=f46e132]:
+        - generic [ref=f46e133]:
+          - button "L'isolation extérieure est-elle vraiment plus efficace que l'isolation intérieure ?" [ref=f46e134]
+          - paragraph [ref=f46e139]: Elle traite mieux les ponts thermiques (jonctions murs/planchers/refends) car l'isolant enveloppe l'ensemble du bâti, ce que l'isolation intérieure ne peut pas faire aussi complètement.
+        - generic [ref=f46e140]:
+          - button "Quelles aides pour financer une isolation extérieure ?" [ref=f46e141]
+          - paragraph [ref=f46e146]: Selon vos revenus et votre logement, ces travaux peuvent ouvrir droit à MaPrimeRénov', aux Certificats d'Économie d'Énergie (CEE) et à la TVA réduite à 5,5%. Nous vous accompagnons dans les démarches.
+        - generic [ref=f46e147]:
+          - button "L'isolation extérieure convient-elle à toutes les façades ?" [ref=f46e148]
+          - paragraph [ref=f46e153]: La majorité des façades en briques, parpaings ou béton se prêtent à l'ITE. Certaines maisons de caractère ou en zone protégée peuvent nécessiter une étude spécifique, que nous réalisons lors de la visite technique.
+        - generic [ref=f46e154]:
+          - button "Combien de temps dure un chantier d'isolation extérieure ?" [ref=f46e155]
+          - paragraph [ref=f46e160]: Pour une maison individuelle, comptez en général 2 à 4 semaines de travaux selon la surface de façade et la finition choisie (enduit ou bardage).
+        - generic [ref=f46e161]:
+          - button "L'isolation extérieure réduit-elle vraiment la facture de chauffage ?" [ref=f46e162]
+          - paragraph [ref=f46e167]: "Oui : en supprimant les ponts thermiques au niveau des murs, principale source de déperdition, l'ITE permet généralement de réduire la facture de chauffage jusqu'à 30%."
+    - region [ref=f46e168]:
+      - heading "Prestations connexes" [level=2] [ref=f46e169]
+      - generic [ref=f46e170]:
+        - link "Couverture & toiture Découvrir" [ref=f46e171] [cursor=pointer]:
+          - /url: /prestations/couverture-toiture
+          - generic [ref=f46e172]: Couverture & toiture
+          - generic [ref=f46e173]: Découvrir
+        - link "Fenêtres Découvrir" [ref=f46e176] [cursor=pointer]:
+          - /url: /prestations/fenetres
+          - generic [ref=f46e177]: Fenêtres
+          - generic [ref=f46e178]: Découvrir
+        - link "Velux & fenêtres de toit Découvrir" [ref=f46e181] [cursor=pointer]:
+          - /url: /prestations/velux-fenetres-de-toit
+          - generic [ref=f46e182]: Velux & fenêtres de toit
+          - generic [ref=f46e183]: Découvrir
+  - contentinfo [ref=f46e186]:
+    - generic [ref=f46e187]:
+      - paragraph [ref=f46e188]: ON CONSTRUIT ENSEMBLE.
+      - generic [ref=f46e189]:
+        - generic [ref=f46e190]:
+          - img "AT HOME" [ref=f46e191]
+          - paragraph [ref=f46e192]: Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.
+          - generic [ref=f46e193]: CERTIFIÉ RGE QUALIBAT
+          - generic [ref=f46e194]:
+            - link "Facebook" [ref=f46e195] [cursor=pointer]:
+              - /url: https://www.facebook.com
+            - link "Instagram" [ref=f46e198] [cursor=pointer]:
+              - /url: https://www.instagram.com
+        - generic [ref=f46e203]:
+          - paragraph [ref=f46e204]: Prestations
+          - generic [ref=f46e205]:
+            - generic [ref=f46e206]: Fenêtres & portes
+            - generic [ref=f46e207]: Volets & motorisation
+            - generic [ref=f46e208]: Portes de garage
+            - generic [ref=f46e209]: Portails & carports
+            - generic [ref=f46e210]: Couverture & toiture
+        - generic [ref=f46e211]:
+          - paragraph [ref=f46e212]: Entreprise
+          - generic [ref=f46e213]:
+            - link "À propos" [ref=f46e214] [cursor=pointer]:
+              - /url: /societe
+            - link "Réalisations" [ref=f46e215] [cursor=pointer]:
+              - /url: /realisations
+            - link "Dépannage" [ref=f46e216] [cursor=pointer]:
+              - /url: tel:0320876152
+            - link "Configurateur" [ref=f46e217] [cursor=pointer]:
+              - /url: /configurateur
+            - link "Espace pro" [ref=f46e218] [cursor=pointer]:
+              - /url: /contact#espace-pro
+            - link "Contact" [ref=f46e219] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f46e220]:
+          - paragraph [ref=f46e221]: Contact
+          - generic [ref=f46e222]:
+            - link "03 20 87 61 52" [ref=f46e223] [cursor=pointer]:
+              - /url: tel:0320876152
+            - generic [ref=f46e224]: 2108 Route de Lille
+            - generic [ref=f46e225]: 59270 Bailleul
+            - generic [ref=f46e226]: Lun – Sam · 8h – 19h
+      - generic [ref=f46e227]:
+        - generic [ref=f46e228]: © 2026 AT HOME Couvertures & Fermetures — Tous droits réservés
+        - generic [ref=f46e229]:
+          - link "Mentions légales" [ref=f46e230] [cursor=pointer]:
+            - /url: /mentions-legales
+          - text: ·
+          - link "Politique de confidentialité" [ref=f46e231] [cursor=pointer]:
+            - /url: /politique-de-confidentialite

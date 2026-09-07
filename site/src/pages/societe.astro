@@ -1,0 +1,121 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Icon from "@/components/Icon.astro";
+import Stats from "@/components/home/Stats.astro";
+import { SITE } from "@/data/site";
+import { breadcrumbSchema } from "@/lib/schema";
+import showroomImage from "@/assets/images/showroom.jpg";
+
+const crumbs = [
+  { name: "Accueil", path: "/" },
+  { name: "Société", path: "/societe" },
+];
+
+const title = "La société AT HOME Fermetures | Bailleul (59)";
+const description =
+  "Depuis 2009, AT HOME Couvertures & Fermetures accompagne les particuliers du Nord (59) sur leurs projets de menuiserie, fermetures et toiture, avec un showroom de 300 m² à Bailleul.";
+
+const VALUES = [
+  {
+    icon: "ruler" as const,
+    title: "Savoir-faire sur mesure",
+    description: "Chaque chantier est étudié et dimensionné pour votre habitat, pas de solution standardisée.",
+  },
+  {
+    icon: "badge-check" as const,
+    title: "Qualité certifiée RGE",
+    description: "Une exigence de qualité qui ouvre droit aux aides de l'État pour vos travaux de rénovation.",
+  },
+  {
+    icon: "clock" as const,
+    title: "Réactivité",
+    description: "Devis sous 48h, dépannage 7j/7 et suivi de chantier de A à Z par une équipe locale.",
+  },
+  {
+    icon: "home" as const,
+    title: "Un seul artisan pour tout",
+    description: "Menuiseries, fermetures, couverture et isolation : un seul interlocuteur pour tout votre habitat.",
+  },
+];
+---
+
+<Layout title={title} description={description} path="/societe" jsonLd={[breadcrumbSchema(crumbs)]}>
+  <section class="mx-auto grid max-w-[1360px] grid-cols-1 items-center gap-10 px-6 pt-[150px] min-[820px]:grid-cols-2 min-[820px]:gap-14 min-[820px]:px-11">
+    <div>
+      <Breadcrumbs crumbs={crumbs} class="mb-6" />
+      <span class="badge-pill mb-5 inline-block">LA SOCIÉTÉ</span>
+      <h1 class="mb-6 font-heading text-[clamp(36px,4.6vw,60px)] font-extrabold leading-[0.96] tracking-[-0.03em]">
+        Votre artisan menuisier et couvreur à Bailleul, depuis {SITE.foundedYear}.
+      </h1>
+      <p class="mb-5 text-lg leading-[1.65] text-[#4a4a46]">
+        C'est avec expérience et savoir-faire que la société <strong class="text-ink">AT HOME Fermetures</strong>, située à {SITE.address.addressLocality}, entre Lille et Dunkerque dans le Nord (59), vous propose ses compétences pour vos projets d'amélioration de l'habitat.
+      </p>
+      <p class="text-lg leading-[1.65] text-[#4a4a46]">
+        Entreprise du bâtiment, elle regroupe divers savoir-faire pour vous proposer des travaux sur votre toiture ainsi que des travaux de menuiseries, dans un rayon d'environ 50 km autour de {SITE.address.addressLocality}.
+      </p>
+    </div>
+    <div class="relative h-[320px] overflow-hidden rounded-3xl min-[820px]:h-[420px]">
+      <Image
+        src={showroomImage}
+        alt="Façade et showroom AT HOME Couvertures & Fermetures à Bailleul, avec véhicules d'intervention"
+        class="h-full w-full object-cover"
+        widths={[480, 720, 960, 1200]}
+        sizes="(max-width: 820px) 100vw, 620px"
+        loading="lazy"
+      />
+    </div>
+  </section>
+
+  <Stats />
+
+  <section aria-labelledby="valeurs-heading" class="bg-bg-alt">
+    <div class="mx-auto max-w-[1360px] px-6 py-16 min-[820px]:px-11 min-[820px]:py-[90px]">
+      <h2 id="valeurs-heading" class="mb-11 font-heading text-[clamp(32px,3.6vw,48px)] font-extrabold leading-none tracking-[-0.03em]">
+        Ce qui nous distingue.
+      </h2>
+      <div class="grid grid-cols-1 gap-5 min-[640px]:grid-cols-2 min-[1024px]:grid-cols-4">
+        {
+          VALUES.map((value) => (
+            <div class="card-surface p-7">
+              <div class="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-lime">
+                <Icon name={value.icon} size={20} strokeWidth={1.9} />
+              </div>
+              <h3 class="mb-2 font-heading text-lg font-extrabold">{value.title}</h3>
+              <p class="text-[15px] leading-[1.6] text-text-soft">{value.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="showroom-heading" class="mx-auto max-w-[1360px] px-6 py-16 min-[820px]:px-11 min-[820px]:py-[90px]">
+    <div class="grid grid-cols-1 items-center gap-10 rounded-3xl border border-border-card p-8 min-[820px]:grid-cols-2 min-[820px]:gap-14 min-[820px]:p-14">
+      <div>
+        <h2 id="showroom-heading" class="mb-4 font-heading text-[clamp(28px,3.2vw,42px)] font-extrabold leading-none tracking-[-0.03em]">
+          Un showroom de {SITE.showroom} à visiter à Bailleul.
+        </h2>
+        <p class="mb-6 text-[17px] leading-[1.65] text-text-soft">
+          Fenêtres, volets, portes, portails et motorisations en situation réelle : venez toucher les matériaux et échanger avec un conseiller, sans rendez-vous.
+        </p>
+        <a href="/contact" class="btn-primary fx-mag">Nous rendre visite</a>
+      </div>
+      <div class="rounded-2xl border border-border-card bg-bg-alt p-6">
+        {
+          SITE.hours.map((row) => (
+            <div class="flex justify-between border-b border-border-light py-2.5 text-[15px] last:border-b-0">
+              <span class="text-text-soft">{row.day}</span>
+              <strong>{row.hours}</strong>
+            </div>
+          ))
+        }
+        <div class="mt-3 flex items-start gap-2.5 border-t border-border-light pt-3.5 text-sm text-text-soft">
+          <Icon name="pin" size={16} class="mt-0.5 flex-none" />
+          <span>{SITE.address.streetAddress}, {SITE.address.postalCode} {SITE.address.addressLocality}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

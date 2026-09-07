@@ -1,0 +1,55 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Icon from "@/components/Icon.astro";
+import { PRESTATIONS } from "@/data/prestations";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const crumbs = [
+  { name: "Accueil", path: "/" },
+  { name: "Prestations", path: "/prestations" },
+];
+
+const title = "Prestations menuiserie & toiture | AT HOME — Bailleul (59)";
+const description =
+  "Fenêtres, volets, portes, portails, Velux et isolation extérieure : découvrez les 8 prestations d'AT HOME, artisan RGE à Bailleul, dans le Nord (59).";
+---
+
+<Layout title={title} description={description} path="/prestations" jsonLd={[breadcrumbSchema(crumbs)]}>
+  <section class="mx-auto max-w-[1360px] px-6 pt-[150px] min-[820px]:px-11">
+    <Breadcrumbs crumbs={crumbs} class="mb-6" />
+    <div class="max-w-[720px] pb-14">
+      <span class="badge-pill mb-5 inline-block">NOS PRESTATIONS</span>
+      <h1 class="mb-5 font-heading text-[clamp(38px,5vw,64px)] font-extrabold leading-[0.96] tracking-[-0.03em]">
+        Tout l'habitat, un seul artisan.
+      </h1>
+      <p class="text-lg leading-[1.65] text-text-soft">
+        Menuisier à Bailleul depuis {2026 - 2009} ans, AT HOME Fermetures intervient sur les fenêtres, fermetures et l'isolation extérieure
+        dans un rayon de 50 km : Lille, Dunkerque, Armentières, Hazebrouck et tout le Nord (59).
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1360px] px-6 pb-20 min-[820px]:px-11 min-[820px]:pb-28" aria-label="Liste des prestations">
+    <div class="grid grid-cols-1 gap-6 min-[640px]:grid-cols-2 min-[1024px]:grid-cols-3">
+      {
+        PRESTATIONS.map((prestation) => (
+          <a href={`/prestations/${prestation.slug}`} class="card-surface group flex flex-col justify-between p-7 transition-colors hover:border-lime">
+            <div>
+              <div
+                class="mb-5 h-[120px] rounded-2xl"
+                style={`background: linear-gradient(150deg, ${prestation.gradient[0]}, ${prestation.gradient[1]});`}
+              />
+              <h2 class="mb-2 font-heading text-2xl font-extrabold tracking-[-0.02em]">{prestation.homeLabel}</h2>
+              <p class="text-sm text-text-soft">{prestation.homeDescriptor}</p>
+            </div>
+            <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-ink">
+              Découvrir
+              <Icon name="arrow-up-right" size={14} strokeWidth={2.4} class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

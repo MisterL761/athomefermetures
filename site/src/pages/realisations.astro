@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { REALISATIONS } from "@/data/realisations";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const crumbs = [
+  { name: "Accueil", path: "/" },
+  { name: "Nos réalisations", path: "/realisations" },
+];
+
+const title = "Nos réalisations dans le Nord (59) | AT HOME Fermetures";
+const description =
+  "Découvrez nos chantiers de menuiserie, fermetures et toiture réalisés à Bailleul, Armentières, Hazebrouck et dans tout le Nord (59) par AT HOME Fermetures.";
+---
+
+<Layout title={title} description={description} path="/realisations" jsonLd={[breadcrumbSchema(crumbs)]}>
+  <section class="mx-auto max-w-[1360px] px-6 pt-[150px] min-[820px]:px-11">
+    <Breadcrumbs crumbs={crumbs} class="mb-6" />
+    <div class="max-w-[720px] pb-14">
+      <span class="badge-pill mb-5 inline-block">NOS CHANTIERS</span>
+      <h1 class="mb-5 font-heading text-[clamp(38px,5vw,64px)] font-extrabold leading-[0.96] tracking-[-0.03em]">
+        Nos dernières réalisations.
+      </h1>
+      <p class="text-lg leading-[1.65] text-text-soft">
+        Un aperçu de nos chantiers de menuiserie, fermetures et isolation extérieure, réalisés dans un rayon de 50 km autour de Bailleul (59).
+      </p>
+    </div>
+  </section>
+
+  <section aria-label="Galerie de chantiers" class="mx-auto max-w-[1360px] px-6 pb-20 min-[820px]:px-11 min-[820px]:pb-28">
+    <div class="grid grid-cols-1 gap-6 min-[640px]:grid-cols-2 min-[1024px]:grid-cols-3">
+      {
+        REALISATIONS.map((item) => (
+          <div class="group relative h-[340px] overflow-hidden rounded-[26px]">
+            <Image
+              src={item.image}
+              alt={item.alt}
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-[1.06]"
+              widths={[360, 520, 700, 900]}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-[linear-gradient(transparent_46%,rgba(14,14,14,0.72))]" />
+            <span class="absolute left-5 top-5 rounded-full bg-white/92 px-4 py-2 text-[13px] font-bold">{item.category}</span>
+            <div class="absolute inset-x-[26px] bottom-6 text-white">
+              <div class="font-heading text-[24px] font-extrabold leading-[1.05] tracking-[-0.02em]">{item.title}</div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-14 rounded-3xl bg-ink px-8 py-12 text-center text-white min-[820px]:px-14">
+      <h2 class="mb-4 font-heading text-[clamp(26px,3vw,38px)] font-extrabold tracking-[-0.02em]">Votre projet, notre prochaine réalisation.</h2>
+      <a href="/devis" class="fx-mag inline-flex items-center gap-2.5 rounded-full bg-lime px-8 py-4 font-heading text-[17px] font-extrabold text-ink">
+        Demander mon devis gratuit
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,14 @@
+---
+const PARTNERS = ["K·LINE", "VELUX", "SOMFY", "RGE QUALIBAT", "GARANTIE DÉCENNALE"];
+---
+
+<div class="border-y border-border bg-white">
+  <div class="mx-auto flex max-w-[1360px] flex-wrap items-center justify-between gap-7 px-6 py-6 min-[820px]:px-11">
+    <span class="whitespace-nowrap text-[13px] font-semibold tracking-[0.02em] text-text-muted">
+      Nos partenaires &amp; garanties
+    </span>
+    <div class="flex flex-wrap items-center gap-8 font-heading text-lg font-extrabold tracking-[-0.01em] text-text-muted">
+      {PARTNERS.map((name) => <span>{name}</span>)}
+    </div>
+  </div>
+</div>

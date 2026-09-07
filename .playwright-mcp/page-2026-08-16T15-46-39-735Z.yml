@@ -1,0 +1,203 @@
+- generic [active] [ref=f17e1]:
+  - link "Dépannage 7j/7" [ref=f17e2] [cursor=pointer]:
+    - /url: tel:0320876152
+  - link "Aller au contenu principal" [ref=f17e5] [cursor=pointer]:
+    - /url: "#contenu"
+  - banner [ref=f17e6]:
+    - generic [ref=f17e8]:
+      - generic [ref=f17e9]: Lun – Sam · 8h – 19h · Bailleul (59)
+      - generic [ref=f17e10]:
+        - link "Facebook" [ref=f17e11] [cursor=pointer]:
+          - /url: https://www.facebook.com
+        - link "Instagram" [ref=f17e14] [cursor=pointer]:
+          - /url: https://www.instagram.com
+        - link "Configurateur" [ref=f17e20] [cursor=pointer]:
+          - /url: /configurateur
+        - link "Espace pro" [ref=f17e24] [cursor=pointer]:
+          - /url: /contact#espace-pro
+        - link "03 20 87 61 52" [ref=f17e28] [cursor=pointer]:
+          - /url: tel:0320876152
+    - generic [ref=f17e32]:
+      - link [ref=f17e33] [cursor=pointer]:
+        - /url: /
+        - img "AT HOME Couvertures & Fermetures" [ref=f17e34]
+      - navigation "Navigation principale" [ref=f17e35]:
+        - link "Société" [ref=f17e36] [cursor=pointer]:
+          - /url: /societe
+        - link [ref=f17e38] [cursor=pointer]:
+          - /url: /prestations
+        - link "Nos réalisations" [ref=f17e42] [cursor=pointer]:
+          - /url: /realisations
+        - link "Qualification" [ref=f17e43] [cursor=pointer]:
+          - /url: /qualification
+        - link "Configurateur" [ref=f17e44] [cursor=pointer]:
+          - /url: /configurateur
+      - link "Devis gratuit" [ref=f17e45] [cursor=pointer]:
+        - /url: /devis
+  - main [ref=f17e47]:
+    - generic [ref=f17e48]:
+      - navigation "Fil d'Ariane" [ref=f17e49]:
+        - list [ref=f17e50]:
+          - listitem [ref=f17e51]:
+            - link "Accueil" [ref=f17e52] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f17e53]:
+            - generic [ref=f17e54]: /
+            - link "Prestations" [ref=f17e55] [cursor=pointer]:
+              - /url: /prestations
+          - listitem [ref=f17e56]:
+            - generic [ref=f17e57]: /
+            - generic [ref=f17e58]: Fenêtres et portes-fenêtres
+      - generic [ref=f17e59]:
+        - generic [ref=f17e60]:
+          - generic [ref=f17e61]: MENUISERIES · PARTENAIRE K·LINE
+          - heading "Fenêtres et portes-fenêtres sur mesure." [level=1] [ref=f17e62]
+          - paragraph [ref=f17e63]: "PVC, aluminium ou bois : nous fabriquons, posons et garantissons des menuiseries haute isolation, adaptées à votre maison et à votre budget. Pose en neuf comme en rénovation."
+          - generic [ref=f17e64]:
+            - link "Devis gratuit sous 48h" [ref=f17e65] [cursor=pointer]:
+              - /url: /devis
+            - link "03 20 87 61 52" [ref=f17e67] [cursor=pointer]:
+              - /url: tel:0320876152
+          - generic [ref=f17e68]:
+            - generic [ref=f17e69]:
+              - generic [ref=f17e70]: ★★★★★
+              - generic [ref=f17e71]:
+                - strong [ref=f17e72]: 4,7/5
+                - text: · 100+ avis
+            - generic [ref=f17e74]: RGE Qualibat · Garantie décennale
+        - generic [ref=f17e75]:
+          - generic [ref=f17e78]: Photo — fenêtres & portes-fenêtres
+          - generic [ref=f17e79]: Pose K·LINE · Bailleul
+    - generic [ref=f17e81]:
+      - heading "Trois matériaux, trois caractères." [level=2] [ref=f17e82]
+      - generic [ref=f17e83]:
+        - generic [ref=f17e84]:
+          - heading "PVC" [level=3] [ref=f17e88]
+          - paragraph [ref=f17e89]: Le meilleur rapport qualité-prix. Excellente isolation thermique, aucun entretien, large choix de coloris.
+          - generic [ref=f17e90]:
+            - generic [ref=f17e91]: Économique
+            - generic [ref=f17e92]: Sans entretien
+        - generic [ref=f17e93]:
+          - generic [ref=f17e94]: LE PLUS DEMANDÉ
+          - heading "Aluminium K·LINE" [level=3] [ref=f17e98]
+          - paragraph [ref=f17e99]: Finesse des profils, surfaces vitrées maximales, teintes illimitées. Fabrication française, rupture de pont thermique.
+          - generic [ref=f17e100]:
+            - generic [ref=f17e101]: Design fin
+            - generic [ref=f17e102]: Fabriqué en France
+        - generic [ref=f17e103]:
+          - heading "Bois" [level=3] [ref=f17e107]
+          - paragraph [ref=f17e108]: Le charme de l'authentique. Chaleureux, durable et idéal pour le bâti ancien et les maisons de caractère.
+          - generic [ref=f17e109]:
+            - generic [ref=f17e110]: Authentique
+            - generic [ref=f17e111]: Bâti ancien
+    - generic [ref=f17e112]:
+      - generic [ref=f17e113]: Photo — pose en rénovation
+      - generic [ref=f17e116]:
+        - heading "Ce que change une bonne fenêtre." [level=2] [ref=f17e117]
+        - generic [ref=f17e118]:
+          - generic [ref=f17e124]:
+            - heading "Jusqu'à -40% sur le chauffage" [level=3] [ref=f17e125]
+            - paragraph [ref=f17e126]: "Double ou triple vitrage à isolation renforcée : la chaleur reste dedans, le froid dehors."
+          - generic [ref=f17e131]:
+            - heading "Un silence retrouvé" [level=3] [ref=f17e132]
+            - paragraph [ref=f17e133]: "Vitrages acoustiques : le bruit de la route et du voisinage reste à l'extérieur."
+          - generic [ref=f17e139]:
+            - heading "Sécurité renforcée" [level=3] [ref=f17e140]
+            - paragraph [ref=f17e141]: Vitrage retardateur d'effraction et ferrures multipoints en option.
+          - generic [ref=f17e147]:
+            - heading "Éligible aux aides" [level=3] [ref=f17e148]
+            - paragraph [ref=f17e149]: "Certifiés RGE : MaPrimeRénov', CEE et TVA réduite. On monte le dossier avec vous."
+    - generic [ref=f17e151]:
+      - heading "Votre projet fenêtres & portes-fenêtres commence ici." [level=2] [ref=f17e152]: Votre projet fenêtres & portes-fenêtrescommence ici.
+      - paragraph [ref=f17e153]: Visite technique et devis détaillé gratuits, sous 48h. Ou venez comparer les matériaux au showroom de Bailleul.
+      - generic [ref=f17e154]:
+        - link "Demander mon devis gratuit" [ref=f17e155] [cursor=pointer]:
+          - /url: /devis
+        - link "03 20 87 61 52" [ref=f17e156] [cursor=pointer]:
+          - /url: tel:0320876152
+    - region [ref=f17e157]:
+      - generic [ref=f17e158]:
+        - generic [ref=f17e159]: FAQ
+        - heading "Questions fréquentes — fenêtres et portes-fenêtres" [level=2] [ref=f17e160]
+      - generic [ref=f17e161]:
+        - generic [ref=f17e162]:
+          - 'button "PVC, aluminium ou bois : quel matériau choisir ?" [ref=f17e163]'
+          - paragraph [ref=f17e168]: Le PVC offre le meilleur rapport isolation/prix, l'aluminium K·LINE le design le plus fin pour de grandes surfaces vitrées, et le bois s'impose sur le bâti ancien. Nos conseillers vous orientent selon votre budget et votre façade.
+        - generic [ref=f17e169]:
+          - button "Quel est le délai de pose d'une fenêtre PVC dans le Nord ?" [ref=f17e170]
+          - paragraph [ref=f17e175]: Comptez en moyenne 4 à 6 semaines entre la signature du devis et la pose, fabrication sur mesure comprise. Un menuisier Bailleul dédié gère le suivi de chantier de A à Z.
+        - generic [ref=f17e176]:
+          - button "Puis-je changer mes fenêtres sans faire de travaux de maçonnerie ?" [ref=f17e177]
+          - paragraph [ref=f17e182]: Oui, la pose en rénovation (dépose totale ou sur ancien dormant) évite la plupart des reprises de maçonnerie et se réalise en une journée par fenêtre en moyenne.
+    - region [ref=f17e183]:
+      - heading "Prestations connexes" [level=2] [ref=f17e184]
+      - generic [ref=f17e185]:
+        - link "Portes-fenêtres & baies vitrées Découvrir" [ref=f17e186] [cursor=pointer]:
+          - /url: /prestations/portes-fenetres
+          - generic [ref=f17e187]: Portes-fenêtres & baies vitrées
+          - generic [ref=f17e188]: Découvrir
+        - link "Volets & motorisation Découvrir" [ref=f17e191] [cursor=pointer]:
+          - /url: /prestations/volets-roulants
+          - generic [ref=f17e192]: Volets & motorisation
+          - generic [ref=f17e193]: Découvrir
+        - link "Isolation extérieure Découvrir" [ref=f17e196] [cursor=pointer]:
+          - /url: /prestations/isolation
+          - generic [ref=f17e197]: Isolation extérieure
+          - generic [ref=f17e198]: Découvrir
+  - contentinfo [ref=f17e201]:
+    - generic [ref=f17e202]:
+      - paragraph [ref=f17e203]: ON CONSTRUIT ENSEMBLE.
+      - generic [ref=f17e204]:
+        - generic [ref=f17e205]:
+          - img "AT HOME" [ref=f17e206]
+          - paragraph [ref=f17e207]: Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.
+          - generic [ref=f17e208]: CERTIFIÉ RGE QUALIBAT
+          - generic [ref=f17e209]:
+            - link "Facebook" [ref=f17e210] [cursor=pointer]:
+              - /url: https://www.facebook.com
+            - link "Instagram" [ref=f17e213] [cursor=pointer]:
+              - /url: https://www.instagram.com
+        - generic [ref=f17e218]:
+          - paragraph [ref=f17e219]: Prestations
+          - generic [ref=f17e220]:
+            - generic [ref=f17e221]: Fenêtres & portes
+            - generic [ref=f17e222]: Volets & motorisation
+            - generic [ref=f17e223]: Portes de garage
+            - generic [ref=f17e224]: Portails & carports
+            - generic [ref=f17e225]: Couverture & toiture
+        - generic [ref=f17e226]:
+          - paragraph [ref=f17e227]: Entreprise
+          - generic [ref=f17e228]:
+            - link "À propos" [ref=f17e229] [cursor=pointer]:
+              - /url: /societe
+            - link "Réalisations" [ref=f17e230] [cursor=pointer]:
+              - /url: /realisations
+            - link "Dépannage" [ref=f17e231] [cursor=pointer]:
+              - /url: tel:0320876152
+            - link "Configurateur" [ref=f17e232] [cursor=pointer]:
+              - /url: /configurateur
+            - link "Espace pro" [ref=f17e233] [cursor=pointer]:
+              - /url: /contact#espace-pro
+            - link "Contact" [ref=f17e234] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f17e235]:
+          - paragraph [ref=f17e236]: Contact
+          - generic [ref=f17e237]:
+            - link "03 20 87 61 52" [ref=f17e238] [cursor=pointer]:
+              - /url: tel:0320876152
+            - generic [ref=f17e239]: 2108 Route de Lille
+            - generic [ref=f17e240]: 59270 Bailleul
+            - generic [ref=f17e241]: Lun – Sam · 8h – 19h
+      - generic [ref=f17e242]:
+        - generic [ref=f17e243]: © 2026 AT HOME Couvertures & Fermetures — Tous droits réservés
+        - generic [ref=f17e244]:
+          - link "Mentions légales" [ref=f17e245] [cursor=pointer]:
+            - /url: /mentions-legales
+          - text: ·
+          - link "Politique de confidentialité" [ref=f17e246] [cursor=pointer]:
+            - /url: /politique-de-confidentialite
+  - generic [ref=f17e249]:
+    - button [ref=f17e250]
+    - button [ref=f17e256]
+    - button [ref=f17e260]
+    - button [ref=f17e265]

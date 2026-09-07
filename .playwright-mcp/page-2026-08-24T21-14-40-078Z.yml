@@ -1,0 +1,136 @@
+- generic [active] [ref=f49e1]:
+  - link "Dépannage 7j/7" [ref=f49e2] [cursor=pointer]:
+    - /url: tel:0320876152
+  - link "Aller au contenu principal" [ref=f49e5] [cursor=pointer]:
+    - /url: "#contenu"
+  - banner [ref=f49e6]:
+    - generic [ref=f49e9]:
+      - link "Facebook" [ref=f49e10] [cursor=pointer]:
+        - /url: https://www.facebook.com
+      - link "Instagram" [ref=f49e13] [cursor=pointer]:
+        - /url: https://www.instagram.com
+      - link "03 20 87 61 52" [ref=f49e18] [cursor=pointer]:
+        - /url: tel:0320876152
+    - generic [ref=f49e22]:
+      - link [ref=f49e23] [cursor=pointer]:
+        - /url: /
+        - img "AT HOME Couvertures & Fermetures" [ref=f49e24]
+      - button "Ouvrir le menu" [ref=f49e25]
+  - main [ref=f49e28]:
+    - generic [ref=f49e29]:
+      - generic [ref=f49e30]:
+        - navigation "Fil d'Ariane" [ref=f49e31]:
+          - list [ref=f49e32]:
+            - listitem [ref=f49e33]:
+              - link "Accueil" [ref=f49e34] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f49e35]:
+              - generic [ref=f49e36]: /
+              - generic [ref=f49e37]: Société
+        - generic [ref=f49e38]: LA SOCIÉTÉ
+        - heading "Votre artisan menuisier et couvreur à Bailleul, depuis 2009." [level=1] [ref=f49e39]
+        - paragraph [ref=f49e40]:
+          - text: C'est avec expérience et savoir-faire que la société
+          - strong [ref=f49e41]: AT HOME Fermetures
+          - text: ", située à Bailleul, entre Lille et Dunkerque dans le Nord (59), vous propose ses compétences pour vos projets d'amélioration de l'habitat."
+        - paragraph [ref=f49e42]: Entreprise du bâtiment, elle regroupe divers savoir-faire pour vous proposer des travaux sur votre toiture ainsi que des travaux de menuiseries, dans un rayon d'environ 50 km autour de Bailleul.
+      - img "Façade et showroom AT HOME Couvertures & Fermetures à Bailleul, avec véhicules d'intervention" [ref=f49e44]
+    - region "Chiffres clés" [ref=f49e45]:
+      - generic [ref=f49e46]:
+        - generic [ref=f49e47]: "0"
+        - generic [ref=f49e48]: ans d'expérience
+      - generic [ref=f49e49]:
+        - generic [ref=f49e50]: 0 +
+        - generic [ref=f49e51]: chantiers réalisés
+      - generic [ref=f49e52]:
+        - generic [ref=f49e53]: 0 m²
+        - generic [ref=f49e54]: de showroom
+      - generic [ref=f49e55]:
+        - generic [ref=f49e56]: 0 ans
+        - generic [ref=f49e57]: de garantie
+    - region [ref=f49e58]:
+      - generic [ref=f49e59]:
+        - heading "Ce qui nous distingue." [level=2] [ref=f49e60]
+        - generic [ref=f49e61]:
+          - generic [ref=f49e62]:
+            - heading "Savoir-faire sur mesure" [level=3] [ref=f49e66]
+            - paragraph [ref=f49e67]: Chaque chantier est étudié et dimensionné pour votre habitat, pas de solution standardisée.
+          - generic [ref=f49e68]:
+            - heading "Qualité certifiée RGE" [level=3] [ref=f49e73]
+            - paragraph [ref=f49e74]: Une exigence de qualité qui ouvre droit aux aides de l'État pour vos travaux de rénovation.
+          - generic [ref=f49e75]:
+            - heading "Réactivité" [level=3] [ref=f49e79]
+            - paragraph [ref=f49e80]: Devis sous 48h, dépannage 7j/7 et suivi de chantier de A à Z par une équipe locale.
+          - generic [ref=f49e81]:
+            - heading "Un seul artisan pour tout" [level=3] [ref=f49e85]
+            - paragraph [ref=f49e86]: "Menuiseries, fermetures, couverture et isolation : un seul interlocuteur pour tout votre habitat."
+    - region [ref=f49e87]:
+      - generic [ref=f49e88]:
+        - generic [ref=f49e89]:
+          - heading "Un showroom de 300 m² à visiter à Bailleul." [level=2] [ref=f49e90]
+          - paragraph [ref=f49e91]: "Fenêtres, volets, portes, portails et motorisations en situation réelle : venez toucher les matériaux et échanger avec un conseiller, sans rendez-vous."
+          - link "Nous rendre visite" [ref=f49e92] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=f49e93]:
+          - generic [ref=f49e94]:
+            - generic [ref=f49e95]: Lundi – Vendredi
+            - strong [ref=f49e96]: 8h – 19h
+          - generic [ref=f49e97]:
+            - generic [ref=f49e98]: Samedi
+            - strong [ref=f49e99]: 9h – 18h
+          - generic [ref=f49e100]:
+            - generic [ref=f49e101]: Dimanche
+            - strong [ref=f49e102]: Fermé
+          - generic [ref=f49e103]: 2108 Route de Lille, 59270 Bailleul
+  - contentinfo [ref=f49e108]:
+    - generic [ref=f49e109]:
+      - paragraph [ref=f49e110]: ON CONSTRUIT ENSEMBLE.
+      - generic [ref=f49e111]:
+        - generic [ref=f49e112]:
+          - img "AT HOME" [ref=f49e113]
+          - paragraph [ref=f49e114]: Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.
+          - generic [ref=f49e115]: CERTIFIÉ RGE QUALIBAT
+          - generic [ref=f49e116]:
+            - link "Facebook" [ref=f49e117] [cursor=pointer]:
+              - /url: https://www.facebook.com
+            - link "Instagram" [ref=f49e120] [cursor=pointer]:
+              - /url: https://www.instagram.com
+        - generic [ref=f49e125]:
+          - paragraph [ref=f49e126]: Prestations
+          - generic [ref=f49e127]:
+            - generic [ref=f49e128]: Fenêtres & portes
+            - generic [ref=f49e129]: Volets & motorisation
+            - generic [ref=f49e130]: Portes de garage
+            - generic [ref=f49e131]: Portails & carports
+            - generic [ref=f49e132]: Couverture & toiture
+        - generic [ref=f49e133]:
+          - paragraph [ref=f49e134]: Entreprise
+          - generic [ref=f49e135]:
+            - link "À propos" [ref=f49e136] [cursor=pointer]:
+              - /url: /societe
+            - link "Réalisations" [ref=f49e137] [cursor=pointer]:
+              - /url: /realisations
+            - link "Dépannage" [ref=f49e138] [cursor=pointer]:
+              - /url: tel:0320876152
+            - link "Configurateur" [ref=f49e139] [cursor=pointer]:
+              - /url: /configurateur
+            - link "Espace pro" [ref=f49e140] [cursor=pointer]:
+              - /url: /contact#espace-pro
+            - link "Contact" [ref=f49e141] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f49e142]:
+          - paragraph [ref=f49e143]: Contact
+          - generic [ref=f49e144]:
+            - link "03 20 87 61 52" [ref=f49e145] [cursor=pointer]:
+              - /url: tel:0320876152
+            - generic [ref=f49e146]: 2108 Route de Lille
+            - generic [ref=f49e147]: 59270 Bailleul
+            - generic [ref=f49e148]: Lun – Sam · 8h – 19h
+      - generic [ref=f49e149]:
+        - generic [ref=f49e150]: © 2026 AT HOME Couvertures & Fermetures — Tous droits réservés
+        - generic [ref=f49e151]:
+          - link "Mentions légales" [ref=f49e152] [cursor=pointer]:
+            - /url: /mentions-legales
+          - text: ·
+          - link "Politique de confidentialité" [ref=f49e153] [cursor=pointer]:
+            - /url: /politique-de-confidentialite

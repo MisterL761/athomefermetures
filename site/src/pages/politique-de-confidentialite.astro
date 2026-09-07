@@ -1,0 +1,68 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { SITE } from "@/data/site";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const crumbs = [
+  { name: "Accueil", path: "/" },
+  { name: "Politique de confidentialité", path: "/politique-de-confidentialite" },
+];
+
+const title = "Politique de confidentialité | AT HOME — Bailleul (59)";
+const description = "Politique de confidentialité du site AT HOME Couvertures & Fermetures : données collectées, finalités, durée de conservation et vos droits RGPD.";
+---
+
+<Layout title={title} description={description} path="/politique-de-confidentialite" noindex jsonLd={[breadcrumbSchema(crumbs)]}>
+  <section class="mx-auto max-w-[820px] px-6 pb-20 pt-[150px] min-[820px]:px-11">
+    <Breadcrumbs crumbs={crumbs} class="mb-6" />
+    <h1 class="mb-10 font-heading text-[clamp(32px,4vw,48px)] font-extrabold leading-none tracking-[-0.03em]">Politique de confidentialité</h1>
+
+    <div class="flex flex-col gap-8 text-[15.5px] leading-[1.7] text-text-soft">
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Données collectées</h2>
+        <p>
+          Lorsque vous utilisez notre formulaire de devis ou de contact, nous collectons : nom, prénom, adresse email, numéro de téléphone, adresse postale et le contenu de votre message. Ces informations sont fournies volontairement par vous.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Finalité du traitement</h2>
+        <p>
+          Ces données sont utilisées exclusivement pour traiter votre demande de devis ou de contact, vous recontacter et assurer le suivi commercial de votre projet. Elles ne sont ni vendues, ni cédées à des tiers à des fins commerciales.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Durée de conservation</h2>
+        <p>
+          Vos données sont conservées pendant la durée nécessaire au traitement de votre demande, puis jusqu'à 3 ans à compter du dernier contact, conformément aux recommandations de la CNIL en matière de prospection commerciale.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Vos droits</h2>
+        <p>
+          Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition au traitement de vos données. Pour exercer ces droits, contactez-nous à l'adresse {SITE.email} ou par courrier à {SITE.legalForm}, {SITE.address.streetAddress}, {SITE.address.postalCode} {SITE.address.addressLocality}.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Cookies</h2>
+        <p class="mb-3">
+          Ce site dépose des cookies strictement nécessaires à son fonctionnement (mémorisation de vos préférences, sécurité), sans action de votre part. Les cookies de mesure d'audience et marketing ne sont déposés qu'après votre accord explicite, recueilli via le bandeau affiché lors de votre première visite.
+        </p>
+        <p>
+          Vous pouvez modifier ou retirer votre consentement à tout moment via le lien « Gérer les cookies » en bas de chaque page. Votre choix est conservé 13 mois maximum, après quoi il vous est de nouveau demandé.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-2.5 font-heading text-lg font-extrabold text-ink">Réclamation</h2>
+        <p>
+          Si vous estimez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL (Commission Nationale de l'Informatique et des Libertés) via <a href="https://www.cnil.fr" target="_blank" rel="noopener" class="font-semibold text-ink underline underline-offset-2">cnil.fr</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

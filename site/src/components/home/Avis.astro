@@ -1,0 +1,47 @@
+---
+import { SITE } from "@/data/site";
+import { REVIEWS_COL_A, REVIEWS_COL_B } from "@/data/reviews";
+import ReviewCard from "@/components/home/ReviewCard.astro";
+
+const colA = [...REVIEWS_COL_A, ...REVIEWS_COL_A];
+const colB = [...REVIEWS_COL_B, ...REVIEWS_COL_B];
+---
+
+<section id="avis" aria-labelledby="avis-heading" class="border-t border-border bg-white">
+  <div class="mx-auto grid max-w-[1280px] grid-cols-1 gap-14 px-6 py-16 min-[820px]:grid-cols-[0.82fr_1.18fr] min-[820px]:px-11 min-[820px]:py-[100px]">
+    <div data-reveal>
+      <div class="mb-[22px] inline-flex items-center gap-2.5 rounded-full border border-border-soft bg-bg-alt px-[15px] py-2">
+        <span class="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-lime text-[11px] font-extrabold text-ink">G</span>
+        <span class="text-[13.5px] font-semibold text-[#4a4a46]">Avis vérifiés Google</span>
+      </div>
+      <h2 id="avis-heading" class="mb-[18px] font-heading text-[clamp(40px,4.8vw,68px)] font-extrabold leading-[0.95] tracking-[-0.03em]">
+        Ce qu'en disent<br />nos clients.
+      </h2>
+      <p class="mb-7 max-w-[360px] text-[17px] leading-[1.65] text-text-soft">
+        La confiance se construit chantier après chantier. Voici quelques retours, parmi des centaines.
+      </p>
+      <div class="flex items-center gap-4.5">
+        <div class="font-heading text-[60px] font-extrabold leading-none">{SITE.rating.value}</div>
+        <div>
+          <div class="text-[19px] tracking-[2px] text-orange">★★★★★</div>
+          <div class="mt-1 text-sm text-text-muted">sur <strong class="text-ink">{SITE.rating.count}+</strong> avis Google</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative h-[520px] [mask-image:linear-gradient(transparent,#000_12%,#000_88%,transparent)] min-[820px]:h-[600px]">
+      <div class="grid h-full grid-cols-1 gap-5 min-[560px]:grid-cols-2">
+        <div class="fx-marquee-paused overflow-hidden">
+          <div class="fx-marquee-track fx-marquee-up flex flex-col gap-5">
+            {colA.map((review) => <ReviewCard review={review} />)}
+          </div>
+        </div>
+        <div class="fx-marquee-paused hidden overflow-hidden min-[560px]:block">
+          <div class="fx-marquee-track fx-marquee-down flex flex-col gap-5">
+            {colB.map((review) => <ReviewCard review={review} />)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

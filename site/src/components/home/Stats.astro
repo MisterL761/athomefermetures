@@ -1,0 +1,59 @@
+---
+const STATS = [
+  { value: 15, suffix: "", label: "ans d'expérience" },
+  { value: 1200, suffix: "+", label: "chantiers réalisés" },
+  { value: 300, suffix: "m²", label: "de showroom" },
+  { value: 10, suffix: "ans", label: "de garantie" },
+] as const;
+---
+
+<section aria-label="Chiffres clés" class="mx-auto grid max-w-[1360px] grid-cols-2 gap-6 px-6 pb-10 pt-16 min-[820px]:grid-cols-4 min-[820px]:gap-6 min-[820px]:px-11 min-[820px]:pb-10 min-[820px]:pt-[70px]">
+  {
+    STATS.map((stat, index) => (
+      <div data-reveal data-reveal-delay={index * 80}>
+        <div class="font-heading text-[50px] font-extrabold leading-none tracking-[-0.03em] min-[820px]:text-[78px]">
+          <span data-count-to={stat.value}>0</span>
+          {stat.suffix && <span class="text-lime">{stat.suffix}</span>}
+        </div>
+        <div class="mt-1.5 text-[15px] text-text-muted">{stat.label}</div>
+      </div>
+    ))
+  }
+</section>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>("[data-count-to]");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function animateCount(el: HTMLElement) {
+    const target = Number(el.dataset.countTo ?? "0");
+    if (reduceMotion) {
+      el.textContent = String(target);
+      return;
+    }
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now: number) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = String(Math.round(target * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if (counters.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            animateCount(entry.target as HTMLElement);
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.4 },
+    );
+    counters.forEach((el) => observer.observe(el));
+  }
+</script>

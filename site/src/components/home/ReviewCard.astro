@@ -1,0 +1,23 @@
+---
+import type { Review } from "@/data/reviews";
+
+export interface Props {
+  review: Review;
+}
+
+const { review } = Astro.props;
+---
+
+<div class="rounded-[20px] border border-border-card bg-white p-6 shadow-[0_2px_10px_-6px_rgba(14,14,14,0.1)]">
+  <div class="mb-3.5 text-[15px] tracking-[2px] text-orange">★★★★★</div>
+  <p class="mb-[18px] text-[15.5px] leading-[1.6] text-[#2a2a28]">{review.text}</p>
+  <div class="flex items-center gap-2.5">
+    <div class="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-lime font-heading text-[15px] font-extrabold text-ink">
+      {review.initial}
+    </div>
+    <div class="min-w-0">
+      <div class="text-sm font-bold">{review.author}</div>
+      <div class="text-[12.5px] text-text-muted">{review.location} · {review.when}</div>
+    </div>
+  </div>
+</div>

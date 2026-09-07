@@ -1,0 +1,221 @@
+---
+import { Image } from "astro:assets";
+import Icon from "@/components/Icon.astro";
+import cookieImage from "@/assets/images/cookie.jpg";
+
+const CATEGORIES = [
+  {
+    key: "necessary",
+    title: "Nécessaires",
+    description: "Indispensables au fonctionnement du site (navigation, sécurité, mémorisation de vos choix). Toujours actifs.",
+    locked: true,
+  },
+  {
+    key: "analytics",
+    title: "Mesure d'audience",
+    description: "Nous aident à comprendre la fréquentation du site pour l'améliorer. Déposés uniquement avec votre accord.",
+    locked: false,
+  },
+  {
+    key: "marketing",
+    title: "Marketing",
+    description: "Utilisés pour mesurer l'efficacité de nos campagnes. Déposés uniquement avec votre accord.",
+    locked: false,
+  },
+] as const;
+---
+
+<section
+  id="cookie-consent"
+  role="region"
+  aria-label="Gestion des cookies"
+  data-open="false"
+  class="fixed inset-x-0 bottom-0 z-[110] hidden justify-center px-3 pb-3 min-[640px]:px-5 min-[640px]:pb-5"
+>
+  <div class="w-full max-w-[860px] rounded-[22px] border border-border-card bg-white shadow-[0_24px_60px_-20px_rgba(14,14,14,0.35)]">
+    <!-- Vue principale -->
+    <div id="cookie-main-view" class="flex flex-col gap-5 p-6 min-[640px]:flex-row min-[640px]:items-center min-[640px]:gap-6 min-[640px]:p-7">
+      <Image src={cookieImage} alt="" aria-hidden="true" class="h-14 w-14 flex-none rounded-full object-cover" widths={[56, 112]} sizes="56px" loading="eager" />
+      <div class="flex-1">
+        <h2 class="mb-1.5 font-heading text-lg font-extrabold">Le respect de votre vie privée</h2>
+        <p class="text-[14.5px] leading-[1.55] text-text-soft">
+          AT HOME Fermetures utilise des cookies nécessaires au fonctionnement du site et, avec votre accord, des cookies de mesure d'audience et marketing. Vous pouvez accepter, refuser ou personnaliser votre choix à tout moment. En savoir plus dans notre
+          <a href="/politique-de-confidentialite" class="font-semibold text-ink underline underline-offset-2">politique de confidentialité</a>.
+        </p>
+      </div>
+      <div class="flex flex-none flex-col gap-2.5 min-[480px]:flex-row min-[640px]:flex-col">
+        <button type="button" id="cookie-accept-all" class="fx-mag whitespace-nowrap rounded-full bg-lime px-6 py-3 font-heading text-[13.5px] font-extrabold text-ink">
+          Tout accepter
+        </button>
+        <button type="button" id="cookie-reject-all" class="fx-mag whitespace-nowrap rounded-full border-[1.5px] border-ink px-6 py-3 font-heading text-[13.5px] font-extrabold text-ink">
+          Tout refuser
+        </button>
+        <button type="button" id="cookie-customize" class="inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2 text-[13px] font-semibold text-text-soft underline underline-offset-2 hover:text-ink">
+          <Icon name="sliders" size={14} strokeWidth={2} />
+          Personnaliser
+        </button>
+      </div>
+    </div>
+
+    <!-- Vue préférences -->
+    <div id="cookie-prefs-view" hidden class="flex flex-col gap-5 p-6 min-[640px]:p-7">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h2 class="mb-1.5 font-heading text-lg font-extrabold">Personnaliser les cookies</h2>
+          <p class="text-[14.5px] leading-[1.5] text-text-soft">Choisissez les catégories de cookies que vous autorisez.</p>
+        </div>
+        <button type="button" id="cookie-prefs-close" aria-label="Retour" class="flex h-9 w-9 flex-none items-center justify-center rounded-full border-[1.5px] border-border-soft text-ink">
+          <Icon name="close" size={15} strokeWidth={2.2} />
+        </button>
+      </div>
+
+      <div class="flex flex-col divide-y divide-border-light rounded-2xl border border-border-light">
+        {
+          CATEGORIES.map((cat) => (
+            <div class="flex items-center justify-between gap-4 p-4">
+              <div class="pr-4">
+                <p class="font-heading text-[15px] font-extrabold">{cat.title}</p>
+                <p class="mt-0.5 text-[13px] leading-[1.5] text-text-muted">{cat.description}</p>
+              </div>
+              <label class="relative inline-flex h-7 w-[46px] flex-none cursor-pointer items-center">
+                <input
+                  type="checkbox"
+                  class="cookie-toggle peer sr-only"
+                  data-category={cat.key}
+                  checked={cat.locked}
+                  disabled={cat.locked}
+                  aria-label={`Autoriser les cookies : ${cat.title}`}
+                />
+                <span class="pointer-events-none absolute inset-0 rounded-full bg-border-soft transition-colors peer-checked:bg-lime peer-disabled:opacity-60" />
+                <span class="pointer-events-none absolute left-1 h-5 w-5 rounded-full bg-white shadow transition-transform peer-checked:translate-x-[18px]" />
+              </label>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="flex flex-col gap-2.5 min-[480px]:flex-row min-[480px]:justify-end">
+        <button type="button" id="cookie-save-prefs" class="fx-mag whitespace-nowrap rounded-full bg-lime px-6 py-3 font-heading text-[13.5px] font-extrabold text-ink">
+          Enregistrer mes préférences
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const STORAGE_KEY = "athome-cookie-consent";
+  const CONSENT_VERSION = 1;
+  const CONSENT_MAX_AGE_DAYS = 395; // 13 mois, recommandation CNIL
+
+  type Categories = { necessary: true; analytics: boolean; marketing: boolean };
+  interface ConsentRecord {
+    version: number;
+    timestamp: string;
+    categories: Categories;
+  }
+
+  function readConsent(): ConsentRecord | null {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const data = JSON.parse(raw) as ConsentRecord;
+      if (data.version !== CONSENT_VERSION) return null;
+      const ageDays = (Date.now() - new Date(data.timestamp).getTime()) / 86_400_000;
+      if (Number.isNaN(ageDays) || ageDays > CONSENT_MAX_AGE_DAYS) return null;
+      return data;
+    } catch {
+      return null;
+    }
+  }
+
+  function writeConsent(categories: Categories): ConsentRecord {
+    const data: ConsentRecord = { version: CONSENT_VERSION, timestamp: new Date().toISOString(), categories };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    window.dispatchEvent(new CustomEvent("athome:consent-updated", { detail: data }));
+    return data;
+  }
+
+  // API publique : à utiliser avant de charger un futur script tiers (Analytics, Pixel...).
+  // Exemple : if (window.athomeConsent.get()?.categories.analytics) { /* charger GA */ }
+  (window as any).athomeConsent = { get: readConsent, set: writeConsent };
+
+  const root = document.getElementById("cookie-consent");
+  const mainView = document.getElementById("cookie-main-view");
+  const prefsView = document.getElementById("cookie-prefs-view");
+  const toggles = Array.from(document.querySelectorAll<HTMLInputElement>(".cookie-toggle"));
+
+  function showBanner() {
+    if (!root) return;
+    root.dataset.open = "true";
+    root.classList.remove("hidden");
+    root.classList.add("flex");
+  }
+
+  function hideBanner() {
+    if (!root) return;
+    root.dataset.open = "false";
+    root.classList.add("hidden");
+    root.classList.remove("flex");
+  }
+
+  function showPrefsView() {
+    mainView?.setAttribute("hidden", "");
+    prefsView?.removeAttribute("hidden");
+    const existing = readConsent();
+    toggles.forEach((toggle) => {
+      const key = toggle.dataset.category as keyof Categories;
+      if (existing && key in existing.categories) {
+        toggle.checked = Boolean(existing.categories[key]);
+      }
+    });
+  }
+
+  function showMainView() {
+    prefsView?.setAttribute("hidden", "");
+    mainView?.removeAttribute("hidden");
+  }
+
+  document.getElementById("cookie-accept-all")?.addEventListener("click", () => {
+    writeConsent({ necessary: true, analytics: true, marketing: true });
+    hideBanner();
+  });
+
+  document.getElementById("cookie-reject-all")?.addEventListener("click", () => {
+    writeConsent({ necessary: true, analytics: false, marketing: false });
+    hideBanner();
+  });
+
+  document.getElementById("cookie-customize")?.addEventListener("click", showPrefsView);
+  document.getElementById("cookie-prefs-close")?.addEventListener("click", showMainView);
+
+  document.getElementById("cookie-save-prefs")?.addEventListener("click", () => {
+    const categories: Categories = { necessary: true, analytics: false, marketing: false };
+    toggles.forEach((toggle) => {
+      const key = toggle.dataset.category as keyof Categories;
+      if (key !== "necessary") categories[key] = toggle.checked;
+    });
+    writeConsent(categories);
+    hideBanner();
+  });
+
+  root?.addEventListener("keydown", (event) => {
+    if ((event as KeyboardEvent).key === "Escape") {
+      writeConsent({ necessary: true, analytics: false, marketing: false });
+      hideBanner();
+    }
+  });
+
+  // Réouverture depuis le footer ("Gérer les cookies").
+  document.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    if (target.closest("[data-cookie-reopen]")) {
+      showPrefsView();
+      showBanner();
+    }
+  });
+
+  if (!readConsent()) {
+    showBanner();
+  }
+</script>

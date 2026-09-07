@@ -1,0 +1,485 @@
+- generic [active] [ref=f15e1]:
+  - link "Dépannage 7j/7" [ref=f15e2] [cursor=pointer]:
+    - /url: tel:0320876152
+  - link "Aller au contenu principal" [ref=f15e5] [cursor=pointer]:
+    - /url: "#contenu"
+  - banner [ref=f15e6]:
+    - generic [ref=f15e8]:
+      - generic [ref=f15e9]: Lun – Sam · 8h – 19h · Bailleul (59)
+      - generic [ref=f15e10]:
+        - link "Facebook" [ref=f15e11] [cursor=pointer]:
+          - /url: https://www.facebook.com
+        - link "Instagram" [ref=f15e14] [cursor=pointer]:
+          - /url: https://www.instagram.com
+        - link "Configurateur" [ref=f15e20] [cursor=pointer]:
+          - /url: /configurateur
+        - link "Espace pro" [ref=f15e24] [cursor=pointer]:
+          - /url: /contact#espace-pro
+        - link "03 20 87 61 52" [ref=f15e28] [cursor=pointer]:
+          - /url: tel:0320876152
+    - generic [ref=f15e32]:
+      - link [ref=f15e33] [cursor=pointer]:
+        - /url: /
+        - img "AT HOME Couvertures & Fermetures" [ref=f15e34]
+      - navigation "Navigation principale" [ref=f15e35]:
+        - link "Société" [ref=f15e36] [cursor=pointer]:
+          - /url: /societe
+        - link [ref=f15e38] [cursor=pointer]:
+          - /url: /prestations
+        - link "Nos réalisations" [ref=f15e42] [cursor=pointer]:
+          - /url: /realisations
+        - link "Qualification" [ref=f15e43] [cursor=pointer]:
+          - /url: /qualification
+        - link "Configurateur" [ref=f15e44] [cursor=pointer]:
+          - /url: /configurateur
+      - link "Devis gratuit" [ref=f15e45] [cursor=pointer]:
+        - /url: /devis
+  - main [ref=f15e47]:
+    - generic [ref=f15e49]:
+      - img "Maison en briques rénovée dans le Nord — menuiseries et toiture AT HOME" [ref=f15e51]
+      - generic [ref=f15e53]:
+        - generic [ref=f15e54]: Artisan RGE · Bailleul (59) · Depuis 2009
+        - generic [ref=f15e56]:
+          - generic [ref=f15e57]: ★★★★★
+          - text: 4.7/5 · 100+ avis Google
+      - generic [ref=f15e58]:
+        - heading "On habille votre maison, du sol au toit." [level=1] [ref=f15e59]
+        - generic [ref=f15e60]:
+          - generic [ref=f15e61]:
+            - link "Devis gratuit sous 48h" [ref=f15e62] [cursor=pointer]:
+              - /url: /devis
+            - link "Nos réalisations" [ref=f15e64] [cursor=pointer]:
+              - /url: /realisations
+          - generic [ref=f15e67]: Fenêtres · Volets · Portes · Portails · Isolation · Toiture
+    - generic [ref=f15e69]:
+      - generic [ref=f15e70]: Nos partenaires & garanties
+      - generic [ref=f15e71]:
+        - generic [ref=f15e72]: K·LINE
+        - generic [ref=f15e73]: VELUX
+        - generic [ref=f15e74]: SOMFY
+        - generic [ref=f15e75]: RGE QUALIBAT
+        - generic [ref=f15e76]: GARANTIE DÉCENNALE
+    - region [ref=f15e77]:
+      - generic [ref=f15e78]:
+        - generic [ref=f15e79]: LA SOCIÉTÉ
+        - heading "Besoin de travaux d'amélioration de votre habitat dans le Nord (59) ?" [level=2] [ref=f15e80]
+      - generic [ref=f15e81]:
+        - paragraph [ref=f15e82]:
+          - text: C'est avec expérience et savoir-faire que la société
+          - strong [ref=f15e83]: AT HOME Fermetures
+          - text: ", située à Bailleul, entre Lille et Dunkerque dans le Nord (59), vous propose ses compétences pour vos projets d'amélioration de l'habitat."
+        - paragraph [ref=f15e84]:
+          - text: Entreprise du bâtiment, elle regroupe divers savoir-faire pour vous proposer des travaux sur votre
+          - strong [ref=f15e85]: toiture
+          - text: ainsi que des travaux de
+          - strong [ref=f15e86]: menuiseries
+          - text: .
+    - region "Chiffres clés" [ref=f15e87]:
+      - generic [ref=f15e88]:
+        - generic [ref=f15e89]: "0"
+        - generic [ref=f15e90]: ans d'expérience
+      - generic [ref=f15e91]:
+        - generic [ref=f15e92]: 0 +
+        - generic [ref=f15e93]: chantiers réalisés
+      - generic [ref=f15e94]:
+        - generic [ref=f15e95]: 0 m²
+        - generic [ref=f15e96]: de showroom
+      - generic [ref=f15e97]:
+        - generic [ref=f15e98]: 0 ans
+        - generic [ref=f15e99]: de garantie
+    - region [ref=f15e100]:
+      - generic [ref=f15e101]:
+        - heading "Tout l'habitat, un seul artisan." [level=2] [ref=f15e102]: Tout l'habitat,un seul artisan.
+        - paragraph [ref=f15e103]: Survolez une prestation pour la découvrir. De la fenêtre à la toiture, on maîtrise tout.
+      - generic [ref=f15e104]:
+        - link "01 Fenêtres & portes-fenêtres PVC · Alu · Bois" [ref=f15e105] [cursor=pointer]:
+          - /url: /prestations/fenetres
+          - generic [ref=f15e106]:
+            - generic [ref=f15e107]: "01"
+            - generic [ref=f15e108]: Fenêtres & portes-fenêtres
+          - generic [ref=f15e109]: PVC · Alu · Bois
+        - link "02 Portes-fenêtres & baies vitrées Coulissantes · Galandage" [ref=f15e114] [cursor=pointer]:
+          - /url: /prestations/portes-fenetres
+          - generic [ref=f15e115]:
+            - generic [ref=f15e116]: "02"
+            - generic [ref=f15e117]: Portes-fenêtres & baies vitrées
+          - generic [ref=f15e118]: Coulissantes · Galandage
+        - link "03 Volets & motorisation Roulants & motorisés" [ref=f15e123] [cursor=pointer]:
+          - /url: /prestations/volets-roulants
+          - generic [ref=f15e124]:
+            - generic [ref=f15e125]: "03"
+            - generic [ref=f15e126]: Volets & motorisation
+          - generic [ref=f15e127]: Roulants & motorisés
+        - link "04 Portes de garage Sectionnelles, motorisées" [ref=f15e132] [cursor=pointer]:
+          - /url: /prestations/portes-de-garage
+          - generic [ref=f15e133]:
+            - generic [ref=f15e134]: "04"
+            - generic [ref=f15e135]: Portes de garage
+          - generic [ref=f15e136]: Sectionnelles, motorisées
+        - link "05 Portails & carports Alu sur mesure" [ref=f15e141] [cursor=pointer]:
+          - /url: /prestations/portails-clotures
+          - generic [ref=f15e142]:
+            - generic [ref=f15e143]: "05"
+            - generic [ref=f15e144]: Portails & carports
+          - generic [ref=f15e145]: Alu sur mesure
+        - link "06 Portes d'entrée Sécurité & design" [ref=f15e150] [cursor=pointer]:
+          - /url: /prestations/portes-dentree
+          - generic [ref=f15e151]:
+            - generic [ref=f15e152]: "06"
+            - generic [ref=f15e153]: Portes d'entrée
+          - generic [ref=f15e154]: Sécurité & design
+        - link "07 Velux & fenêtres de toit Lumière naturelle" [ref=f15e159] [cursor=pointer]:
+          - /url: /prestations/velux-fenetres-de-toit
+          - generic [ref=f15e160]:
+            - generic [ref=f15e161]: "07"
+            - generic [ref=f15e162]: Velux & fenêtres de toit
+          - generic [ref=f15e163]: Lumière naturelle
+        - link "08 Couverture & toiture Rénovation, zinguerie" [ref=f15e168] [cursor=pointer]:
+          - /url: /prestations/couverture-toiture
+          - generic [ref=f15e169]:
+            - generic [ref=f15e170]: "08"
+            - generic [ref=f15e171]: Couverture & toiture
+          - generic [ref=f15e172]: Rénovation, zinguerie
+        - link "09 Isolation extérieure ITE, économies d'énergie" [ref=f15e177] [cursor=pointer]:
+          - /url: /prestations/isolation
+          - generic [ref=f15e178]:
+            - generic [ref=f15e179]: "09"
+            - generic [ref=f15e180]: Isolation extérieure
+          - generic [ref=f15e181]: ITE, économies d'énergie
+    - region [ref=f15e186]:
+      - generic [ref=f15e187]:
+        - generic [ref=f15e188]:
+          - generic [ref=f15e189]: ZONE D'INTERVENTION
+          - heading "Nous nous déplaçons à environ 50 km autour de Bailleul." [level=2] [ref=f15e190]
+          - paragraph [ref=f15e191]:
+            - text: "Basés à Bailleul, entre Lille et Dunkerque, nous nous déplaçons dans un rayon d'environ 50 km, dans tout le Nord (59) et le Pas-de-Calais voisin, pour vos travaux de menuiseries, fermetures, isolation et toiture :"
+            - strong [ref=f15e192]: métropole lilloise (Lille, Roubaix, Tourcoing, Villeneuve-d'Ascq)
+            - text: ", Flandre intérieure (Hazebrouck, Merville, Estaires, Nieppe, Steenwerck), littoral dunkerquois, Saint-Omer, Béthune, Lens et jusqu'à Ypres en Belgique."
+          - generic [ref=f15e193]:
+            - generic [ref=f15e194]:
+              - generic [ref=f15e195]: Lundi – Vendredi
+              - strong [ref=f15e196]: 8h – 19h
+            - generic [ref=f15e197]:
+              - generic [ref=f15e198]: Samedi
+              - strong [ref=f15e199]: 9h – 18h
+            - generic [ref=f15e200]:
+              - generic [ref=f15e201]: Dimanche
+              - strong [ref=f15e202]: Fermé
+            - generic [ref=f15e203]:
+              - generic [ref=f15e204]:
+                - generic [ref=f15e205]: Showroom 300 m²
+                - generic [ref=f15e206]: 2108 Route de Lille, 59270 Bailleul
+              - link "03 20 87 61 52" [ref=f15e207] [cursor=pointer]:
+                - /url: tel:0320876152
+        - generic [ref=f15e210]:
+          - img "Carte de la zone d'intervention d'AT HOME Fermetures autour de Bailleul, incluant Lille, Dunkerque, Armentières, Hazebrouck, Ypres, Béthune, Lens, Roubaix, Tourcoing, Saint-Omer, Cassel, Estaires" [ref=f15e211]
+          - generic [ref=f15e212]:
+            - generic [ref=f15e213]:
+              - text: Déplacement et étude
+              - strong [ref=f15e214]: gratuits
+              - text: à environ 50 km autour de Bailleul
+            - generic [ref=f15e215]: Nord (59) · Pas-de-Calais · Flandre belge
+      - paragraph [ref=f15e217]: AT HOME Fermetures intervient pour vos travaux de menuiserie, fermetures, couverture et isolation à Lille, Dunkerque, Armentières, Hazebrouck, Ypres, Béthune, Lens, Roubaix, Tourcoing, Saint-Omer, Cassel, Estaires et dans toutes les communes situées dans un rayon d'environ 50 km autour de Bailleul, dans le Nord (59).
+    - region [ref=f15e218]:
+      - generic [ref=f15e219]:
+        - heading "Nos dernières réalisations." [level=2] [ref=f15e220]: Nos dernièresréalisations.
+        - generic [ref=f15e221]:
+          - generic [ref=f15e222]: Glissez ou naviguez
+          - generic [ref=f15e223]:
+            - button "Réalisations précédentes" [ref=f15e224]
+            - button "Réalisations suivantes" [ref=f15e227]
+      - generic [ref=f15e230]:
+        - generic [ref=f15e231]:
+          - img "Porte d'entrée aluminium anthracite avec baies vitrées latérales, posée par AT HOME à Bailleul" [ref=f15e232]
+          - generic [ref=f15e234]: Menuiserie
+          - generic [ref=f15e235]:
+            - generic [ref=f15e236]: Porte d'entrée aluminium sur mesure
+            - generic [ref=f15e237]: Bailleul (59)
+        - generic [ref=f15e238]:
+          - img "Porte de garage sectionnelle grise et porte d'entrée assortie sur maison en briques" [ref=f15e239]
+          - generic [ref=f15e241]: Fermeture
+          - generic [ref=f15e242]:
+            - generic [ref=f15e243]: Porte de garage sectionnelle
+            - generic [ref=f15e244]: Bailleul (59)
+        - generic [ref=f15e245]:
+          - img "Toiture en tuiles rénovée avec fenêtres de toit Velux et porte de garage anthracite" [ref=f15e246]
+          - generic [ref=f15e248]: Couverture
+          - generic [ref=f15e249]:
+            - generic [ref=f15e250]: Rénovation toiture & fenêtres de toit
+            - generic [ref=f15e251]: Nieppe (59)
+        - generic [ref=f15e252]:
+          - img "Verrière de toit sur mesure éclairant une cage d'escalier" [ref=f15e253]
+          - generic [ref=f15e255]: Velux
+          - generic [ref=f15e256]:
+            - generic [ref=f15e257]: Verrière de toit sur mesure
+            - generic [ref=f15e258]: Bailleul (59)
+        - generic [ref=f15e259]:
+          - img "Fenêtre aluminium noire avec volet roulant intégré, vue de l'intérieur" [ref=f15e260]
+          - generic [ref=f15e262]: Fermeture
+          - generic [ref=f15e263]:
+            - generic [ref=f15e264]: Fenêtre aluminium avec volet roulant intégré
+            - generic [ref=f15e265]: Armentières (59)
+    - region [ref=f15e267]:
+      - generic [ref=f15e268]:
+        - generic [ref=f15e269]:
+          - generic [ref=f15e270]: AVANT / APRÈS
+          - heading "La différence se voit direct." [level=2] [ref=f15e271]: La différencese voit direct.
+          - paragraph [ref=f15e272]: "Glissez le curseur : plus de lumière, d'isolation et de valeur pour votre bien après rénovation."
+          - generic [ref=f15e273]:
+            - generic [ref=f15e274]:
+              - generic [ref=f15e275]: "-40%"
+              - generic [ref=f15e276]: facture d'énergie
+            - generic [ref=f15e277]:
+              - generic [ref=f15e278]: +15%
+              - generic [ref=f15e279]: valeur du bien
+        - generic [ref=f15e280]:
+          - generic [ref=f15e281]: AVANT
+          - generic [ref=f15e283]: APRÈS
+          - generic: ⇆
+          - generic [ref=f15e286]: Comparer avant et après rénovation
+          - slider "Comparer avant et après rénovation" [ref=f15e287]: "55"
+    - region [ref=f15e288]:
+      - heading "Comment ça se passe ?" [level=2] [ref=f15e289]: Commentça se passe ?
+      - generic [ref=f15e290]:
+        - generic [ref=f15e291]:
+          - generic [ref=f15e292]: "1"
+          - generic [ref=f15e293]:
+            - heading "Étude & conseil" [level=3] [ref=f15e294]
+            - paragraph [ref=f15e295]: Visite technique gratuite et conseils adaptés à votre habitat et budget.
+        - generic [ref=f15e296]:
+          - generic [ref=f15e297]: "2"
+          - generic [ref=f15e298]:
+            - heading "Devis détaillé" [level=3] [ref=f15e299]
+            - paragraph [ref=f15e300]: Un devis clair et transparent, sans surprise ni engagement.
+        - generic [ref=f15e301]:
+          - generic [ref=f15e302]: "3"
+          - generic [ref=f15e303]:
+            - heading "Pose experte" [level=3] [ref=f15e304]
+            - paragraph [ref=f15e305]: Installation soignée par nos poseurs qualifiés, chantier propre.
+        - generic [ref=f15e306]:
+          - generic [ref=f15e307]: "4"
+          - generic [ref=f15e308]:
+            - heading "SAV & garantie" [level=3] [ref=f15e309]
+            - paragraph [ref=f15e310]: Service après-vente réactif et garanties jusqu'à 10 ans.
+    - region [ref=f15e311]:
+      - generic [ref=f15e312]:
+        - generic [ref=f15e313]:
+          - generic [ref=f15e314]:
+            - generic [ref=f15e315]: G
+            - generic [ref=f15e316]: Avis vérifiés Google
+          - heading "Ce qu'en disent nos clients." [level=2] [ref=f15e317]: Ce qu'en disentnos clients.
+          - paragraph [ref=f15e318]: La confiance se construit chantier après chantier. Voici quelques retours, parmi des centaines.
+          - generic [ref=f15e319]:
+            - generic [ref=f15e320]: "4.7"
+            - generic [ref=f15e321]:
+              - generic [ref=f15e322]: ★★★★★
+              - generic [ref=f15e323]:
+                - text: sur
+                - strong [ref=f15e324]: 100+
+                - text: avis Google
+        - generic [ref=f15e326]:
+          - generic [ref=f15e328]:
+            - generic [ref=f15e329]:
+              - generic [ref=f15e330]: ★★★★★
+              - paragraph [ref=f15e331]: Équipe très professionnelle et à l'écoute. Pose de nos fenêtres impeccable, chantier propre. Je recommande vivement !
+              - generic [ref=f15e332]:
+                - generic [ref=f15e333]: S
+                - generic [ref=f15e334]:
+                  - generic [ref=f15e335]: Sophie D.
+                  - generic [ref=f15e336]: Bailleul · il y a 2 semaines
+            - generic [ref=f15e337]:
+              - generic [ref=f15e338]: ★★★★★
+              - paragraph [ref=f15e339]: Réfection complète de notre toiture. Travail soigné, délais respectés et un très bon rapport qualité-prix.
+              - generic [ref=f15e340]:
+                - generic [ref=f15e341]: K
+                - generic [ref=f15e342]:
+                  - generic [ref=f15e343]: Karim B.
+                  - generic [ref=f15e344]: Hazebrouck · il y a 1 mois
+            - generic [ref=f15e345]:
+              - generic [ref=f15e346]: ★★★★★
+              - paragraph [ref=f15e347]: Accueil au showroom au top, de vrais conseils sans pression. Nos volets roulants sont parfaits.
+              - generic [ref=f15e348]:
+                - generic [ref=f15e349]: J
+                - generic [ref=f15e350]:
+                  - generic [ref=f15e351]: Julie R.
+                  - generic [ref=f15e352]: Nieppe · il y a 3 semaines
+            - generic [ref=f15e353]:
+              - generic [ref=f15e354]: ★★★★★
+              - paragraph [ref=f15e355]: Porte d'entrée changée en une journée. Propre, rapide, et un rendu vraiment haut de gamme.
+              - generic [ref=f15e356]:
+                - generic [ref=f15e357]: T
+                - generic [ref=f15e358]:
+                  - generic [ref=f15e359]: Thierry M.
+                  - generic [ref=f15e360]: Estaires · il y a 2 mois
+            - generic [ref=f15e361]:
+              - generic [ref=f15e362]: ★★★★★
+              - paragraph [ref=f15e363]: Équipe très professionnelle et à l'écoute. Pose de nos fenêtres impeccable, chantier propre. Je recommande vivement !
+              - generic [ref=f15e364]:
+                - generic [ref=f15e365]: S
+                - generic [ref=f15e366]:
+                  - generic [ref=f15e367]: Sophie D.
+                  - generic [ref=f15e368]: Bailleul · il y a 2 semaines
+            - generic [ref=f15e369]:
+              - generic [ref=f15e370]: ★★★★★
+              - paragraph [ref=f15e371]: Réfection complète de notre toiture. Travail soigné, délais respectés et un très bon rapport qualité-prix.
+              - generic [ref=f15e372]:
+                - generic [ref=f15e373]: K
+                - generic [ref=f15e374]:
+                  - generic [ref=f15e375]: Karim B.
+                  - generic [ref=f15e376]: Hazebrouck · il y a 1 mois
+            - generic [ref=f15e377]:
+              - generic [ref=f15e378]: ★★★★★
+              - paragraph [ref=f15e379]: Accueil au showroom au top, de vrais conseils sans pression. Nos volets roulants sont parfaits.
+              - generic [ref=f15e380]:
+                - generic [ref=f15e381]: J
+                - generic [ref=f15e382]:
+                  - generic [ref=f15e383]: Julie R.
+                  - generic [ref=f15e384]: Nieppe · il y a 3 semaines
+            - generic [ref=f15e385]:
+              - generic [ref=f15e386]: ★★★★★
+              - paragraph [ref=f15e387]: Porte d'entrée changée en une journée. Propre, rapide, et un rendu vraiment haut de gamme.
+              - generic [ref=f15e388]:
+                - generic [ref=f15e389]: T
+                - generic [ref=f15e390]:
+                  - generic [ref=f15e391]: Thierry M.
+                  - generic [ref=f15e392]: Estaires · il y a 2 mois
+          - generic [ref=f15e394]:
+            - generic [ref=f15e395]:
+              - generic [ref=f15e396]: ★★★★★
+              - paragraph [ref=f15e397]: Du devis à la pose du portail motorisé, tout a été parfait. Des artisans sérieux et de bon conseil.
+              - generic [ref=f15e398]:
+                - generic [ref=f15e399]: M
+                - generic [ref=f15e400]:
+                  - generic [ref=f15e401]: Michel & Anne L.
+                  - generic [ref=f15e402]: Armentières · il y a 1 mois
+            - generic [ref=f15e403]:
+              - generic [ref=f15e404]: ★★★★★
+              - paragraph [ref=f15e405]: Dépannage d'un volet roulant en urgence, intervention le jour même. Merci pour votre réactivité !
+              - generic [ref=f15e406]:
+                - generic [ref=f15e407]: "N"
+                - generic [ref=f15e408]:
+                  - generic [ref=f15e409]: Nathalie V.
+                  - generic [ref=f15e410]: Steenwerck · il y a 2 mois
+            - generic [ref=f15e411]:
+              - generic [ref=f15e412]: ★★★★★
+              - paragraph [ref=f15e413]: Isolation extérieure impeccable, la maison est bien plus confortable et les factures ont chuté.
+              - generic [ref=f15e414]:
+                - generic [ref=f15e415]: B
+                - generic [ref=f15e416]:
+                  - generic [ref=f15e417]: Bruno C.
+                  - generic [ref=f15e418]: Merville · il y a 1 mois
+            - generic [ref=f15e419]:
+              - generic [ref=f15e420]: ★★★★★
+              - paragraph [ref=f15e421]: Une équipe qui tient ses délais et son budget. Rare et appréciable. Merci pour tout !
+              - generic [ref=f15e422]:
+                - generic [ref=f15e423]: S
+                - generic [ref=f15e424]:
+                  - generic [ref=f15e425]: Sandrine P.
+                  - generic [ref=f15e426]: Bailleul · il y a 5 semaines
+            - generic [ref=f15e427]:
+              - generic [ref=f15e428]: ★★★★★
+              - paragraph [ref=f15e429]: Du devis à la pose du portail motorisé, tout a été parfait. Des artisans sérieux et de bon conseil.
+              - generic [ref=f15e430]:
+                - generic [ref=f15e431]: M
+                - generic [ref=f15e432]:
+                  - generic [ref=f15e433]: Michel & Anne L.
+                  - generic [ref=f15e434]: Armentières · il y a 1 mois
+            - generic [ref=f15e435]:
+              - generic [ref=f15e436]: ★★★★★
+              - paragraph [ref=f15e437]: Dépannage d'un volet roulant en urgence, intervention le jour même. Merci pour votre réactivité !
+              - generic [ref=f15e438]:
+                - generic [ref=f15e439]: "N"
+                - generic [ref=f15e440]:
+                  - generic [ref=f15e441]: Nathalie V.
+                  - generic [ref=f15e442]: Steenwerck · il y a 2 mois
+            - generic [ref=f15e443]:
+              - generic [ref=f15e444]: ★★★★★
+              - paragraph [ref=f15e445]: Isolation extérieure impeccable, la maison est bien plus confortable et les factures ont chuté.
+              - generic [ref=f15e446]:
+                - generic [ref=f15e447]: B
+                - generic [ref=f15e448]:
+                  - generic [ref=f15e449]: Bruno C.
+                  - generic [ref=f15e450]: Merville · il y a 1 mois
+            - generic [ref=f15e451]:
+              - generic [ref=f15e452]: ★★★★★
+              - paragraph [ref=f15e453]: Une équipe qui tient ses délais et son budget. Rare et appréciable. Merci pour tout !
+              - generic [ref=f15e454]:
+                - generic [ref=f15e455]: S
+                - generic [ref=f15e456]:
+                  - generic [ref=f15e457]: Sandrine P.
+                  - generic [ref=f15e458]: Bailleul · il y a 5 semaines
+    - region [ref=f15e459]:
+      - generic [ref=f15e460]:
+        - generic [ref=f15e461]: FAQ
+        - heading "Les questions qu'on nous pose souvent." [level=2] [ref=f15e462]
+      - generic [ref=f15e463]:
+        - generic [ref=f15e464]:
+          - button "Le devis est-il vraiment gratuit ?" [ref=f15e465]
+          - paragraph [ref=f15e470]: Oui, totalement. Nous nous déplaçons chez vous pour une visite technique, prenons les mesures et vous remettons un devis détaillé sous 48h — sans aucun engagement de votre part.
+        - generic [ref=f15e471]:
+          - button "Quels sont vos délais d'intervention ?" [ref=f15e472]
+          - paragraph [ref=f15e477]: Selon la prestation et la saison, comptez en général 4 à 8 semaines entre la signature du devis et la pose. Pour un dépannage (volet bloqué, serrure), nous intervenons 7j/7, souvent le jour même.
+        - generic [ref=f15e478]:
+          - button "Quelles garanties proposez-vous ?" [ref=f15e479]
+          - paragraph [ref=f15e484]: Tous nos chantiers sont couverts par la garantie décennale. Les menuiseries bénéficient en plus des garanties fabricant, jusqu'à 10 ans selon les produits.
+        - generic [ref=f15e485]:
+          - button "Puis-je bénéficier d'aides pour mes travaux ?" [ref=f15e486]
+          - paragraph [ref=f15e491]: "Oui. Nous sommes certifiés RGE Qualibat : vos travaux d'isolation et de menuiseries peuvent ouvrir droit à MaPrimeRénov', aux CEE et à la TVA réduite. Nous vous accompagnons dans les démarches."
+        - generic [ref=f15e492]:
+          - button "Travaillez-vous avec des marques reconnues ?" [ref=f15e493]
+          - paragraph [ref=f15e498]: Nous sommes partenaires K·LINE pour les menuiseries alu, et posons notamment du VELUX et du SOMFY pour la motorisation. Des produits éprouvés, fabriqués en France pour la plupart.
+        - generic [ref=f15e499]:
+          - button "Peut-on voir les produits avant d'acheter ?" [ref=f15e500]
+          - paragraph [ref=f15e505]: Bien sûr — notre showroom de 300 m² à Bailleul présente fenêtres, volets, portes, portails et motorisations en situation réelle. Venez toucher les matériaux et comparer, avec un conseiller.
+  - contentinfo [ref=f15e506]:
+    - generic [ref=f15e507]:
+      - paragraph [ref=f15e508]: ON CONSTRUIT ENSEMBLE.
+      - generic [ref=f15e509]:
+        - generic [ref=f15e510]:
+          - img "AT HOME" [ref=f15e511]
+          - paragraph [ref=f15e512]: Menuiseries, fermetures & couverture. La solution durable pour votre habitat, à Bailleul depuis 2009.
+          - generic [ref=f15e513]: CERTIFIÉ RGE QUALIBAT
+          - generic [ref=f15e514]:
+            - link "Facebook" [ref=f15e515] [cursor=pointer]:
+              - /url: https://www.facebook.com
+            - link "Instagram" [ref=f15e518] [cursor=pointer]:
+              - /url: https://www.instagram.com
+        - generic [ref=f15e523]:
+          - paragraph [ref=f15e524]: Prestations
+          - generic [ref=f15e525]:
+            - generic [ref=f15e526]: Fenêtres & portes
+            - generic [ref=f15e527]: Volets & motorisation
+            - generic [ref=f15e528]: Portes de garage
+            - generic [ref=f15e529]: Portails & carports
+            - generic [ref=f15e530]: Couverture & toiture
+        - generic [ref=f15e531]:
+          - paragraph [ref=f15e532]: Entreprise
+          - generic [ref=f15e533]:
+            - link "À propos" [ref=f15e534] [cursor=pointer]:
+              - /url: /societe
+            - link "Réalisations" [ref=f15e535] [cursor=pointer]:
+              - /url: /realisations
+            - link "Dépannage" [ref=f15e536] [cursor=pointer]:
+              - /url: tel:0320876152
+            - link "Configurateur" [ref=f15e537] [cursor=pointer]:
+              - /url: /configurateur
+            - link "Espace pro" [ref=f15e538] [cursor=pointer]:
+              - /url: /contact#espace-pro
+            - link "Contact" [ref=f15e539] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f15e540]:
+          - paragraph [ref=f15e541]: Contact
+          - generic [ref=f15e542]:
+            - link "03 20 87 61 52" [ref=f15e543] [cursor=pointer]:
+              - /url: tel:0320876152
+            - generic [ref=f15e544]: 2108 Route de Lille
+            - generic [ref=f15e545]: 59270 Bailleul
+            - generic [ref=f15e546]: Lun – Sam · 8h – 19h
+      - generic [ref=f15e547]:
+        - generic [ref=f15e548]: © 2026 AT HOME Couvertures & Fermetures — Tous droits réservés
+        - generic [ref=f15e549]:
+          - link "Mentions légales" [ref=f15e550] [cursor=pointer]:
+            - /url: /mentions-legales
+          - text: ·
+          - link "Politique de confidentialité" [ref=f15e551] [cursor=pointer]:
+            - /url: /politique-de-confidentialite
