@@ -23,8 +23,8 @@ export const SITE = {
     longitude: 2.7333,
   },
   hours: [
-    { day: "Lundi – Vendredi", hours: "8h – 19h" },
-    { day: "Samedi", hours: "9h – 18h" },
+    { day: "Lundi – Vendredi", hours: "8h – 17h" },
+    { day: "Samedi", hours: "Sur rendez-vous" },
     { day: "Dimanche", hours: "Fermé" },
   ],
   openingHoursSpecification: [
@@ -32,13 +32,7 @@ export const SITE = {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       opens: "08:00",
-      closes: "19:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Saturday"],
-      opens: "09:00",
-      closes: "18:00",
+      closes: "17:00",
     },
   ],
   rating: {
@@ -92,6 +86,7 @@ export const PRESTATIONS_NAV = [
   { label: "Portails et clôtures", href: "/prestations/portails-clotures" },
   { label: "Velux et fenêtres de toit", href: "/prestations/velux-fenetres-de-toit" },
   { label: "Isolation extérieure", href: "/prestations/isolation" },
+  { label: "Toiture EPDM et extension", href: "/prestations/toiture-epdm-extension" },
 ] as const;
 
 export const FOOTER_PRESTATIONS = [

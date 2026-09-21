@@ -51,14 +51,14 @@ export const PRESTATIONS: Prestation[] = [
     badge: "MENUISERIES · PARTENAIRE K·LINE",
     title: "Fenêtres sur mesure.",
     lead: "PVC, aluminium ou bois : nous fabriquons, posons et garantissons des menuiseries haute isolation, adaptées à votre maison et à votre budget. Pose en neuf comme en rénovation.",
-    heroCaption: "Pose K·LINE · Bailleul",
+    heroCaption: "Pose K·LINE",
     ratingNote: "RGE Qualibat · Garantie décennale",
     materialsTitle: "Trois matériaux, trois caractères.",
     materials: [
       {
-        name: "PVC",
+        name: "PVC Oknoplast",
         description:
-          "Le meilleur rapport qualité-prix. Excellente isolation thermique, aucun entretien, large choix de coloris.",
+          "Le meilleur rapport qualité-prix. Menuiseries Oknoplast, leader européen du PVC : excellente isolation thermique, aucun entretien, large choix de coloris.",
         tags: ["Économique", "Sans entretien"],
       },
       {
@@ -134,8 +134,8 @@ export const PRESTATIONS: Prestation[] = [
     related: ["portes-fenetres", "volets-roulants", "isolation"],
     seoTitle: "Fenêtres PVC, Alu, Bois | AT HOME Fermetures — Bailleul (59)",
     seoDescription:
-      "Fenêtres sur mesure en PVC, aluminium K·LINE ou bois, posées par votre menuisier à Bailleul. Devis gratuit sous 48h, RGE Qualibat.",
-    keywords: ["menuisier Bailleul", "fenêtre PVC Lille", "fenêtre aluminium Nord"],
+      "Fenêtres sur mesure en PVC Oknoplast, aluminium K·LINE ou bois, posées par votre menuisier à Bailleul. Devis gratuit sous 48h, RGE Qualibat.",
+    keywords: ["menuisier Bailleul", "fenêtre PVC Oknoplast", "fenêtre aluminium Nord"],
   },
   {
     slug: "portes-fenetres",
@@ -146,7 +146,7 @@ export const PRESTATIONS: Prestation[] = [
     badge: "MENUISERIES · GRANDES OUVERTURES",
     title: "Baies vitrées et portes-fenêtres coulissantes.",
     lead: "Baie coulissante, galandage ou porte-fenêtre à la française : agrandissez visuellement votre séjour et gagnez en lumière naturelle, avec la même isolation qu'une fenêtre classique.",
-    heroCaption: "Baie coulissante K·LINE · Bailleul",
+    heroCaption: "Baie coulissante K·LINE",
     ratingNote: "RGE Qualibat · Garantie décennale",
     materialsTitle: "Trois ouvertures, trois usages.",
     materials: [
@@ -155,13 +155,13 @@ export const PRESTATIONS: Prestation[] = [
         description:
           "Grands vantaux qui glissent sans empiéter sur la pièce. Idéal pour ouvrir sur une terrasse ou un jardin.",
         tags: ["Gain de place", "Grandes largeurs"],
+        featured: true,
       },
       {
         name: "Galandage",
         description:
           "Les vantaux disparaissent entièrement dans le mur pour une ouverture totale, sans aucun rail apparent.",
         tags: ["Ouverture totale", "Sur mesure"],
-        featured: true,
       },
       {
         name: "À la française",
@@ -233,15 +233,15 @@ export const PRESTATIONS: Prestation[] = [
     homeLabel: "Portes d'entrée",
     homeDescriptor: "Sécurité & design",
     gradient: ["#c9d3b0", "#7f9257"],
-    badge: "MENUISERIES · SÉCURITÉ & DESIGN",
+    badge: "MENUISERIES · PARTENAIRE EURADIF",
     title: "Portes d'entrée sécurisées et design.",
-    lead: "Aluminium, PVC ou acier : une porte d'entrée, c'est la première image de votre maison et votre première protection. Nous posons des modèles isolants, sécurisés et personnalisables en une journée.",
-    heroCaption: "Porte d'entrée aluminium · Bailleul",
-    ratingNote: "RGE Qualibat · Garantie décennale",
+    lead: "Aluminium, PVC ou acier : une porte d'entrée, c'est la première image de votre maison et votre première protection. Nous posons des modèles Euradif, fabricant des Hauts-de-France, isolants, sécurisés et personnalisables en une journée.",
+    heroCaption: "Porte d'entrée Euradif",
+    ratingNote: "RGE Qualibat · Partenaire Euradif",
     materialsTitle: "Trois matériaux, une même exigence.",
     materials: [
       {
-        name: "Aluminium",
+        name: "Aluminium Euradif",
         description: "Design contemporain, très grand choix de teintes et de poignées, robustesse maximale.",
         tags: ["Design", "Robuste"],
         featured: true,
@@ -309,10 +309,10 @@ export const PRESTATIONS: Prestation[] = [
       },
     ],
     related: ["fenetres", "portes-fenetres", "portails-clotures"],
-    seoTitle: "Porte d'entrée Bailleul (59) | AT HOME Fermetures",
+    seoTitle: "Porte d'entrée Euradif Bailleul (59) | AT HOME Fermetures",
     seoDescription:
-      "Portes d'entrée aluminium, PVC ou acier, sécurisées et posées en une journée par AT HOME à Bailleul. Devis gratuit sous 48h.",
-    keywords: ["porte d'entrée Bailleul", "menuisier Bailleul", "porte sécurisée Nord 59"],
+      "Portes d'entrée Euradif en aluminium, PVC ou acier, sécurisées et posées en une journée par AT HOME à Bailleul. Devis gratuit sous 48h.",
+    keywords: ["porte d'entrée Euradif", "menuisier Bailleul", "porte sécurisée Nord 59"],
   },
   {
     slug: "volets-roulants",
@@ -323,7 +323,7 @@ export const PRESTATIONS: Prestation[] = [
     badge: "FERMETURES · PARTENAIRE SOMFY",
     title: "Volets roulants et battants sur mesure.",
     lead: "Volets roulants ou battants, en rénovation ou en neuf, manuels ou motorisés Somfy, pilotables à distance : confort, sécurité et isolation thermique renforcée pour toutes vos ouvertures.",
-    heroCaption: "Motorisation Somfy · Bailleul",
+    heroCaption: "Motorisation Somfy",
     ratingNote: "RGE Qualibat · Partenaire Somfy",
     materialsTitle: "Roulant ou battant, manuel ou motorisé.",
     materials: [
@@ -347,6 +347,11 @@ export const PRESTATIONS: Prestation[] = [
         name: "Radio & connecté",
         description: "Télécommande, application mobile et scénarios domotiques Somfy TaHoma pour piloter tous vos volets.",
         tags: ["Pilotage à distance", "Domotique"],
+      },
+      {
+        name: "Motorisation solaire",
+        description: "Un petit panneau intégré au tablier recharge une batterie : aucun câble à tirer, idéale en rénovation quand le tableau électrique est éloigné.",
+        tags: ["Sans câblage", "Écologique"],
       },
     ],
     benefitsTitle: "Ce que change un volet roulant motorisé.",
@@ -412,15 +417,15 @@ export const PRESTATIONS: Prestation[] = [
     homeLabel: "Portes de garage",
     homeDescriptor: "Sectionnelles, motorisées",
     gradient: ["#c7b087", "#8a6f3f"],
-    badge: "FERMETURES · SECTIONNELLES & MOTORISÉES",
+    badge: "FERMETURES · PARTENAIRE SDA",
     title: "Portes de garage sur mesure.",
-    lead: "Sectionnelle, basculante ou enroulable, motorisée ou manuelle : nous posons des portes de garage isolantes et sécurisées, assorties à votre façade, à Bailleul et dans tout le Nord.",
-    heroCaption: "Porte sectionnelle motorisée · Hazebrouck",
-    ratingNote: "RGE Qualibat · Garantie décennale",
+    lead: "Sectionnelle, basculante ou enroulable, motorisée ou manuelle : nous posons des portes de garage SDA, fabricant 100% français basé dans les Hauts-de-France, isolantes et sécurisées, assorties à votre façade.",
+    heroCaption: "Porte sectionnelle SDA",
+    ratingNote: "RGE Qualibat · Partenaire SDA",
     materialsTitle: "Trois types d'ouverture.",
     materials: [
       {
-        name: "Sectionnelle",
+        name: "Sectionnelle SDA",
         description: "S'ouvre à la verticale sans empiéter sur l'espace intérieur ou extérieur. La plus isolante.",
         tags: ["Gain de place", "Isolante"],
         featured: true,
@@ -488,10 +493,10 @@ export const PRESTATIONS: Prestation[] = [
       },
     ],
     related: ["portails-clotures", "volets-roulants", "portes-dentree"],
-    seoTitle: "Porte de garage Hazebrouck | AT HOME — Bailleul (59)",
+    seoTitle: "Porte de garage SDA Hazebrouck | AT HOME — Bailleul (59)",
     seoDescription:
-      "Portes de garage sectionnelles, basculantes ou enroulables, motorisées Somfy, posées par AT HOME dans le Nord. Devis gratuit sous 48h.",
-    keywords: ["porte de garage Hazebrouck", "porte de garage Bailleul", "motorisation Somfy Nord 59"],
+      "Portes de garage SDA sectionnelles, basculantes ou enroulables, motorisées Somfy, posées par AT HOME dans le Nord. Devis gratuit sous 48h.",
+    keywords: ["porte de garage SDA", "porte de garage Bailleul", "motorisation Somfy Nord 59"],
   },
   {
     slug: "portails-clotures",
@@ -502,7 +507,7 @@ export const PRESTATIONS: Prestation[] = [
     badge: "FERMETURES · ALUMINIUM SUR MESURE",
     title: "Portails, clôtures et carports en aluminium.",
     lead: "Portail battant ou coulissant, clôture assortie et carport : nous concevons des ensembles aluminium sur mesure, motorisables, pour sécuriser et valoriser l'entrée de votre propriété.",
-    heroCaption: "Portail coulissant motorisé · Armentières",
+    heroCaption: "Portail coulissant motorisé",
     ratingNote: "RGE Qualibat · Partenaire Somfy",
     materialsTitle: "Trois éléments, un seul ensemble.",
     materials: [
@@ -671,12 +676,12 @@ export const PRESTATIONS: Prestation[] = [
     badge: "ISOLATION · ITE",
     title: "Isolation thermique par l'extérieur (ITE).",
     lead: "L'isolation extérieure enveloppe votre maison sans réduire la surface habitable, supprime les ponts thermiques et rénove votre façade en un seul chantier. Un geste fort pour votre confort et vos factures.",
-    heroCaption: "Isolation extérieure enduite · Bailleul",
+    heroCaption: "Isolation extérieure enduite",
     ratingNote: "RGE Qualibat · Éligible MaPrimeRénov'",
     materialsTitle: "Deux finitions, une même performance.",
     materials: [
       {
-        name: "Enduit sur isolant",
+        name: "Isolation extérieure",
         description: "Solution la plus courante, large choix de teintes, bon rapport performance/prix.",
         tags: ["Économique", "Personnalisable"],
         featured: true,
@@ -743,6 +748,92 @@ export const PRESTATIONS: Prestation[] = [
     seoDescription:
       "Isolation thermique par l'extérieur (ITE), enduit ou bardage, posée par AT HOME à Bailleul. Aides MaPrimeRénov', devis gratuit sous 48h.",
     keywords: ["isolation extérieure Bailleul", "ITE Nord 59", "RGE Bailleul"],
+  },
+  {
+    slug: "toiture-epdm-extension",
+    navLabel: "Toiture EPDM et extension",
+    homeLabel: "Toiture EPDM & extension",
+    homeDescriptor: "Toit plat, agrandissement",
+    gradient: ["#9aa5ab", "#4a5560"],
+    badge: "EXTENSION · TOITURE EPDM",
+    title: "Toiture EPDM et extension sur mesure.",
+    lead: "Vous manquez de place ? Nous agrandissons votre maison et couvrons les toits plats ou à faible pente d'une membrane EPDM monocouche, étanche et durable, pour une extension qui tient dans le temps.",
+    heroCaption: "Extension toiture plate EPDM",
+    ratingNote: "RGE Qualibat · Garantie décennale",
+    materialsTitle: "Deux savoir-faire, un seul chantier.",
+    materials: [
+      {
+        name: "Toiture EPDM",
+        description: "Membrane caoutchouc monocouche, sans raccord ni soudure multiple : une étanchéité totale pour toit plat ou faible pente.",
+        tags: ["Étanchéité totale", "Sans entretien"],
+      },
+      {
+        name: "Extension ossature bois",
+        description: "Structure légère et rapide à mettre en œuvre, pour agrandir sans lourds travaux de maçonnerie.",
+        tags: ["Rapide", "Bonne isolation"],
+      },
+      {
+        name: "Extension maçonnée",
+        description: "Structure traditionnelle en briques ou parpaings, assortie à l'existant, pour une extension qui ne se distingue pas de la maison d'origine.",
+        tags: ["Traditionnel", "Assorti à l'existant"],
+      },
+    ],
+    benefitsTitle: "Ce que change une extension bien pensée.",
+    benefitsImageCaption: "Photo — extension toiture plate EPDM",
+    benefits: [
+      {
+        icon: "droplet",
+        title: "Étanchéité durable",
+        description: "La membrane EPDM affiche une durée de vie démontrée de plus de 50 ans, sans raccord source de fuite.",
+      },
+      {
+        icon: "home",
+        title: "Plus de surface, sans déménager",
+        description: "Cuisine, chambre, bureau ou véranda : gagnez les m² qu'il vous manque sur votre terrain actuel.",
+      },
+      {
+        icon: "shield",
+        title: "Résiste à tous les climats",
+        description: "La membrane EPDM supporte gel, forte chaleur, UV et intempéries sans se fissurer ni se rétracter.",
+      },
+      {
+        icon: "badge-check",
+        title: "Garantie décennale",
+        description: "Comme tout ouvrage de construction, votre extension est couverte 10 ans, structure et étanchéité comprises.",
+      },
+    ],
+    faq: [
+      {
+        question: "Qu'est-ce qu'une toiture EPDM et pour quels usages ?",
+        answer:
+          "L'EPDM est une membrane en caoutchouc monocouche destinée à l'étanchéité des toits plats ou à faible pente. Elle est particulièrement adaptée aux extensions, vérandas, garages ou abris de jardin.",
+      },
+      {
+        question: "Quelle est la durée de vie d'une toiture en EPDM ?",
+        answer:
+          "Sa durée de vie démontrée dépasse 50 ans : la membrane résiste aux UV, à l'ozone et aux variations climatiques sans se dégrader, contrairement à d'autres revêtements de toit plat.",
+      },
+      {
+        question: "Faut-il une autorisation pour construire une extension ?",
+        answer:
+          "Cela dépend de la surface créée et du règlement d'urbanisme de votre commune : une simple déclaration préalable suffit parfois, un permis de construire est requis au-delà d'un certain seuil. Nous pouvons vous orienter, mais la démarche reste à votre charge.",
+      },
+      {
+        question: "L'extension peut-elle être isolée et raccordée à l'existant ?",
+        answer:
+          "Oui, nous intégrons l'isolation de la nouvelle structure et assurons la jonction avec la toiture et les murs existants pour un ensemble cohérent et étanche.",
+      },
+      {
+        question: "Combien de temps dure un chantier d'extension ?",
+        answer:
+          "Selon la surface et le type de structure (bois ou maçonnée), comptez généralement plusieurs semaines de travaux. Nous établissons un planning précis après la visite technique.",
+      },
+    ],
+    related: ["isolation", "velux-fenetres-de-toit", "portes-fenetres"],
+    seoTitle: "Toiture EPDM et extension Nord 59 | AT HOME — Bailleul",
+    seoDescription:
+      "Extension de maison et toiture EPDM étanche, posées par AT HOME à Bailleul. RGE Qualibat, garantie décennale, devis gratuit sous 48h.",
+    keywords: ["toiture EPDM Nord 59", "extension maison Bailleul", "toit plat Armentières"],
   },
 ];
 
