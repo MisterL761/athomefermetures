@@ -1,8 +1,31 @@
 ---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import { PRESTATIONS } from "@/data/prestations";
 import { URGENCY_OPTIONS } from "@/data/devis";
 import { breadcrumbSchema } from "@/lib/schema";
+import fenetresPhoto from "@/assets/PhotoPrestation/fenetres.jpg.webp";
+import porteFenetrePhoto from "@/assets/PhotoPrestation/porteFenetre.jpg";
+import porteEntreePhoto from "@/assets/PhotoPrestation/porteEntree.jpg";
+import voletBattantPhoto from "@/assets/PhotoPrestation/voletBattant.jpg";
+import motorisationPhoto from "@/assets/PhotoPrestation/motorisation.jpg";
+import portailPhoto from "@/assets/PhotoPrestation/portail.jpg";
+import veluxPhoto from "@/assets/PhotoPrestation/velux.jpg";
+import itePhoto from "@/assets/PhotoPrestation/ite.jpg";
+import extensionPhoto from "@/assets/PhotoPrestation/extension.jpg";
+
+const PRESTATION_PHOTOS: Record<string, ImageMetadata> = {
+  fenetres: fenetresPhoto,
+  "portes-fenetres": porteFenetrePhoto,
+  "portes-dentree": porteEntreePhoto,
+  "volets-roulants": voletBattantPhoto,
+  "portes-de-garage": motorisationPhoto,
+  "portails-clotures": portailPhoto,
+  "velux-fenetres-de-toit": veluxPhoto,
+  isolation: itePhoto,
+  "toiture-epdm-extension": extensionPhoto,
+};
 
 const crumbs = [
   { name: "Accueil", path: "/" },
@@ -11,7 +34,7 @@ const crumbs = [
 
 const title = "Demande de devis gratuit | AT HOME Fermetures — Bailleul";
 const description =
-  "Demandez votre devis gratuit en 4 étapes pour vos menuiseries, fermetures, toiture ou isolation. Réponse sous 48h par AT HOME, artisan RGE à Bailleul (59).";
+  "Demandez votre devis gratuit en 4 étapes pour vos menuiseries, fermetures ou isolation extérieure. Réponse sous 48h par AT HOME, artisan RGE à Bailleul (59).";
 
 const FIELDS = [
   { name: "firstName", label: "Prénom", type: "text", autocomplete: "given-name" },
@@ -23,14 +46,16 @@ const FIELDS = [
 
 <Layout title={title} description={description} path="/devis" jsonLd={[breadcrumbSchema(crumbs)]}>
   <div class="mx-auto w-full max-w-[760px] px-6 pt-[150px] min-[820px]:px-11">
-    <div class="mb-2.5 flex items-center justify-between gap-2">
-      <span id="step-label" class="font-heading text-[13px] font-extrabold uppercase tracking-[0.1em] text-text-muted">
-        Étape <span id="step-current">1</span> / 4
-      </span>
-      <span id="step-title" class="text-[13.5px] text-text-muted">Vos prestations</span>
-    </div>
-    <div class="h-1.5 overflow-hidden rounded-full bg-border-light" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-labelledby="step-label" id="progress-track">
-      <div id="progress-fill" class="h-full rounded-full bg-lime transition-[width] duration-500 ease-[cubic-bezier(.16,1,.3,1)]" style="width: 25%;"></div>
+    <div id="progress-wrap">
+      <div class="mb-2.5 flex items-center justify-between gap-2">
+        <span id="step-label" class="font-heading text-[13px] font-extrabold uppercase tracking-[0.1em] text-text-muted">
+          Étape <span id="step-current">1</span> / 4
+        </span>
+        <span id="step-title" class="text-[13.5px] text-text-muted">Vos prestations</span>
+      </div>
+      <div class="h-1.5 overflow-hidden rounded-full bg-border-light" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-labelledby="step-label" id="progress-track">
+        <div id="progress-fill" class="h-full rounded-full bg-lime transition-[width] duration-500 ease-[cubic-bezier(.16,1,.3,1)]" style="width: 25%;"></div>
+      </div>
     </div>
   </div>
 
@@ -46,11 +71,16 @@ const FIELDS = [
           PRESTATIONS.map((prestation) => (
             <label class="dv-card group cursor-pointer rounded-[18px] border-2 border-border p-2 transition-transform has-[:checked]:border-lime has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-ink">
               <input type="checkbox" name="prestations" value={prestation.slug} class="sr-only" />
-              <span
-                class="relative block h-[130px] overflow-hidden rounded-[14px]"
-                style={`background: linear-gradient(150deg, ${prestation.gradient[0]}, ${prestation.gradient[1]});`}
-              >
-                <span class="absolute inset-0 [background:repeating-linear-gradient(135deg,rgba(255,255,255,0.12)_0px,rgba(255,255,255,0.12)_2px,transparent_2px,transparent_24px)]" />
+              <span class="relative block h-[130px] overflow-hidden rounded-[14px]">
+                <Image
+                  src={PRESTATION_PHOTOS[prestation.slug]}
+                  alt={prestation.homeLabel}
+                  class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  widths={[240, 320, 480]}
+                  sizes="200px"
+                  loading="lazy"
+                />
+                <span class="absolute inset-0 bg-[linear-gradient(150deg,rgba(14,14,14,0.18),rgba(14,14,14,0.02))]" />
                 <span class="absolute right-2.5 top-2.5 flex h-[26px] w-[26px] scale-[0.6] items-center justify-center rounded-full bg-white/85 text-ink opacity-0 transition-all duration-200 group-has-[:checked]:scale-100 group-has-[:checked]:opacity-100">
                   ✓
                 </span>
@@ -200,6 +230,7 @@ const FIELDS = [
   const stepTitleEl = document.getElementById("step-title");
   const progressFill = document.getElementById("progress-fill");
   const progressTrack = document.getElementById("progress-track");
+  const progressWrap = document.getElementById("progress-wrap");
 
   const STEP_TITLES = { 1: "Vos prestations", 2: "Urgence des travaux", 3: "Vos coordonnées", 4: "Récapitulatif" };
   let currentStep = 1;
@@ -214,9 +245,9 @@ const FIELDS = [
       stepTitleEl.textContent = STEP_TITLES[step];
       progressFill.style.width = `${(step / 4) * 100}%`;
       progressTrack.setAttribute("aria-valuenow", String(step));
-      progressTrack.parentElement && (progressTrack.parentElement.hidden = false);
+      progressWrap && (progressWrap.hidden = false);
     } else {
-      progressTrack.parentElement && (progressTrack.parentElement.hidden = true);
+      progressWrap && (progressWrap.hidden = true);
     }
     if (focusHeading) {
       const heading = form.querySelector(`[data-step="${step}"] [data-step-heading]`);
