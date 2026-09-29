@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import avantPhoto from "@/assets/realisationHome/avant-turlotte.jpg";
+import apresPhoto from "@/assets/realisationHome/apres-turlotte.jpg";
 ---
 
 <section aria-labelledby="avant-apres-heading" class="bg-bg-alt">
@@ -24,12 +27,14 @@
     </div>
 
     <div class="relative h-[360px] overflow-hidden rounded-[26px] shadow-[0_30px_60px_-30px_rgba(14,14,14,0.35)] min-[820px]:h-[460px]" id="avant-apres-slider">
-      <div class="absolute inset-0 flex items-end bg-[linear-gradient(150deg,#9a958a,#6f6a5f)]">
-        <span class="m-5 rounded-full bg-ink/60 px-3.5 py-[7px] font-heading text-[13px] font-extrabold text-white">AVANT</span>
+      <div class="absolute inset-0 flex items-end">
+        <Image src={avantPhoto} alt="Avant rénovation" class="absolute inset-0 h-full w-full object-cover" widths={[480, 640, 900, 1200]} sizes="(max-width: 820px) 100vw, 640px" loading="eager" />
+        <span class="relative m-5 rounded-full bg-ink/60 px-3.5 py-[7px] font-heading text-[13px] font-extrabold text-white">AVANT</span>
       </div>
       <div id="avant-apres-clip" class="absolute inset-0" style="clip-path: inset(0 45% 0 0);">
-        <div class="absolute inset-0 flex items-end justify-end bg-[linear-gradient(150deg,#a9d15e,#6fae12)]">
-          <span class="m-5 rounded-full bg-lime px-3.5 py-[7px] font-heading text-[13px] font-extrabold text-ink">APRÈS</span>
+        <div class="absolute inset-0 flex items-end justify-end">
+          <Image src={apresPhoto} alt="Après rénovation" class="absolute inset-0 h-full w-full object-cover" widths={[480, 640, 900, 1200]} sizes="(max-width: 820px) 100vw, 640px" loading="eager" />
+          <span class="relative m-5 rounded-full bg-lime px-3.5 py-[7px] font-heading text-[13px] font-extrabold text-ink">APRÈS</span>
         </div>
       </div>
       <div
